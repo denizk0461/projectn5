@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://df5ovt2ks4nt8"]
 
-[ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenuButton.tscn" id="1_s4ds6"]
-[ext_resource type="Script" path="res://Scenes/Other/PauseMenu.gd" id="1_tvler"]
+[ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
+[ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
 
 [node name="Control" type="Control"]
 process_mode = 2
@@ -11,7 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tvler")
+script = ExtResource("1_xjv70")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.266667)
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -29,27 +34,31 @@ grow_vertical = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="ButtonResume" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonResume" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Resume Game"
 
-[node name="ButtonReload" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonReload" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Reset Current Scene"
 
-[node name="ButtonWeapons" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonWeapons" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Weapons"
 
-[node name="ButtonGadgets" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonGadgets" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Gadgets"
 
-[node name="ButtonItems" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonQuickSelect" parent="MainMenu" instance=ExtResource("2_dqxb7")]
+layout_mode = 2
+text = "Quick Select"
+
+[node name="ButtonItems" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Items"
 
-[node name="ButtonOptions" parent="MainMenu" instance=ExtResource("1_s4ds6")]
+[node name="ButtonOptions" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 text = "Options"
 
@@ -93,6 +102,27 @@ grow_vertical = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "This is the gadgets menu"
+fit_content = true
+
+[node name="QuickSelectMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="QuickSelectMenu"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "This is the quick select menu"
 fit_content = true
 
 [node name="ItemsMenu" type="VBoxContainer" parent="."]
@@ -141,5 +171,6 @@ fit_content = true
 [connection signal="pressed" from="MainMenu/ButtonReload" to="." method="_on_button_reload_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonWeapons" to="." method="_on_button_weapons_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonGadgets" to="." method="_on_button_gadgets_pressed"]
+[connection signal="pressed" from="MainMenu/ButtonQuickSelect" to="." method="_on_button_quick_select_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonItems" to="." method="_on_button_items_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonOptions" to="." method="_on_button_options_pressed"]

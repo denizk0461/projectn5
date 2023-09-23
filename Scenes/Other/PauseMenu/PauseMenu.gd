@@ -22,10 +22,15 @@ func _input(event):
 				$MainMenu/ButtonGadgets.grab_focus()
 			3:
 				_menu_index = 0
+				$QuickSelectMenu.hide()
+				$MainMenu.show()
+				$MainMenu/ButtonQuickSelect.grab_focus()
+			4:
+				_menu_index = 0
 				$ItemsMenu.hide()
 				$MainMenu.show()
 				$MainMenu/ButtonItems.grab_focus()
-			4:
+			5:
 				_menu_index = 0
 				$OptionsMenu.hide()
 				$MainMenu.show()
@@ -59,13 +64,18 @@ func _on_button_gadgets_pressed():
 	$MainMenu.hide()
 	$GadgetsMenu.show()
 
-func _on_button_items_pressed():
+func _on_button_quick_select_pressed():
 	_menu_index = 3
+	$MainMenu.hide()
+	$QuickSelectMenu.show()
+
+func _on_button_items_pressed():
+	_menu_index = 4
 	$MainMenu.hide()
 	$ItemsMenu.show()
 
 func _on_button_options_pressed():
-	_menu_index = 4
+	_menu_index = 5
 	$MainMenu.hide()
 	$OptionsMenu.show()
 

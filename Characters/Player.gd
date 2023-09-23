@@ -29,7 +29,10 @@ func _input(event):
 			has_jumped = true
 	elif event.is_action_pressed("pause") and not get_tree().paused:
 		get_tree().paused = true
-		$PauseMenu.open()
+		$GUI/PauseMenu.open()
+	elif event.is_action_pressed("quick_select"):
+		get_tree().paused = true
+		$GUI/QuickSelect.activate()
 
 func _process(delta):
 	$SpringArm3D.position = position
