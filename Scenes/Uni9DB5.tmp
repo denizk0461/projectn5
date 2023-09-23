@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://e0xkhcfoeswg"]
+
+[ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_1mqf2"]
+[ext_resource type="PackedScene" uid="uid://cles3yf714o36" path="res://Characters/Player.tscn" id="2_ey7am"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_ey7am")]
+
+[node name="unity" parent="." instance=ExtResource("1_1mqf2")]
+transform = Transform3D(0.698896, 0, 0, 0, 1, 0, 0, 0, 0.698896, 0, -3, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.635161, 0.76271, -0.121834, 0.460343, 0.500482, 0.733213, 0.620205, 0.409623, -0.668995, 42.7617, 8.71348, -93.4303)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.691362, -0.440126, 0.572982, -18.496, 16.6639, 19.336)
