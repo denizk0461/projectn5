@@ -9,6 +9,7 @@ var move_direction: Vector3 = Vector3.ZERO
 var wants_to_jump: bool = false
 var has_jumped: bool = false
 @export var momentum_speed = 0.25
+var _max_falling_velocity = -160
 
 var target_velocity = Vector3.ZERO
 
@@ -20,6 +21,7 @@ var is_gun_equipped: bool = false
 # slight ramp up / down when moving and stopping (momentum/inertia)
 # mid-air jump controls
 # carry jump momentum slightly but allow player some control
+# limit max falling speed
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
@@ -54,6 +56,7 @@ func _input(event):
 			$Inventory.load_gun()
 			is_gun_equipped = true
 		else:
+			$Pivot/EquippedItem.get_node("Gun").shoot(Vector3(1.0, 0.0, 0.0))
 			pass # attack!
 			# don't shoot upon equipping the gun
 
@@ -94,10 +97,13 @@ func _physics_process(delta):
 		# length. until this is implemented, i leave this commented out
 #		target_velocity.x = move_toward(target_velocity.x, 0.0, momentum_speed)
 #		target_velocity.z = move_toward(target_velocity.z, 0.0, momentum_speed)
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		if target_velocity.y > _max_falling_velocity:
+			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
 	velocity = target_velocity
 	move_and_slide()
+	
+	print(velocity.y)
 	
 	if is_on_floor():
 		wants_to_jump = false

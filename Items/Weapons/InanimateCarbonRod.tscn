@@ -2,6 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://pbrdvv5nb0ru" path="res://Items/Weapons/InanimateCarbonRod.glb" id="1_gjirb"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Melee" type="Node3D"]
 
 [node name="InanimateCarbonRod" parent="." instance=ExtResource("1_gjirb")]

@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://brarydahiao0f"]
+[gd_scene load_steps=3 format=3 uid="uid://brarydahiao0f"]
 
 [ext_resource type="PackedScene" uid="uid://cb6ayp21a6pey" path="res://Items/Weapons/PurpleGun.glb" id="1_a6vh0"]
+[ext_resource type="Script" path="res://Items/Weapons/Gun.gd" id="1_ts6hx"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_ts6hx")
+projectile_offset = Vector3(0, 0.26, 0.5)
+projectile_name = "BlueIcosphere"
+projectile_speed = 10.0
+despawn_after_secs = 3.0
 
 [node name="PurpleGun" parent="." instance=ExtResource("1_a6vh0")]

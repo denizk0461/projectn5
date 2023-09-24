@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsgj8my4kfaip"]
+
+[ext_resource type="PackedScene" uid="uid://bgkucbrc3e4s2" path="res://Items/Weapons/Projectiles/AngryIcosphere.glb" id="1_4lbqc"]
+
+[node name="Projectile" type="Node3D"]
+
+[node name="AngryIcosphere" parent="." instance=ExtResource("1_4lbqc")]
