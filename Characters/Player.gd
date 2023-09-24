@@ -12,6 +12,13 @@ var has_jumped: bool = false
 
 var target_velocity = Vector3.ZERO
 
+# TODOs
+# make character follow slope angle to prevent jumping
+# prevent jumping on slope
+# slight ramp up / down when moving and stopping (momentum/inertia)
+# mid-air jump controls
+# carry jump momentum slightly but allow player some control
+
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
 

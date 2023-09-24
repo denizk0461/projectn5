@@ -1,13 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=10 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_tgrxh"]
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://Characters/PlayerRatchetLiberatorNoHelmet.tscn" id="2_muv3g"]
+[ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://World/dino.jpg" id="2_n72ak"]
 [ext_resource type="AudioStream" uid="uid://d368rltylajsm" path="res://OST/KrustyKrabRemix.mp3" id="4_5qg8a"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://World/Slopes.glb" id="5_lmw58"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
+panorama = ExtResource("2_n72ak")
+
+[sub_resource type="Sky" id="Sky_fbya3"]
+sky_material = SubResource("PanoramaSkyMaterial_ceavi")
+
+[sub_resource type="Environment" id="Environment_trqa7"]
+background_mode = 2
+background_color = Color(0.85098, 0.501961, 0.772549, 1)
+sky = SubResource("Sky_fbya3")
+ambient_light_source = 3
+ambient_light_color = Color(0.843137, 0.54902, 0.592157, 1)
+glow_enabled = true
+glow_intensity = 2.84
+glow_strength = 0.0
+fog_light_energy = 0.77
+fog_height = 2.0
+fog_height_density = 0.676
+adjustment_brightness = 8.0
+adjustment_contrast = 8.0
+adjustment_saturation = 8.0
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_w8l07")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_trqa7")
 
 [node name="unity" parent="." instance=ExtResource("1_tgrxh")]
 transform = Transform3D(0.698896, 0, 0, 0, 1, 0, 0, 0, 0.698896, 0, -3, 0)
