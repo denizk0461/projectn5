@@ -12,7 +12,7 @@ height = 1.65
 radius = 0.3
 
 [node name="Player" type="CharacterBody3D"]
-floor_max_angle = 0.610865
+floor_max_angle = 0.628319
 script = ExtResource("1_1oro3")
 
 [node name="GUI" type="Node3D" parent="."]
@@ -31,6 +31,9 @@ shape = SubResource("CylinderShape3D_6uhk6")
 
 [node name="RatchetLiberatorNoHelmet" parent="Pivot" instance=ExtResource("1_c2vwa")]
 transform = Transform3D(0.053, 0, 0, 0, 0.053, 0, 0, 0, 0.053, 0, 0, 0)
+
+[node name="EquippedItem" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886261, 1.095, -0.0432902)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0

@@ -83,3 +83,7 @@ func _on_button_options_pressed():
 func _resume():
 	get_tree().paused = false
 	hide()
+
+
+func _on_button_quit_pressed():
+	get_tree().quit()

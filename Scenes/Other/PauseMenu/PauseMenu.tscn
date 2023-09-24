@@ -37,7 +37,7 @@ alignment = 1
 
 [node name="ButtonResume" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../ButtonOptions")
+focus_neighbor_top = NodePath("../ButtonQuit")
 text = "Resume Game"
 
 [node name="ButtonReload" parent="MainMenu" instance=ExtResource("2_dqxb7")]
@@ -62,8 +62,12 @@ text = "Items"
 
 [node name="ButtonOptions" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ButtonResume")
 text = "Options"
+
+[node name="ButtonQuit" parent="MainMenu" instance=ExtResource("2_dqxb7")]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ButtonResume")
+text = "Quit Game"
 
 [node name="WeaponsMenu" type="VBoxContainer" parent="."]
 visible = false
@@ -177,3 +181,4 @@ fit_content = true
 [connection signal="pressed" from="MainMenu/ButtonQuickSelect" to="." method="_on_button_quick_select_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonItems" to="." method="_on_button_items_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonOptions" to="." method="_on_button_options_pressed"]
+[connection signal="pressed" from="MainMenu/ButtonQuit" to="." method="_on_button_quit_pressed"]

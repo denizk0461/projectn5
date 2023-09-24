@@ -21,6 +21,7 @@ var target_velocity = Vector3.ZERO
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
+	$Inventory.load_item(401)
 
 func _input(event):
 	if event.is_action_pressed("jump") and jump_count < 2:
