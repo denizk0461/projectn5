@@ -6,9 +6,10 @@
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_ts6hx")
 projectile_offset = Vector3(0, 0.26, 0.5)
-projectile_name = "BlueIcosphere"
 projectile_speed = 40.0
 despawn_after_secs = 3.0
+shoot_timeout = 0.1
+shoot_type = "Semi"
 
 [node name="PurpleGun" parent="." instance=ExtResource("1_a6vh0")]
 

@@ -51,17 +51,24 @@ func _input(event):
 			is_gun_equipped = false
 		pass # attack! 
 		# attack immediately whether the melee weapon is already equipped or not
-	elif event.is_action_pressed("shoot"):
-		if not is_gun_equipped:
-			$Inventory.load_gun()
-			is_gun_equipped = true
-		else:
-			$Pivot/EquippedItem.get_node("Gun").shoot()
-			pass # attack!
-			# don't shoot upon equipping the gun
+	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
+#		shoot()
+		pass
+
+func shoot():
+	if not is_gun_equipped:
+		$Inventory.load_gun()
+		is_gun_equipped = true
+	else:
+		$Pivot/EquippedItem.get_node("Gun").shoot()
+		pass # attack!
+		# don't shoot upon equipping the gun
 
 func _process(delta):
 	$SpringArm3D.position = position
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _physics_process(delta):
 	var direction_2d = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
@@ -102,8 +109,6 @@ func _physics_process(delta):
 		
 	velocity = target_velocity
 	move_and_slide()
-	
-	print(velocity.y)
 	
 	if is_on_floor():
 		wants_to_jump = false
