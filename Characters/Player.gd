@@ -56,7 +56,7 @@ func _input(event):
 			$Inventory.load_gun()
 			is_gun_equipped = true
 		else:
-			$Pivot/EquippedItem.get_node("Gun").shoot(Vector3(1.0, 0.0, 0.0))
+			$Pivot/EquippedItem.get_node("Gun").shoot()
 			pass # attack!
 			# don't shoot upon equipping the gun
 

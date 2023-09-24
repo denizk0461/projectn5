@@ -53,3 +53,5 @@ stream = ExtResource("4_5qg8a")
 
 [node name="Slopes" parent="." instance=ExtResource("5_lmw58")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.4965, 0, 3.26849)
+
+[node name="Projectiles" type="Node3D" parent="."]
