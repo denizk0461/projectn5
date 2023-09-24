@@ -39,13 +39,14 @@ func _input(event):
 func open():
 	show()
 	_menu_index = 0
-	$MainMenu.show()
-	$MainMenu/ButtonResume.grab_focus()
 	# hide everything just to be safe
 	$WeaponsMenu.hide()
 	$GadgetsMenu.hide()
 	$ItemsMenu.hide()
 	$OptionsMenu.hide()
+	
+	$MainMenu.show()
+	$MainMenu/ButtonResume.grab_focus()
 
 func _on_button_resume_pressed():
 	_resume()

@@ -2,6 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
+	print(event)
 	if event.is_action_released("quick_select"):
 		get_tree().paused = false
 		self.hide()
@@ -11,7 +12,9 @@ func activate():
 	$Item0.grab_focus()
 
 func _process(delta):
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	# grabbing the input here results in errors in other menus such as the pause menu!
+#	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = Vector2.ZERO
 	
 	if not direction == Vector2.ZERO and rad_to_deg(direction.angle()) > 10.0:
 #		0.0:

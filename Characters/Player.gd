@@ -44,7 +44,6 @@ func _physics_process(delta):
 	if direction == Vector3.ZERO:
 		pass
 	else:
-		
 		direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
 		if not Input.is_action_pressed("strafe"):
 			$Pivot.look_at(position - direction, Vector3.UP)

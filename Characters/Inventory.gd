@@ -5,6 +5,7 @@ var items_assignments: Dictionary = {
 	100: "",
 }
 var item_resource_path: String = "res://Items/%s.tscn"
+var quick_select: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1] # must be length 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
