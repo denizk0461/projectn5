@@ -12,6 +12,8 @@ var has_jumped: bool = false
 
 var target_velocity = Vector3.ZERO
 
+var is_gun_equipped: bool = false
+
 # TODOs
 # make character follow slope angle to prevent jumping
 # prevent jumping on slope
@@ -21,7 +23,7 @@ var target_velocity = Vector3.ZERO
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
-	$Inventory.load_item(401)
+	$Inventory.load_melee()
 
 func _input(event):
 	if event.is_action_pressed("jump") and jump_count < 2:
@@ -41,6 +43,19 @@ func _input(event):
 	elif event.is_action_pressed("quick_select"):
 		get_tree().paused = true
 		$GUI/QuickSelect.activate()
+	elif event.is_action_pressed("melee"):
+		if is_gun_equipped:
+			$Inventory.load_melee()
+			is_gun_equipped = false
+		pass # attack! 
+		# attack immediately whether the melee weapon is already equipped or not
+	elif event.is_action_pressed("shoot"):
+		if not is_gun_equipped:
+			$Inventory.load_gun()
+			is_gun_equipped = true
+		else:
+			pass # attack!
+			# don't shoot upon equipping the gun
 
 func _process(delta):
 	$SpringArm3D.position = position

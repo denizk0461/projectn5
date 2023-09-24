@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://brarydahiao0f"]
+
+[ext_resource type="PackedScene" uid="uid://cb6ayp21a6pey" path="res://Items/Weapons/PurpleGun.glb" id="1_a6vh0"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PurpleGun" parent="." instance=ExtResource("1_a6vh0")]
