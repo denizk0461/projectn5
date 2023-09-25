@@ -38,6 +38,7 @@ func _input(event):
 
 func open():
 	show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_menu_index = 0
 	# hide everything just to be safe
 	$WeaponsMenu.hide()
@@ -83,7 +84,7 @@ func _on_button_options_pressed():
 func _resume():
 	get_tree().paused = false
 	hide()
-
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_button_quit_pressed():
 	get_tree().quit()

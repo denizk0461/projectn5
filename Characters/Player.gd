@@ -10,10 +10,9 @@ var wants_to_jump: bool = false
 var has_jumped: bool = false
 @export var momentum_speed = 0.25
 var _max_falling_velocity = -160
-
 var target_velocity = Vector3.ZERO
-
 var is_gun_equipped: bool = false
+var _targeted_npc: Node3D = null
 
 # TODOs
 # make character follow slope angle to prevent jumping
@@ -26,6 +25,7 @@ var is_gun_equipped: bool = false
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
 	$Inventory.load_melee()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if event.is_action_pressed("jump") and jump_count < 2:
@@ -39,32 +39,44 @@ func _input(event):
 		else:
 			jump_count += 1
 			has_jumped = true
+	
 	elif event.is_action_pressed("pause") and not get_tree().paused:
 		get_tree().paused = true
 		$GUI/PauseMenu.open()
-	elif event.is_action_pressed("quick_select"):
+	
+	elif event.is_action_pressed("quick_select_action"):
+		if _targeted_npc == null:
+			$GUI/QuickSelect.activate()
+		else:
+			print("A")
+			print(get_tree().paused)
+			$HUD/TalkToNPC.hide()
+			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
+			$HUD/DialogueBox.show()
+			print(get_tree().paused)
 		get_tree().paused = true
-		$GUI/QuickSelect.activate()
+	
 	elif event.is_action_pressed("melee"):
 		if is_gun_equipped:
 			$Inventory.load_melee()
 			is_gun_equipped = false
 		pass # attack! 
 		# attack immediately whether the melee weapon is already equipped or not
+	
 	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
 #		shoot()
 		pass
 
 func shoot():
 	if not is_gun_equipped:
+		# don't shoot upon equipping the gun
 		$Inventory.load_gun()
 		is_gun_equipped = true
 	else:
 		$Pivot/EquippedItem.get_node("Gun").shoot()
-		pass # attack!
-		# don't shoot upon equipping the gun
 
 func _process(delta):
+#	print(get_tree().paused)
 	$SpringArm3D.position = position
 	
 	if Input.is_action_just_pressed("shoot"):
@@ -113,4 +125,11 @@ func _physics_process(delta):
 	if is_on_floor():
 		wants_to_jump = false
 		jump_count = 0
-		
+
+func target_npc(npc: Node3D):
+	_targeted_npc = npc
+	$HUD/TalkToNPC.show()
+
+func forget_npc():
+	_targeted_npc = null
+	$HUD/TalkToNPC.hide()

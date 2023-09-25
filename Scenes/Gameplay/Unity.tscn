@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=11 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_tgrxh"]
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://World/dino.jpg" id="2_n72ak"]
 [ext_resource type="AudioStream" uid="uid://d368rltylajsm" path="res://OST/KrustyKrabRemix.mp3" id="4_5qg8a"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://World/Slopes.glb" id="5_lmw58"]
+[ext_resource type="PackedScene" uid="uid://d2b0rjd01fh7x" path="res://NPCs/Sans/Sans.tscn" id="7_tj2c7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_n72ak")
@@ -55,3 +56,8 @@ stream = ExtResource("4_5qg8a")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.4965, 0, 3.26849)
 
 [node name="Projectiles" type="Node3D" parent="."]
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource("7_tj2c7")]
+transform = Transform3D(-0.685552, 0, -0.728024, 0, 1, 0, 0.728024, 0, -0.685552, 23.3912, 0, 29.5992)

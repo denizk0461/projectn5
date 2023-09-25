@@ -1,14 +1,20 @@
 extends Control
 
+var _is_active: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _input(event):
-	if event.is_action_released("quick_select"):
+	if event.is_action_released("quick_select_action") and _is_active:
+		_is_active = false
 		get_tree().paused = false
 		self.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func activate():
+	_is_active = true
 	self.show()
 	$Item0.grab_focus()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(_delta):
 	# grabbing the input here results in errors in other menus such as the pause menu!

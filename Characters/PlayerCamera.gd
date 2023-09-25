@@ -6,7 +6,6 @@ extends SpringArm3D
 func _ready():
 	set_as_top_level(true)
 	rotation_degrees.x = -20.0
-#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	# mouse camera control
