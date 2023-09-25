@@ -45,12 +45,16 @@ transform = Transform3D(0.053, 0, 0, 0, 0.053, 0, 0, 0, 0.053, 0, 0, 0)
 [node name="EquippedItem" type="Node3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886261, 1.095, -0.0432902)
 
+[node name="DialogueCamera" type="Camera3D" parent="Pivot"]
+transform = Transform3D(-0.848048, 0, -0.529919, 0, 1, 0, 0.529919, 0, -0.848048, -2.19573, 1.26757, -1.47977)
+fov = 100.0
+
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
 margin = 0.2
 script = ExtResource("2_uwasm")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="GameplayCamera" type="Camera3D" parent="SpringArm3D"]
 v_offset = 1.5
 fov = 80.0
 

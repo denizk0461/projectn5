@@ -26,6 +26,7 @@ func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
 	$Inventory.load_melee()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	$SpringArm3D/GameplayCamera.make_current()
 
 func _input(event):
 	if event.is_action_pressed("jump") and jump_count < 2:
@@ -48,12 +49,10 @@ func _input(event):
 		if _targeted_npc == null:
 			$GUI/QuickSelect.activate()
 		else:
-			print("A")
-			print(get_tree().paused)
 			$HUD/TalkToNPC.hide()
 			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
 			$HUD/DialogueBox.show()
-			print(get_tree().paused)
+			$Pivot/DialogueCamera.make_current()
 		get_tree().paused = true
 	
 	elif event.is_action_pressed("melee"):

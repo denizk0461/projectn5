@@ -26,3 +26,4 @@ func _end_dialogue():
 	_is_active = false
 	get_tree().paused = false
 	hide()
+	get_node("/root/Main/Player/SpringArm3D/GameplayCamera").make_current()
