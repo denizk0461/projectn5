@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://Characters/PlayerRatchetLiberatorNoHelmet.tscn" id="2_muv3g"]
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://World/dino.jpg" id="2_n72ak"]
-[ext_resource type="AudioStream" uid="uid://d368rltylajsm" path="res://OST/KrustyKrabRemix.mp3" id="4_5qg8a"]
+[ext_resource type="AudioStream" uid="uid://bxht66cwdm7xy" path="res://OST/KrustyKrabRemix.ogg" id="5_7tayt"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://World/Slopes.glb" id="5_lmw58"]
 [ext_resource type="PackedScene" uid="uid://d2b0rjd01fh7x" path="res://NPCs/Sans/Sans.tscn" id="7_tj2c7"]
 
@@ -50,7 +50,9 @@ transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_5qg8a")
+process_mode = 3
+stream = ExtResource("5_7tayt")
+autoplay = true
 
 [node name="Slopes" parent="." instance=ExtResource("5_lmw58")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.4965, 0, 3.26849)
