@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
-@export var speed: float = 14.0
-@export var jump_speed: float = 20.0
-@export var fall_acceleration: float = 60.0
+var speed: float = 14.0
+var jump_speed: float = 20.0
+var move_acceleration: float = 20.0
+var fall_acceleration: float = 60.0
+var rotation_speed: float = 18.0
 @export var camera_sensitivity: int = 10
 var jump_count: int = 0
 var move_direction: Vector3 = Vector3.ZERO
 var wants_to_jump: bool = false
 var has_jumped: bool = false
-@export var momentum_speed = 0.25
 var _max_falling_velocity = -160
 var target_velocity = Vector3.ZERO
+var _jump_velocity: float = 0.0
 var is_gun_equipped: bool = false
 var _targeted_npc: Node3D = null
 
@@ -87,15 +89,18 @@ func _physics_process(delta):
 
 	if direction == Vector3.ZERO:
 		pass
+		# what did I want to do here again?
 	else:
 		direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
 		if not Input.is_action_pressed("strafe"):
-			$Pivot.look_at(position - direction, Vector3.UP)
+			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
+#			$Pivot.look_at(position - direction, Vector3.UP)
 	
 	if Input.is_action_pressed("strafe"):
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))#.rotated(Vector3.UP, deg_to_rad(180.0))
-		$Pivot.look_at(position + look_direction, Vector3.UP)
+		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_speed * delta)
+#		$Pivot.look_at(position + look_direction, Vector3.UP)
 
 #	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 #	else:
@@ -103,13 +108,20 @@ func _physics_process(delta):
 #	if Input.is_action_pressed("move_forward") or Input.is_action_pressed("move_backwards"):
 #	else:
 	
-	if is_on_floor() and not wants_to_jump:
-		target_velocity.y = 0.0
-		has_jumped = false
+	_jump_velocity = target_velocity.y
+	target_velocity = lerp(target_velocity, direction * speed, move_acceleration * delta)
+	target_velocity.y = _jump_velocity
 	
 	if is_on_floor():
-		target_velocity.x = direction.x * speed
-		target_velocity.z = direction.z * speed
+		if not wants_to_jump:
+			target_velocity.y = 0.0
+			has_jumped = false
+		
+		# putting this in is_on_floor() disallowed changing direction during a jump.
+		# lerp() is outside of this if statement, thus making the following statements
+		# redundant
+#		target_velocity.x = direction.x * speed
+#		target_velocity.z = direction.z * speed
 	else:
 		# player should be able to point in direction of jump to increase jump 
 		# length. until this is implemented, i leave this commented out
