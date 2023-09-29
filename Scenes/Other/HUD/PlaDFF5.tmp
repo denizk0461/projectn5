@@ -36,9 +36,7 @@ bbcode_enabled = true
 fit_content = true
 autowrap_mode = 0
 
-[node name="Icon" type="TextureRect" parent="AmmoPanel"]
+[node name="TextureRect" type="TextureRect" parent="AmmoPanel"]
 layout_mode = 0
 offset_right = 91.0
 offset_bottom = 91.0
-expand_mode = 1
-stretch_mode = 5

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brarydahiao0f"]
+[gd_scene load_steps=4 format=3 uid="uid://brarydahiao0f"]
 
 [ext_resource type="PackedScene" uid="uid://cb6ayp21a6pey" path="res://Items/Weapons/PurpleGun.glb" id="1_a6vh0"]
 [ext_resource type="Script" path="res://Items/Weapons/Gun.gd" id="1_ts6hx"]
+[ext_resource type="Texture2D" uid="uid://kh3bnnfxje3e" path="res://Items/Weapons/PurpleGun.png" id="2_8v2ij"]
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_ts6hx")
@@ -13,6 +14,7 @@ projectile_speed = 40.0
 despawn_after_secs = 3.0
 shoot_timeout = 0.1
 shoot_type = "Semi"
+icon = ExtResource("2_8v2ij")
 
 [node name="PurpleGun" parent="." instance=ExtResource("1_a6vh0")]
 

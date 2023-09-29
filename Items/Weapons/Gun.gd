@@ -9,6 +9,7 @@ extends Node3D
 @export var despawn_after_secs: float = 2.0
 @export var shoot_timeout: float = 0.3
 @export_enum("Semi", "Automatic") var shoot_type: String
+@export var icon: CompressedTexture2D
 var _may_shoot: bool = true
 
 @onready var _projectiles = get_node("/root/Main/Projectiles")

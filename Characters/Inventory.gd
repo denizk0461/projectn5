@@ -13,7 +13,6 @@ var gun_ammo_count: Dictionary = {
 var quick_select: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
 var equipped_melee: int = 401
 var equipped_gun: int = 101
-var equipped_gun_max_ammo: int
 
 # 0 = melee
 # 1 = gun
@@ -36,7 +35,7 @@ func load_item(id: int):
 		equipped_item_node.remove_child(currently_equipped_item)
 	equipped_item_node.add_child(item)
 	if id > 99 and id < 200: # item is a gun
-		equipped_gun_max_ammo = item.max_ammo
+		_player_hud.setup_gun(item.max_ammo, item.icon)
 
 func load_melee():
 	_player_hud.hide_ammo_counter()
@@ -44,7 +43,7 @@ func load_melee():
 
 func load_gun():
 	load_item(equipped_gun)
-	_player_hud.set_ammo_counter(gun_ammo_count[equipped_gun], equipped_gun_max_ammo)
+	_player_hud.set_ammo_counter(gun_ammo_count[equipped_gun])
 
 func collect_item(id: int):
 	items[id] = true
@@ -55,7 +54,7 @@ func shoot_gun(id: int) -> bool:
 		return false
 	gun_ammo_count[id] -= 1
 	# update UI
-	_player_hud.set_ammo_counter(gun_ammo_count[id], equipped_gun_max_ammo)
+	_player_hud.set_ammo_counter(gun_ammo_count[id])
 	return true
 
 func get_collected_item_ids() -> Array[int]:
