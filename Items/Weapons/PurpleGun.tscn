@@ -5,7 +5,10 @@
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_ts6hx")
+gun_id = 101
+ammo_id = 601
 projectile_offset = Vector3(0, 0.26, 0.5)
+max_ammo = 40
 projectile_speed = 40.0
 despawn_after_secs = 3.0
 shoot_timeout = 0.1

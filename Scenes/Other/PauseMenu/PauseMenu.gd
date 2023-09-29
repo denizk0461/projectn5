@@ -53,7 +53,7 @@ func _on_button_resume_pressed():
 	_resume()
 
 func _on_button_reload_pressed():
-	get_tree().root.get_child(0).reload()
+	get_node("/root/Main").reload()
 	_resume()
 
 func _on_button_weapons_pressed():

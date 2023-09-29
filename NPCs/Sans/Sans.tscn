@@ -15,7 +15,7 @@ radius = 0.826184
 freeze = true
 script = ExtResource("1_ef22q")
 npc_name = "Sans"
-dialogue = Array[String](["You either die a student or live long enough to see yourself become the teacher.", "get lost kiddo"])
+dialogue = Array[String](["You either die a student or you live long enough to see yourself become the teacher.", "get lost kiddo"])
 
 [node name="Sans" parent="." instance=ExtResource("1_84h1p")]
 

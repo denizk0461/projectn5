@@ -1,44 +1,66 @@
 extends Node3D
 
-var items: Array[int] = []
-var items_assignments: Dictionary = {
-	101: "Weapons/PurpleGun",
-	401: "Weapons/InanimateCarbonRod",
+var items: Dictionary = {
+	101: true,
+	401: true,
 }
-var item_resource_path: String = "res://Items/%s.tscn"
+
+var gun_ammo_count: Dictionary = {
+	101: 38,
+}
 
 # must be length 8
 var quick_select: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
 var equipped_melee: int = 401
 var equipped_gun: int = 101
+var equipped_gun_max_ammo: int
 
 # 0 = melee
 # 1 = gun
 # defaults to melee
 var active_item: int = 0
 
+@onready var _player_hud = get_node("../HUD/PlayerHUD")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load inventory items perhaps?
+	print(get_collected_item_ids())
 	pass # Replace with function body.
 
 func load_item(id: int):
 	var equipped_item_node = get_node("../Pivot/EquippedItem")
-	print(item_resource_path % items_assignments[id])
-	var item = load(item_resource_path % items_assignments[id]).instantiate()
+	var item = load(ItemManager.item_resource_path % ItemManager.item_assignments[id]).instantiate()
 	var currently_equipped_item = equipped_item_node.get_child(0)
 	if not currently_equipped_item == null:
 		equipped_item_node.remove_child(currently_equipped_item)
 	equipped_item_node.add_child(item)
+	if id > 99 and id < 200: # item is a gun
+		equipped_gun_max_ammo = item.max_ammo
 
 func load_melee():
+	_player_hud.hide_ammo_counter()
 	load_item(equipped_melee)
 
 func load_gun():
 	load_item(equipped_gun)
+	_player_hud.set_ammo_counter(gun_ammo_count[equipped_gun], equipped_gun_max_ammo)
 
 func collect_item(id: int):
-	items.append(id)
+	items[id] = true
+
+# returns whether the gun may shoot
+func shoot_gun(id: int) -> bool:
+	if gun_ammo_count[id] == 0:
+		return false
+	gun_ammo_count[id] -= 1
+	# update UI
+	_player_hud.set_ammo_counter(gun_ammo_count[id], equipped_gun_max_ammo)
+	return true
 
 func get_collected_item_ids() -> Array[int]:
-	return items
+	var result: Array[int] = []
+	for i in items.keys():
+		if items[i] == true:
+			result.append(i)
+	return result
