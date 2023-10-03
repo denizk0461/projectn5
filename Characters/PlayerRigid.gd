@@ -26,12 +26,10 @@ var target_velocity = Vector3.ZERO
 var floor_array = []
 var rotation_speed: float = 18.0
 
-#var first_fall = true
 var is_on_floor = false
 var floor_normal = Vector3.ZERO
 var floor_plane = Plane(Vector3.UP)
 
-#var mirrored = false
 var collision_test = KinematicCollision3D.new()
 var roll_floor_state = false
 
@@ -39,11 +37,6 @@ var is_gun_equipped: bool = false
 var _targeted_npc: Node3D = null
 
 var _max_slope_angle = 36.0
-
-# frames to skip after the player jumps off the ground to avoid reverting into a grounded
-# state before the player leaves the ground
-var _jump_frame_skip_max: int = 6
-var _jump_frame_skip_counter: int = 0
 
 func _ready():
 	custom_integrator = true
@@ -75,41 +68,14 @@ func _integrate_forces(state):
 			floor_plane.normal = floor_normal
 			jump_queue = 0
 			jump_count = 0
-			_jump_frame_skip_counter = 0
-	
-#	var contact_count = state.get_contact_count()
-#	if contact_count > 0:
-#		var contact_normal = state.get_contact_local_normal(0)
-#
-#		for i in contact_count:
-#			contact_normal = state.get_contact_local_normal(i)
-			
-			# collision detection for is_on_floor -> grounded state
-#			if not has_jumped and contact_normal.angle_to(Vector3.UP) <= _max_slope_angle * (PI / 180.0):
-#				# on every jump, we need to skip the grounded check for a certain amount of frames.
-#				# this is necessary because the grounded check registers the character as grounded
-#				# right when the character begins to jump (so, velocity is set but the character has
-#				# not left the floor yet). this is bad, since it assumes the character has returned
-#				# to the floor before even starting to jump, which messes up the grounded check as
-#				# well as in-air speed. hence, we ignore the grounded state for a few frames.
-##				if _jump_frame_skip_counter < _jump_frame_skip_max:
-##					_jump_frame_skip_counter += 1
-##				else:
-#				is_on_floor = true
-#				has_jumped = false
-#				floor_normal = contact_normal
-#				floor_plane.normal = floor_normal
-#				jump_queue = 0
-#				jump_count = 0
-#				_jump_frame_skip_counter = 0
 	
 	_roll_floor(is_on_floor)
 	
 	_get_input(state.step)
 	
 	var gravity_resistance = floor_normal if is_on_floor and not has_jumped else Vector3.UP
-	
 	target_velocity += gravity_resistance * _get_gravity() * state.step
+#	target_velocity.y += _get_gravity() * state.step
 	
 	if jump_queue > jump_count:
 		jump_count += 1
@@ -121,14 +87,12 @@ func _integrate_forces(state):
 		if collision_test.get_normal(0).angle_to(Vector3.ZERO) <= _max_slope_angle * (PI / 180.0):
 			transform.origin -= collision_test.get_remainder()
 	
+	print(target_velocity)
 	linear_velocity = target_velocity
 
 func _get_input(delta):
 	var vy = target_velocity.y
 	var xz = target_velocity
-	
-	if not has_jumped and is_on_floor:
-		xz = floor_plane.project(target_velocity)
 	
 	var input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var direction = (transform.basis * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
@@ -136,7 +100,7 @@ func _get_input(delta):
 	direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
 	if Input.is_action_pressed("strafe"):
 		var rotation_rads = $SpringArm3D.rotation.y
-		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))#.rotated(Vector3.UP, deg_to_rad(180.0))
+		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		if direction != Vector3.ZERO:
 			# no! rotation should be based on character movement direction
 			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_speed * delta)
@@ -147,7 +111,7 @@ func _get_input(delta):
 	if is_on_floor:
 		var x = floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
 		var z = floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
-		
+
 		x *= direction.x
 		z *= direction.z
 		direction = (x + z).normalized()

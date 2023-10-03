@@ -49,6 +49,7 @@ transform = Transform3D(-0.635161, 0.76271, -0.121834, 0.460343, 0.500482, 0.733
 transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.691362, -0.440126, 0.572982, -18.496, 16.6639, 19.336)
 
 [node name="Player" parent="." instance=ExtResource("2_muv3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.0708, 0, -0.327719)
 
 [node name="Enemies" type="Node3D" parent="."]
 
