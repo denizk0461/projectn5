@@ -25,8 +25,6 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_ygc83")
 gravity_scale = 0.0
 continuous_cd = true
-max_contacts_reported = 32
-contact_monitor = true
 script = ExtResource("1_jqm2e")
 
 [node name="HUD" type="Node3D" parent="."]
@@ -79,3 +77,7 @@ fov = 80.0
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("4_5q0q3")
+
+[node name="GroundCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0553062, 0)
+target_position = Vector3(0, -0.27, 0)

@@ -9,10 +9,10 @@ var jump_time_descent: float = 0.3
 @onready var fall_gravity: float = (-2.0 * jump_height) / (jump_time_descent * jump_time_descent)
 
 var speed = 12.0
-var air_speed_first_jump = 8.5
-var air_speed_second_jump = 4.5
+var air_speed_first_jump = 7.0
+var air_speed_second_jump = 3.8
 var acceleration = 5.0
-var air_acceleration = 2.0
+var air_acceleration = 5.0 # or deceleration i guess
 var has_jumped: bool = false
 var wants_to_jump: bool = false
 
@@ -63,35 +63,45 @@ func _input(event):
 
 func _integrate_forces(state):
 	target_velocity = linear_velocity
-#	print(target_velocity)
 	
 	is_on_floor = false
 	
-	var contact_count = state.get_contact_count()
-	if contact_count > 0:
-		var contact_normal = state.get_contact_local_normal(0)
-		
-		for i in contact_count:
-			contact_normal = state.get_contact_local_normal(i)
+	if $GroundCast.get_collider():
+		var contact_normal = $GroundCast.get_collision_normal()
+		if not has_jumped and contact_normal.angle_to(Vector3.UP) <= _max_slope_angle * (PI / 180.0):
+			is_on_floor = true
+			has_jumped = false
+			floor_normal = contact_normal
+			floor_plane.normal = floor_normal
+			jump_queue = 0
+			jump_count = 0
+			_jump_frame_skip_counter = 0
+	
+#	var contact_count = state.get_contact_count()
+#	if contact_count > 0:
+#		var contact_normal = state.get_contact_local_normal(0)
+#
+#		for i in contact_count:
+#			contact_normal = state.get_contact_local_normal(i)
 			
 			# collision detection for is_on_floor -> grounded state
-			if not has_jumped and contact_normal.angle_to(Vector3.UP) <= _max_slope_angle * (PI / 180.0):
-				# on every jump, we need to skip the grounded check for a certain amount of frames.
-				# this is necessary because the grounded check registers the character as grounded
-				# right when the character begins to jump (so, velocity is set but the character has
-				# not left the floor yet). this is bad, since it assumes the character has returned
-				# to the floor before even starting to jump, which messes up the grounded check as
-				# well as in-air speed. hence, we ignore the grounded state for a few frames.
-#				if _jump_frame_skip_counter < _jump_frame_skip_max:
-#					_jump_frame_skip_counter += 1
-#				else:
-				is_on_floor = true
-				has_jumped = false
-				floor_normal = contact_normal
-				floor_plane.normal = floor_normal
-				jump_queue = 0
-				jump_count = 0
-				_jump_frame_skip_counter = 0
+#			if not has_jumped and contact_normal.angle_to(Vector3.UP) <= _max_slope_angle * (PI / 180.0):
+#				# on every jump, we need to skip the grounded check for a certain amount of frames.
+#				# this is necessary because the grounded check registers the character as grounded
+#				# right when the character begins to jump (so, velocity is set but the character has
+#				# not left the floor yet). this is bad, since it assumes the character has returned
+#				# to the floor before even starting to jump, which messes up the grounded check as
+#				# well as in-air speed. hence, we ignore the grounded state for a few frames.
+##				if _jump_frame_skip_counter < _jump_frame_skip_max:
+##					_jump_frame_skip_counter += 1
+##				else:
+#				is_on_floor = true
+#				has_jumped = false
+#				floor_normal = contact_normal
+#				floor_plane.normal = floor_normal
+#				jump_queue = 0
+#				jump_count = 0
+#				_jump_frame_skip_counter = 0
 	
 	_roll_floor(is_on_floor)
 	
