@@ -14,8 +14,8 @@ radius = 0.826184
 [node name="NPC" type="RigidBody3D"]
 freeze = true
 script = ExtResource("1_ef22q")
-npc_name = "Sans"
-dialogue = Array[String](["You either die a student or you live long enough to see yourself become the teacher.", "get lost kiddo"])
+npc_name = "NPC_NAME_SANS"
+dialogue = Array[String](["NPC_SANS_TEACHER_0", "NPC_SANS_TEACHER_1"])
 
 [node name="Sans" parent="." instance=ExtResource("1_84h1p")]
 

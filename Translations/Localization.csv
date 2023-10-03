@@ -1,0 +1,15 @@
+﻿ID,en,de
+NPC_SANS_TEACHER_0,You either die a student or you live long enough to see yourself become the teacher.,Entweder du stirbst als Schüler oder du lebst lange genug um zu sehen wie du zum Lehrer wirst.
+NPC_SANS_TEACHER_1,get lost kiddo,verlier dich kindo
+MENU_PAUSE_BUTTON_RESUME,Resume Game,Spiel fortsetzen
+MENU_PAUSE_BUTTON_RESET,Reset Current Scene,Szene zurücksetzen
+MENU_PAUSE_BUTTON_WEAPONS,Weapons,Waffen
+MENU_PAUSE_BUTTON_GADGETS,Gadgets,Geräte
+MENU_PAUSE_BUTTON_QUICK_SELECT,Quick Select,Schnellauswahl
+MENU_PAUSE_BUTTON_ITEMS,Items,Items
+MENU_PAUSE_BUTTON_OPTIONS,Options,Optionen
+MENU_PAUSE_BUTTON_QUIT,Quit Game,Spiel beenden
+MENU_OPTIONS_TITLE,Options,Optionen
+MENU_BACK,Back,Zurück
+HUD_TALK_TO_NPC,[Action] Talk to NPC,[Aktion] Mit NPC sprechen
+NPC_NAME_SANS,Sans,Ohne

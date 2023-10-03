@@ -425,6 +425,10 @@ quick_select_action={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Translations/Localization.de.translation", "res://Translations/Localization.en.translation")
+
 [physics]
 
 3d/physics_engine="JoltPhysics3D"

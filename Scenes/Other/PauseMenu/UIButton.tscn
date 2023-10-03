@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cabnwqbpm1qhd"]
+
+[ext_resource type="FontFile" uid="uid://dygl7fdaemub6" path="res://Fonts/Kanit-SemiBold.ttf" id="1_gtrrq"]
+
+[node name="UIButton" type="Button"]
+anchors_preset = -1
+anchor_right = 0.039
+anchor_bottom = 0.014
+offset_right = 0.119995
+offset_bottom = -0.120001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_gtrrq")
+theme_override_font_sizes/font_size = 24

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=7 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
+[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="3_84ds7"]
+[ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://Scenes/Other/PauseMenu/Flags/en.png" id="4_86qds"]
+[ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://Scenes/Other/PauseMenu/Flags/de.png" id="5_8bavr"]
+[ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://Scenes/Other/PauseMenu/UIButton.tscn" id="6_q4t4u"]
 
 [node name="Control" type="Control"]
 process_mode = 2
@@ -38,36 +42,36 @@ alignment = 1
 [node name="ButtonResume" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ButtonQuit")
-text = "Resume Game"
+text = "MENU_PAUSE_BUTTON_RESUME"
 
 [node name="ButtonReload" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Reset Current Scene"
+text = "MENU_PAUSE_BUTTON_RESET"
 
 [node name="ButtonWeapons" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Weapons"
+text = "MENU_PAUSE_BUTTON_WEAPONS"
 
 [node name="ButtonGadgets" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Gadgets"
+text = "MENU_PAUSE_BUTTON_GADGETS"
 
 [node name="ButtonQuickSelect" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Quick Select"
+text = "MENU_PAUSE_BUTTON_QUICK_SELECT"
 
 [node name="ButtonItems" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Items"
+text = "MENU_PAUSE_BUTTON_ITEMS"
 
 [node name="ButtonOptions" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
-text = "Options"
+text = "MENU_PAUSE_BUTTON_OPTIONS"
 
 [node name="ButtonQuit" parent="MainMenu" instance=ExtResource("2_dqxb7")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ButtonResume")
-text = "Quit Game"
+text = "MENU_PAUSE_BUTTON_QUIT"
 
 [node name="WeaponsMenu" type="VBoxContainer" parent="."]
 visible = false
@@ -153,26 +157,52 @@ layout_mode = 2
 text = "This is the items menu"
 fit_content = true
 
-[node name="OptionsMenu" type="VBoxContainer" parent="."]
+[node name="OptionsMenu" type="Panel" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -20.0
-offset_right = 100.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenu"]
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "This is the options menu"
-fit_content = true
+offset_left = 723.0
+offset_top = 287.0
+offset_right = 1197.0
+offset_bottom = 690.0
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsMenu"]
+layout_mode = 0
+offset_right = 474.0
+offset_bottom = 403.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Container" type="VBoxContainer" parent="OptionsMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_84ds7")
+theme_override_font_sizes/font_size = 28
+text = "MENU_OPTIONS_TITLE"
+
+[node name="LanguageContainer" type="HBoxContainer" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+
+[node name="English" type="TextureButton" parent="OptionsMenu/MarginContainer/Container/LanguageContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_86qds")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="German" type="TextureButton" parent="OptionsMenu/MarginContainer/Container/LanguageContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("5_8bavr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="OptionsBackButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
+layout_mode = 2
+text = "MENU_BACK"
 
 [connection signal="pressed" from="MainMenu/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonReload" to="." method="_on_button_reload_pressed"]
@@ -182,3 +212,6 @@ fit_content = true
 [connection signal="pressed" from="MainMenu/ButtonItems" to="." method="_on_button_items_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonOptions" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/German" to="." method="_on_german_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/OptionsBackButton" to="." method="_on_options_back_button_pressed"]
