@@ -53,6 +53,27 @@ func _input(event):
 	if event.is_action_pressed("pause") and not get_tree().paused:
 		get_tree().paused = true
 		$GUI/PauseMenu.open()
+	
+	elif event.is_action_pressed("quick_select_action"):
+		if _targeted_npc == null:
+			$GUI/QuickSelect.activate()
+		else:
+			$HUD/TalkToNPC.hide()
+			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
+			$HUD/DialogueBox.show()
+			$Pivot/DialogueCamera.make_current()
+		get_tree().paused = true
+	
+	elif event.is_action_pressed("melee"):
+		if is_gun_equipped:
+			$Inventory.load_melee()
+			is_gun_equipped = false
+		pass # attack! 
+		# attack immediately whether the melee weapon is already equipped or not
+	
+	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
+		shoot()
+		pass
 
 func _integrate_forces(state):
 	target_velocity = linear_velocity
@@ -157,3 +178,19 @@ func _roll_floor(state):
 		if e:
 			f = e
 	roll_floor_state = f
+
+func shoot():
+	if not is_gun_equipped:
+		# don't shoot upon equipping the gun
+		$Inventory.load_gun()
+		is_gun_equipped = true
+	else:
+		$Pivot/EquippedItem.get_node("Gun").shoot()
+
+func target_npc(npc: Node3D):
+	_targeted_npc = npc
+	$HUD/TalkToNPC.show()
+
+func forget_npc():
+	_targeted_npc = null
+	$HUD/TalkToNPC.hide()
