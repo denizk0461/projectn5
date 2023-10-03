@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=14 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_tgrxh"]
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://bxht66cwdm7xy" path="res://OST/KrustyKrabRemix.ogg" id="5_7tayt"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://World/Slopes.glb" id="5_lmw58"]
 [ext_resource type="PackedScene" uid="uid://d2b0rjd01fh7x" path="res://NPCs/Sans/Sans.tscn" id="7_tj2c7"]
+[ext_resource type="PackedScene" uid="uid://bqrkq048evyjt" path="res://World/WishYouWereHere/WishYouWereHere.glb" id="8_oos2q"]
+[ext_resource type="PackedScene" uid="uid://1lycd4n65no0" path="res://World/Stairs/Stairs.glb" id="9_tmii8"]
+[ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://World/Wall/WallRedBricks.tscn" id="10_c561t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_n72ak")
@@ -62,3 +65,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.49
 
 [node name="NPC" parent="NPCs" instance=ExtResource("7_tj2c7")]
 transform = Transform3D(-0.685552, 0, -0.728024, 0, 1, 0, 0.728024, 0, -0.685552, 23.3912, 0, 29.5992)
+
+[node name="WishYouWereHere" parent="." instance=ExtResource("8_oos2q")]
+transform = Transform3D(0.241322, 0, -0.54933, 0, 0.6, 0, 0.54933, 0, 0.241322, -12.9409, -3.70862, -32.6411)
+
+[node name="Stairs" parent="." instance=ExtResource("9_tmii8")]
+transform = Transform3D(-0.864336, 0, 0.502914, 0, 1, 0, -0.502914, 0, -0.864336, 1.41878, -2.92805, -17.321)
+
+[node name="Stairs2" parent="." instance=ExtResource("9_tmii8")]
+transform = Transform3D(-0.864336, 0, 0.502914, 0, 1, 0, -0.502914, 0, -0.864336, 3.06649, -0.955258, -16.3976)
+
+[node name="Wall" parent="." instance=ExtResource("10_c561t")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12, 9)

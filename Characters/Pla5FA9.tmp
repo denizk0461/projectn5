@@ -25,7 +25,7 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_ygc83")
 gravity_scale = 0.0
 continuous_cd = true
-max_contacts_reported = 32
+max_contacts_reported = 8
 contact_monitor = true
 script = ExtResource("1_jqm2e")
 
@@ -66,7 +66,6 @@ transform = Transform3D(-0.848048, 0, -0.529919, 0, 1, 0, 0.529919, 0, -0.848048
 fov = 100.0
 
 [node name="Character" parent="Pivot" instance=ExtResource("8_oktog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00356467, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
