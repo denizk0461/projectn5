@@ -2,6 +2,10 @@ extends Control
 
 var _menu_index: int = 0
 
+# references to nodes relevant for the options menu
+@onready var _player_camera = get_node("/root/Main/Player/SpringArm3D")
+# TODO alternatively maybe a PlayerOptions node?
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 #		_resume()
@@ -83,6 +87,10 @@ func _on_button_options_pressed():
 	_menu_index = 5
 	$MainMenu.hide()
 	$OptionsMenu.show()
+	$OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.grab_focus()
+	# set options such as sliders
+	$OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.value = _player_camera.mouse_sensitivity
+	$OptionsMenu/MarginContainer/Container/ControllerSensitivitySlider.value = _player_camera.stick_sensitivity
 
 func _resume():
 	get_tree().paused = false
@@ -93,6 +101,9 @@ func _on_button_quit_pressed():
 	get_tree().quit()
 
 func _on_options_back_button_pressed():
+	# save settings
+	_player_camera.mouse_sensitivity = $OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.value
+	_player_camera.stick_sensitivity = $OptionsMenu/MarginContainer/Container/ControllerSensitivitySlider.value
 	_navigate_back()
 
 func _on_english_pressed():

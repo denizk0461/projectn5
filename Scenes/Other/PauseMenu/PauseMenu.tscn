@@ -24,6 +24,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.266667)
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -158,7 +159,6 @@ text = "This is the items menu"
 fit_content = true
 
 [node name="OptionsMenu" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 offset_left = 723.0
 offset_top = 287.0
@@ -177,11 +177,31 @@ theme_override_constants/margin_bottom = 16
 [node name="Container" type="VBoxContainer" parent="OptionsMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="OptionsMenu/MarginContainer/Container"]
+[node name="LabelTitle" type="Label" parent="OptionsMenu/MarginContainer/Container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_84ds7")
 theme_override_font_sizes/font_size = 28
 text = "MENU_OPTIONS_TITLE"
+
+[node name="LabelCameraMouse" type="Label" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+text = "MENU_OPTIONS_CAMERA_SENSITIVITY_MOUSE"
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+value = 1.0
+
+[node name="LabelCameraController" type="Label" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+text = "MENU_OPTIONS_CAMERA_SENSITIVITY_CONTROLLER"
+
+[node name="ControllerSensitivitySlider" type="HSlider" parent="OptionsMenu/MarginContainer/Container"]
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+value = 1.0
 
 [node name="LanguageContainer" type="HBoxContainer" parent="OptionsMenu/MarginContainer/Container"]
 layout_mode = 2

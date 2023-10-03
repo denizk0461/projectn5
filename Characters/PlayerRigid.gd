@@ -8,11 +8,11 @@ var jump_time_descent: float = 0.3
 @onready var jump_gravity: float = (-2.0 * jump_height) / (jump_time_peak * jump_time_peak)
 @onready var fall_gravity: float = (-2.0 * jump_height) / (jump_time_descent * jump_time_descent)
 
-var speed = 12.0
-var air_speed_first_jump = 7.0
-var air_speed_second_jump = 3.8
-var acceleration = 5.0
-var air_acceleration = 5.0 # or deceleration i guess
+var speed = 9.0
+var air_speed_first_jump = 3.0
+var air_speed_second_jump = 2.3
+var acceleration = 4.0
+var air_acceleration = 4.0 # or deceleration i guess
 var has_jumped: bool = false
 var wants_to_jump: bool = false
 
@@ -24,7 +24,8 @@ var jump_count: int = 0
 var direction = Vector3.ZERO
 var target_velocity = Vector3.ZERO
 var floor_array = []
-var rotation_speed: float = 14.0
+var rotation_speed: float = 6.0
+var rotation_strafe_speed: float = 18.0
 
 var is_on_floor = false
 var floor_normal = Vector3.ZERO
@@ -120,14 +121,14 @@ func _get_input(delta):
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		if direction != Vector3.ZERO:
-			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_speed * delta)
+			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_strafe_speed * delta)
 	else:
 		if direction != Vector3.ZERO:
 			# rotation based on player input
-#			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
+			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
 
 			# rotation based on character velocity
-			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(target_velocity.x, target_velocity.z), rotation_speed * delta)
+#			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(target_velocity.x, target_velocity.z), rotation_speed * delta)
 	
 	if is_on_floor:
 		var x = floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
@@ -155,6 +156,7 @@ func _get_input(delta):
 	
 	has_jumped = false
 	
+	# TODO disallow the player from jumping ~1 second after the first jump
 	if Input.is_action_just_pressed("jump") and jump_queue < 2:
 		wants_to_jump = true
 		
