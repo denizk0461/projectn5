@@ -24,7 +24,7 @@ var jump_count: int = 0
 var direction = Vector3.ZERO
 var target_velocity = Vector3.ZERO
 var floor_array = []
-var rotation_speed: float = 18.0
+var rotation_speed: float = 14.0
 
 var is_on_floor = false
 var floor_normal = Vector3.ZERO
@@ -75,19 +75,16 @@ func _integrate_forces(state):
 	
 	var gravity_resistance = floor_normal if is_on_floor and not has_jumped else Vector3.UP
 	target_velocity += gravity_resistance * _get_gravity() * state.step
-#	target_velocity.y += _get_gravity() * state.step
 	
 	if jump_queue > jump_count:
 		jump_count += 1
 		target_velocity.y = jump_velocity
 		is_on_floor = false
-		print("jumpcount: %s" % jump_count)
 	
 	if not has_jumped and test_move(global_transform, target_velocity * state.step, collision_test, 0.001, false, 1):
 		if collision_test.get_normal(0).angle_to(Vector3.ZERO) <= _max_slope_angle * (PI / 180.0):
 			transform.origin -= collision_test.get_remainder()
 	
-	print(target_velocity)
 	linear_velocity = target_velocity
 
 func _get_input(delta):
@@ -95,18 +92,21 @@ func _get_input(delta):
 	var xz = target_velocity
 	
 	var input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-	var direction = (transform.basis * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
+	var direction = (transform.basis * Vector3(input_direction.x, 0.0, input_direction.y))
 	
 	direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
 	if Input.is_action_pressed("strafe"):
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		if direction != Vector3.ZERO:
-			# no! rotation should be based on character movement direction
 			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_speed * delta)
 	else:
 		if direction != Vector3.ZERO:
-			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
+			# rotation based on player input
+#			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
+
+			# rotation based on character velocity
+			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(target_velocity.x, target_velocity.z), rotation_speed * delta)
 	
 	if is_on_floor:
 		var x = floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
@@ -136,7 +136,6 @@ func _get_input(delta):
 	
 	if Input.is_action_just_pressed("jump") and jump_queue < 2:
 		wants_to_jump = true
-		print('jumped!')
 		
 		# disallows the player from jumping twice if they left the floor without
 		# jumping (e.g. falling off a ledge)
