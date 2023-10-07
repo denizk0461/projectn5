@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=8 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://Scenes/Other/PauseMenu/Flags/en.png" id="4_86qds"]
 [ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://Scenes/Other/PauseMenu/Flags/de.png" id="5_8bavr"]
 [ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://Scenes/Other/PauseMenu/UIButton.tscn" id="6_q4t4u"]
+[ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="7_5635n"]
 
 [node name="Control" type="Control"]
 process_mode = 2
@@ -24,7 +25,6 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.266667)
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -159,6 +159,7 @@ text = "This is the items menu"
 fit_content = true
 
 [node name="OptionsMenu" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 723.0
 offset_top = 287.0
@@ -223,6 +224,20 @@ stretch_mode = 5
 [node name="OptionsBackButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
 layout_mode = 2
 text = "MENU_BACK"
+
+[node name="BuildLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_5635n")
+text = "platformer by denizk0461, build 0.0.0.1, 2023-10-07"
 
 [connection signal="pressed" from="MainMenu/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonReload" to="." method="_on_button_reload_pressed"]
