@@ -20,8 +20,10 @@ var ground_normal: Vector3
 var floor_plane = Plane(Vector3.UP)
 var xz = Vector3.ZERO
 
+var _max_player_health: int = 6 # total max that the player can achieve in game is 8
+@onready var _player_health: int = _max_player_health
+
 # TODOs
-# make character follow slope angle to prevent jumping
 # prevent jumping on slope when sliding down
 # refined mid-air jump controls
 # disallow double jumping if close to the ground (maybe?)
@@ -31,6 +33,7 @@ func _ready():
 	$Inventory.load_melee()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
+	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
 
 func _input(event):
 	if event.is_action_pressed("jump") and jump_count < 2:
@@ -71,6 +74,7 @@ func _input(event):
 			$Inventory.load_melee()
 			is_gun_equipped = false
 		pass # attack! 
+		take_damage()
 		# attack immediately whether the melee weapon is already equipped or not
 	
 	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
@@ -93,6 +97,7 @@ func shoot():
 		is_gun_equipped = true
 	else:
 		$Pivot/EquippedItem.get_node("Gun").shoot()
+		heal()
 
 func _process(delta):
 	$SpringArm3D.position = position
@@ -123,6 +128,7 @@ func _physics_process(delta):
 	xz = target_velocity
 	
 	if is_on_floor() and floor_plane:
+		# TODO standing on sans crashes the game because of these lines!
 		var x = floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
 		var z = floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
 		x *= direction.x
@@ -176,3 +182,22 @@ func _position_player_for_conversation():
 	var delta = (position - _targeted_npc.position)
 	$Pivot.rotation.y = atan2(delta.x, delta.z) + deg_to_rad(180.0)
 	velocity = Vector3.ZERO
+
+func take_damage():
+	if _player_health > 0:
+		_player_health -= 1
+		$HUD/PlayerHUD.set_health(_player_health)
+		$HUD/PlayerHUD.set_health_point(_player_health, false)
+	
+	if _player_health == 0:
+		_die()
+	# timeout (invincibility frames)
+
+func heal():
+	if _player_health < _max_player_health:
+		_player_health += 1
+		$HUD/PlayerHUD.set_health_point(_player_health - 1, true)
+
+func _die():
+	print("you are DEAD muhahahhahahha!")
+	pass # TODO

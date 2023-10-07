@@ -42,3 +42,25 @@ offset_right = 91.0
 offset_bottom = 91.0
 expand_mode = 1
 stretch_mode = 5
+
+[node name="HealthBarContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 42.0
+offset_right = 20.0
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_constants/separation = 100
+
+[node name="Bar0" type="HBoxContainer" parent="HealthBarContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Bar1" type="HBoxContainer" parent="HealthBarContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ucn76d6fxffc"]
+
+[ext_resource type="Script" path="res://Scenes/Other/HUD/HealthPoint.gd" id="1_k133x"]
+[ext_resource type="Texture2D" uid="uid://cs6seamw4bbwk" path="res://Scenes/Other/HUD/PlayerHUDHealth.png" id="2_b04k6"]
+[ext_resource type="Texture2D" uid="uid://c3a06qmsbqrsr" path="res://Scenes/Other/HUD/PlayerHUDHealthNegative.png" id="3_t6t3q"]
+
+[node name="HealthPoint" type="Control"]
+layout_mode = 3
+anchor_right = 0.04375
+anchor_bottom = 0.0777778
+script = ExtResource("1_k133x")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthPositive" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_b04k6")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthNegative" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3_t6t3q")
+metadata/_edit_use_anchors_ = true

@@ -15,7 +15,7 @@
 height = 1.65
 radius = 0.3
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 floor_max_angle = 0.628319
 script = ExtResource("1_hdnqp")
 
