@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=10 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://Scenes/Other/PauseMenu/Flags/de.png" id="5_8bavr"]
 [ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://Scenes/Other/PauseMenu/UIButton.tscn" id="6_q4t4u"]
 [ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="7_5635n"]
+[ext_resource type="Texture2D" uid="uid://dn1hv677nugi3" path="res://Art/PauseMenu/DS5.png" id="8_8tt5n"]
+[ext_resource type="PackedScene" uid="uid://dbs1wdtbodct2" path="res://Scenes/UI/MediumText.tscn" id="9_x3app"]
 
 [node name="Control" type="Control"]
 process_mode = 2
@@ -25,6 +27,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.266667)
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -204,6 +207,10 @@ min_value = 1.0
 max_value = 8.0
 value = 1.0
 
+[node name="ViewControlsButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
+layout_mode = 2
+text = "MENU_OPTIONS_VIEW_CONTROLS"
+
 [node name="LanguageContainer" type="HBoxContainer" parent="OptionsMenu/MarginContainer/Container"]
 layout_mode = 2
 
@@ -239,6 +246,212 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("7_5635n")
 text = "platformer by denizk0461, build 0.0.0.1, 2023-10-07"
 
+[node name="ControlsMenu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -900.0
+offset_top = -480.0
+offset_right = 900.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayStation" type="Control" parent="ControlsMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ControllerImage" type="TextureRect" parent="ControlsMenu/PlayStation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1780.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8tt5n")
+stretch_mode = 4
+
+[node name="Camera" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.55
+anchor_top = 16.425
+anchor_right = 47.075
+anchor_bottom = 17.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_CAMERA"
+autowrap_mode = 3
+
+[node name="Move" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.875
+anchor_top = 16.4
+anchor_right = 10.55
+anchor_bottom = 17.55
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MOVE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Jump" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 10.325
+anchor_right = 46.325
+anchor_bottom = 11.475
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_JUMP"
+autowrap_mode = 3
+
+[node name="ShootFace" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 11.675
+anchor_right = 47.325
+anchor_bottom = 12.825
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="Strike" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 13.05
+anchor_right = 47.425
+anchor_bottom = 14.2
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MELEE"
+autowrap_mode = 3
+
+[node name="Action" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 14.425
+anchor_right = 49.125
+anchor_bottom = 15.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_QUICK_SELECT"
+autowrap_mode = 3
+
+[node name="ShoulderR" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 4.25
+anchor_right = 48.975
+anchor_bottom = 5.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOULDER_R"
+autowrap_mode = 3
+
+[node name="ShootTrigger" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 5.5
+anchor_right = 46.825
+anchor_bottom = 6.65
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="PreciseAim" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.7
+anchor_top = 4.25
+anchor_right = 9.95
+anchor_bottom = 5.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_AIM"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Strafe" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.025
+anchor_top = 5.5
+anchor_right = 9.95
+anchor_bottom = 6.65
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_STRAFE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Select" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.525
+anchor_top = 7.725
+anchor_right = 11.45
+anchor_bottom = 8.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SELECT"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Dpad" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.825
+anchor_top = 12.35
+anchor_right = 10.5
+anchor_bottom = 13.5
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_DPAD"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Pause" parent="ControlsMenu/PlayStation" instance=ExtResource("9_x3app")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 33.575
+anchor_top = 7.725
+anchor_right = 45.3
+anchor_bottom = 8.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_PAUSE"
+autowrap_mode = 3
+
+[node name="Xbox" type="Control" parent="ControlsMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Nintendo" type="Control" parent="ControlsMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="MainMenu/ButtonResume" to="." method="_on_button_resume_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonReload" to="." method="_on_button_reload_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonWeapons" to="." method="_on_button_weapons_pressed"]
@@ -247,6 +460,7 @@ text = "platformer by denizk0461, build 0.0.0.1, 2023-10-07"
 [connection signal="pressed" from="MainMenu/ButtonItems" to="." method="_on_button_items_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonOptions" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/ViewControlsButton" to="." method="_on_view_controls_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/German" to="." method="_on_german_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/OptionsBackButton" to="." method="_on_options_back_button_pressed"]

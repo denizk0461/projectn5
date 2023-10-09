@@ -44,6 +44,11 @@ func _navigate_back():
 			$OptionsMenu.hide()
 			$MainMenu.show()
 			$MainMenu/ButtonOptions.grab_focus()
+		51:
+			_menu_index = 5
+			$ControlsMenu.hide()
+			$OptionsMenu.show()
+			$OptionsMenu/MarginContainer/Container/ViewControlsButton.grab_focus()
 
 func open():
 	show()
@@ -54,6 +59,7 @@ func open():
 	$GadgetsMenu.hide()
 	$ItemsMenu.hide()
 	$OptionsMenu.hide()
+	$ControlsMenu.hide()
 	
 	$MainMenu.show()
 	$MainMenu/ButtonResume.grab_focus()
@@ -113,3 +119,8 @@ func _on_english_pressed():
 
 func _on_german_pressed():
 	TranslationServer.set_locale("de")
+
+func _on_view_controls_button_pressed():
+	_menu_index = 51
+	$OptionsMenu.hide()
+	$ControlsMenu.show()

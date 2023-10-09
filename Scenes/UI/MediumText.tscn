@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbs1wdtbodct2"]
+
+[ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="1_0qcwh"]
+
+[node name="MediumText" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_0qcwh")
+theme_override_font_sizes/font_size = 28
+text = "
+"
+metadata/_edit_use_anchors_ = true

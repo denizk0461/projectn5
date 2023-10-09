@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5r4e8xgy5si0"
-path="res://.godot/imported/CharacterMaterial Base Color.png-8be5d9b096893c7ecbbbadbcc0d30978.ctex"
+uid="uid://dn1hv677nugi3"
+path="res://.godot/imported/DS5.png-a7bc18d161ad2c38e7dadc4e2be9aa66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/textures/CharacterMaterial Base Color.png"
-dest_files=["res://.godot/imported/CharacterMaterial Base Color.png-8be5d9b096893c7ecbbbadbcc0d30978.ctex"]
+source_file="res://Art/PauseMenu/DS5.png"
+dest_files=["res://.godot/imported/DS5.png-a7bc18d161ad2c38e7dadc4e2be9aa66.ctex"]
 
 [params]
 
