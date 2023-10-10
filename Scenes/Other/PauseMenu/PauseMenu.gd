@@ -16,6 +16,7 @@ func _input(event):
 		_navigate_back()
 
 func _navigate_back():
+	print("called")
 	match _menu_index:
 		0:
 			_resume()
