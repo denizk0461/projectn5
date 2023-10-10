@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=11 format=3 uid="uid://diryunrxqcygg"]
 
-[ext_resource type="PackedScene" uid="uid://bmduvququx8kt" path="res://Characters/RatchetLiberatorNoHelmet/RatchetLiberatorNoHelmet.glb" id="1_c2vwa"]
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hdnqp"]
 [ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://Scenes/Other/PauseMenu/PauseMenu.tscn" id="2_0t8qg"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_gav3a"]
@@ -43,10 +42,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82588, 0)
 shape = SubResource("CylinderShape3D_6uhk6")
 
 [node name="Pivot" type="Node3D" parent="."]
-
-[node name="RatchetLiberatorNoHelmet" parent="Pivot" instance=ExtResource("1_c2vwa")]
-transform = Transform3D(0.053, 0, 0, 0, 0.053, 0, 0, 0, 0.053, 0, 0, 0)
-visible = false
 
 [node name="EquippedItem" type="Node3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886261, 1.095, -0.0432902)

@@ -73,8 +73,7 @@ func _input(event):
 		if is_gun_equipped:
 			$Inventory.load_melee()
 			is_gun_equipped = false
-		pass # attack! 
-		take_damage()
+		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
 	
 	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
@@ -97,7 +96,6 @@ func shoot():
 		is_gun_equipped = true
 	else:
 		$Pivot/EquippedItem.get_node("Gun").shoot()
-		heal()
 
 func _process(delta):
 	$SpringArm3D.position = position

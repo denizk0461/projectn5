@@ -1,6 +1,6 @@
 extends Panel
 
-var _currently_used_controller_name: String = ""
+var _currently_used_controller_name: String = "nothing"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -9,11 +9,6 @@ func _process(delta):
 	if new_controller_name != _currently_used_controller_name:
 		_currently_used_controller_name = new_controller_name
 		match _currently_used_controller_name:
-			"PS5 Controller":
-				$PlayStation.show()
-				$Xbox.hide()
-				$Nintendo.hide()
-				$KBM.hide()
 			"XInput Gamepad":
 				$PlayStation.hide()
 				$Xbox.show()
@@ -29,3 +24,8 @@ func _process(delta):
 				$Xbox.hide()
 				$Nintendo.hide()
 				$KBM.show()
+			_: # everything else, e.g. PS5 Controller
+				$PlayStation.show()
+				$Xbox.hide()
+				$Nintendo.hide()
+				$KBM.hide()
