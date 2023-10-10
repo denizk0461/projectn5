@@ -69,3 +69,5 @@ script = ExtResource("4_5q0q3")
 [node name="GroundCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0553062, 0)
 target_position = Vector3(0, -0.27, 0)
+
+[connection signal="health_changed" from="." to="HUD/PlayerHUD" method="_on_player_health_changed"]

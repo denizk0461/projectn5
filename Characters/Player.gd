@@ -185,8 +185,9 @@ func take_damage():
 	if _player_health > 0:
 		_player_health -= 1
 		# TODO are both necessary?
-		$HUD/PlayerHUD.set_health(_player_health)
-		$HUD/PlayerHUD.set_health_point(_player_health, false)
+		health_changed.emit(_player_health)
+#		$HUD/PlayerHUD.set_health(_player_health)
+#		$HUD/PlayerHUD.set_health_point(_player_health, false)
 	
 	if _player_health == 0:
 		_die()
@@ -195,8 +196,11 @@ func take_damage():
 func heal():
 	if _player_health < _max_player_health:
 		_player_health += 1
-		$HUD/PlayerHUD.set_health_point(_player_health - 1, true)
+		health_changed.emit(_player_health)
+#		$HUD/PlayerHUD.set_health_point(_player_health - 1, true)
 
 func _die():
 	print("you are DEAD muhahahhahahha!")
 	pass # TODO
+
+signal health_changed(new_health: int)

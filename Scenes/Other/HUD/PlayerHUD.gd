@@ -34,9 +34,13 @@ func setup_health_bar(max: int):
 			health_container_1.add_child(health_point)
 		_health_points.append(health_point)
 
-func set_health(current_health: int):
+func _set_health(new_health: int):
 	for i in _health_points.size():
-		_health_points[i].set_active(i < current_health)
+		_health_points[i].set_active(i < new_health)
 
-func set_health_point(index: int, is_active: bool):
-	_health_points[index].set_active(is_active)
+#func set_health_point(index: int, is_active: bool):
+#	_health_points[index].set_active(is_active)
+
+
+func _on_player_health_changed(new_health):
+	_set_health(new_health)
