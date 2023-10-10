@@ -1,32 +1,33 @@
 extends CharacterBody3D
 
-var speed: float = 9.0
-var jump_speed: float = 18.0
-var move_acceleration: float = 10.0
-var move_acceleration_in_air: float = 1.9
-var fall_acceleration: float = 60.0
-var rotation_speed: float = 18.0
-var jump_count: int = 0
-var total_jump_count: int = 0
-var move_direction: Vector3 = Vector3.ZERO
-var wants_to_jump: bool = false
-var has_jumped: bool = false
+var _speed: float = 9.0
+var _jump_speed: float = 18.0
+var _move_acceleration: float = 10.0
+var _move_acceleration_in_air: float = 1.9
+var _fall_acceleration: float = 60.0
+var _rotation_speed: float = 18.0
+var _jump_count: int = 0
+var _total_jump_count: int = 0
+var _move_direction: Vector3 = Vector3.ZERO
+var _wants_to_jump: bool = false
+var _has_jumped: bool = false
 var _max_falling_velocity = -160
-var target_velocity = Vector3.ZERO
+var _target_velocity = Vector3.ZERO
 var _jump_velocity: float = 0.0
-var is_gun_equipped: bool = false
+var _is_gun_equipped: bool = false
 var _targeted_npc: Node3D = null
-var ground_normal: Vector3
-var floor_plane = Plane(Vector3.UP)
-var xz = Vector3.ZERO
+var _ground_normal: Vector3
+var _floor_plane = Plane(Vector3.UP)
+var _xz = Vector3.ZERO
+var _max_player_health: int = 4 # total max that the player can achieve in game is 8
 
-var _max_player_health: int = 6 # total max that the player can achieve in game is 8
 @onready var _player_health: int = _max_player_health
 
 # TODOs
 # prevent jumping on slope when sliding down
-# refined mid-air jump controls
 # disallow double jumping if close to the ground (maybe?)
+
+signal health_changed(new_health: int)
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
@@ -36,21 +37,21 @@ func _ready():
 	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
 
 func _input(event):
-	if event.is_action_pressed("jump") and jump_count < 2:
-		target_velocity.y = jump_speed
-		wants_to_jump = true
-		total_jump_count += 1
-		if total_jump_count > 999:
+	if event.is_action_pressed("jump") and _jump_count < 2:
+		_target_velocity.y = _jump_speed
+		_wants_to_jump = true
+		_total_jump_count += 1
+		if _total_jump_count > 999:
 			# avoid overflow
-			total_jump_count = 0
+			_total_jump_count = 0
 		
 		# disallows the player from jumping twice if they left the floor without
 		# jumping (e.g. falling off a ledge)
-		if not has_jumped and not is_on_floor():
-			jump_count = 2
+		if not _has_jumped and not is_on_floor():
+			_jump_count = 2
 		else:
-			jump_count += 1
-			has_jumped = true
+			_jump_count += 1
+			_has_jumped = true
 			
 			disallow_second_jump_after(0.6)
 	
@@ -70,38 +71,37 @@ func _input(event):
 		get_tree().paused = true
 	
 	elif event.is_action_pressed("melee"):
-		if is_gun_equipped:
+		if _is_gun_equipped:
 			$Inventory.load_melee()
-			is_gun_equipped = false
+			_is_gun_equipped = false
 		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
-	
-	elif not event is InputEventJoypadMotion and event.is_action_pressed("shoot"):
-#		shoot()
 		pass
 
 func disallow_second_jump_after(seconds: float):
-	var jc = total_jump_count
+	var jc = _total_jump_count
 	# only allow the player to jump a second jump within a few seconds of the first jump
 	await get_tree().create_timer(seconds).timeout
 	# check if the player has jumped since the timer started. this is to prevent
 	# cancelling later jumps
-	if jc == total_jump_count and jump_count != 2 and not is_on_floor():
-		jump_count = 2
+	if jc == _total_jump_count and _jump_count != 2 and not is_on_floor():
+		_jump_count = 2
 
-func shoot():
-	if not is_gun_equipped:
+func _shoot():
+	if not _is_gun_equipped:
 		# don't shoot upon equipping the gun
 		$Inventory.load_gun()
-		is_gun_equipped = true
+		_is_gun_equipped = true
 	else:
 		$Pivot/EquippedItem.get_node("Gun").shoot()
 
 func _process(delta):
+	# position camera relative to the player
 	$SpringArm3D.position = position
 	
+	# TODO rewrite this for semi-automatic and automatic weapons
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		_shoot()
 
 func _physics_process(delta):
 	var direction_2d = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
@@ -113,57 +113,64 @@ func _physics_process(delta):
 	else:
 		direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
 		if not Input.is_action_pressed("strafe"):
-			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), rotation_speed * delta)
+			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), _rotation_speed * delta)
 	
 	if Input.is_action_pressed("strafe"):
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))#.rotated(Vector3.UP, deg_to_rad(180.0))
-		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), rotation_speed * delta)
+		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
 	
 	# slope direction correction
-	ground_normal = $GroundCast.get_collision_normal()
-	floor_plane.normal = ground_normal
-	xz = target_velocity
+	_ground_normal = $GroundCast.get_collision_normal()
+	_floor_plane.normal = _ground_normal
+	_xz = _target_velocity
 	
-	if is_on_floor() and floor_plane:
+	if is_on_floor() and _floor_plane:
 		# TODO standing on sans crashes the game because of these lines!
-		var x = floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
-		var z = floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
+		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
+		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
 		x *= direction.x
 		z *= direction.z
 		direction = (x + z).normalized()
-		target_velocity.x = direction.x
-		target_velocity.z = direction.y
+		_target_velocity.x = direction.x
+		_target_velocity.z = direction.y
 		if direction.length() > 0:
-			xz = xz.lerp(direction * speed, move_acceleration * delta)
+			_xz = _xz.lerp(direction * _speed, _move_acceleration * delta)
 		else:
-			xz = xz.lerp(direction * speed, move_acceleration * 2.0 * delta)
+			_xz = _xz.lerp(direction * _speed, _move_acceleration * 2.0 * delta)
 		
-		if target_velocity.y < 0:
-			target_velocity.y = xz.y
+		if _target_velocity.y < 0:
+			_target_velocity.y = _xz.y
 	
-	target_velocity.x = xz.x
-	target_velocity.z = xz.z
+	_target_velocity.x = _xz.x
+	_target_velocity.z = _xz.z
 	
-	_jump_velocity = target_velocity.y
-	target_velocity = lerp(target_velocity, direction * speed, (move_acceleration if is_on_floor() else move_acceleration_in_air) * delta)
-	target_velocity.y = _jump_velocity
+	_jump_velocity = _target_velocity.y
+	_target_velocity = lerp(_target_velocity, direction * _speed, (_move_acceleration if is_on_floor() else _move_acceleration_in_air) * delta)
+	_target_velocity.y = _jump_velocity
+	
+	# disallow further jumping if the player lands on a steep slope
+	# slope steepness is governed by CharacterController3D's floor_max_angle attribute
+	if ($GroundAngleCast.get_collider() 
+			and $GroundAngleCast.get_collision_normal().angle_to(Vector3.UP) > floor_max_angle
+	):
+		_jump_count = 2
 	
 	if is_on_floor():
-		if not wants_to_jump:
-			target_velocity.y = 0.0
-			has_jumped = false
+		if not _wants_to_jump:
+			_target_velocity.y = 0.0
+			_has_jumped = false
 	else:
-		if target_velocity.y > _max_falling_velocity:
-			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		if _target_velocity.y > _max_falling_velocity:
+			_target_velocity.y = _target_velocity.y - (_fall_acceleration * delta)
 	
 	
-	velocity = target_velocity
+	velocity = _target_velocity
 	move_and_slide()
 	
 	if is_on_floor():
-		wants_to_jump = false
-		jump_count = 0
+		_wants_to_jump = false
+		_jump_count = 0
 
 func target_npc(npc: Node3D):
 	_targeted_npc = npc
@@ -181,26 +188,20 @@ func _position_player_for_conversation():
 	$Pivot.rotation.y = atan2(delta.x, delta.z) + deg_to_rad(180.0)
 	velocity = Vector3.ZERO
 
-func take_damage():
+func _take_damage():
 	if _player_health > 0:
 		_player_health -= 1
-		# TODO are both necessary?
 		health_changed.emit(_player_health)
-#		$HUD/PlayerHUD.set_health(_player_health)
-#		$HUD/PlayerHUD.set_health_point(_player_health, false)
 	
 	if _player_health == 0:
 		_die()
 	# timeout (invincibility frames)
 
-func heal():
+func _heal():
 	if _player_health < _max_player_health:
 		_player_health += 1
 		health_changed.emit(_player_health)
-#		$HUD/PlayerHUD.set_health_point(_player_health - 1, true)
 
 func _die():
 	print("you are DEAD muhahahhahahha!")
 	pass # TODO
-
-signal health_changed(new_health: int)
