@@ -35,6 +35,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
+	$SpringArm3D.add_excluded_object(self)
 
 func _input(event):
 	if event.is_action_pressed("jump") and _jump_count < 2:
@@ -121,12 +122,13 @@ func _physics_process(delta):
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
 	
 	# slope direction correction
-	_ground_normal = $GroundCast.get_collision_normal()
+	_ground_normal = $GroundAngleCast.get_collision_normal()
 	_floor_plane.normal = _ground_normal
 	_xz = _target_velocity
 	
-	if is_on_floor() and _floor_plane:
+	if _floor_plane and is_on_floor():
 		# TODO standing on sans crashes the game because of these lines!
+		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
 		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
 		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
 		x *= direction.x
