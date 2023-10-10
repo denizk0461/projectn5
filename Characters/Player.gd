@@ -186,6 +186,7 @@ func _position_player_for_conversation():
 func take_damage():
 	if _player_health > 0:
 		_player_health -= 1
+		# TODO are both necessary?
 		$HUD/PlayerHUD.set_health(_player_health)
 		$HUD/PlayerHUD.set_health_point(_player_health, false)
 	
