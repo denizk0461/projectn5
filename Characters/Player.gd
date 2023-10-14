@@ -14,7 +14,6 @@ var _has_jumped: bool = false
 var _max_falling_velocity = -160
 var _target_velocity = Vector3.ZERO
 var _jump_velocity: float = 0.0
-var _is_gun_equipped: bool = false
 var _targeted_npc: Node3D = null
 var _ground_normal: Vector3
 var _floor_plane = Plane(Vector3.UP)
@@ -31,7 +30,7 @@ signal health_changed(new_health: int)
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
-	$Inventory.load_melee()
+	$Inventory.switch_to_melee()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
@@ -72,9 +71,8 @@ func _input(event):
 		get_tree().paused = true
 	
 	elif event.is_action_pressed("melee"):
-		if _is_gun_equipped:
-			$Inventory.load_melee()
-			_is_gun_equipped = false
+		if not $Inventory.is_melee_equipped:
+			$Inventory.switch_to_melee()
 		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
 		pass
@@ -89,12 +87,11 @@ func disallow_second_jump_after(seconds: float):
 		_jump_count = 2
 
 func _shoot():
-	if not _is_gun_equipped:
+	if $Inventory.is_melee_equipped:
 		# don't shoot upon equipping the gun
-		$Inventory.load_gun()
-		_is_gun_equipped = true
+		$Inventory.switch_to_gun()
 	else:
-		$Pivot/EquippedItem.get_node("Gun").shoot()
+		$Pivot/EquippedItem.get_node("Gun").shoot() # convert to signal
 
 func _process(delta):
 	# position camera relative to the player
@@ -128,6 +125,7 @@ func _physics_process(delta):
 	
 	if _floor_plane and is_on_floor():
 		# TODO standing on sans crashes the game because of these lines!
+		# what to do when intersection is null?
 		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
 		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
 		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()

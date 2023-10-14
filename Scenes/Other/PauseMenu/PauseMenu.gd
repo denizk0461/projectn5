@@ -106,6 +106,7 @@ func _resume():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_button_quit_pressed():
+	# later in development, check if the player saved before quitting the game!
 	get_tree().quit()
 
 func _on_options_back_button_pressed():

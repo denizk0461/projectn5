@@ -71,3 +71,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82588, 0)
 shape = SubResource("CylinderShape3D_e7qgu")
 
 [connection signal="health_changed" from="." to="HUD/PlayerHUD" method="_on_player_health_changed"]
+[connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]

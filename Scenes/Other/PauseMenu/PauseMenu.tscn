@@ -165,7 +165,6 @@ text = "This is the items menu"
 fit_content = true
 
 [node name="OptionsMenu" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 offset_left = 723.0
 offset_top = 287.0
@@ -230,6 +229,14 @@ layout_mode = 2
 texture_normal = ExtResource("5_8bavr")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="SaveGameButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
+layout_mode = 2
+text = "MENU_OPTIONS_SAVE_GAME"
+
+[node name="LoadGameButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
+layout_mode = 2
+text = "MENU_OPTIONS_LOAD_GAME"
 
 [node name="OptionsBackButton" parent="OptionsMenu/MarginContainer/Container" instance=ExtResource("6_q4t4u")]
 layout_mode = 2
@@ -832,4 +839,6 @@ offset_bottom = -20.0
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/ViewControlsButton" to="." method="_on_view_controls_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/German" to="." method="_on_german_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/SaveGameButton" to="." method="_on_view_controls_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LoadGameButton" to="." method="_on_view_controls_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/OptionsBackButton" to="." method="_on_options_back_button_pressed"]

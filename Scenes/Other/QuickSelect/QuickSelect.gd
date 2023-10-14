@@ -2,6 +2,8 @@ extends Control
 
 var _is_active: bool = false
 
+signal item_equipped(item_id: int)
+
 # Called when the node enters the scene tree for the first time.
 func _input(event):
 	if event.is_action_released("quick_select_action") and _is_active:
@@ -42,3 +44,4 @@ func _process(_delta):
 
 func _on_item_0_pressed():
 	print('yes i have been pressed')
+	item_equipped.emit(101)

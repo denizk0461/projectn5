@@ -13,6 +13,7 @@ var gun_ammo_count: Dictionary = {
 var quick_select: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
 var equipped_melee: int = 401
 var equipped_gun: int = 101
+var is_melee_equipped: bool = true # false if gun/gadget
 
 # 0 = melee
 # 1 = gun
@@ -27,23 +28,26 @@ func _ready():
 	print(get_collected_item_ids())
 	pass # Replace with function body.
 
-func load_item(id: int):
+func _load_item(id: int):
 	var equipped_item_node = get_node("../Pivot/EquippedItem")
 	var item = load(ItemManager.item_resource_path % ItemManager.item_assignments[id]).instantiate()
 	var currently_equipped_item = equipped_item_node.get_child(0)
 	if not currently_equipped_item == null:
 		equipped_item_node.remove_child(currently_equipped_item)
 	equipped_item_node.add_child(item)
-	if id > 99 and id < 200: # item is a gun
+	if id >= 100 and id <= 199: # item is a gun
 		_player_hud.setup_gun(item.max_ammo, item.icon)
 
-func load_melee():
+func _load_melee():
 	_player_hud.hide_ammo_counter()
-	load_item(equipped_melee)
+	_load_item(equipped_melee)
 
-func load_gun():
-	load_item(equipped_gun)
+func _load_gun():
+	_load_item(equipped_gun)
 	_player_hud.set_ammo_counter(gun_ammo_count[equipped_gun])
+
+func _load_gadget():
+	_load_item(equipped_gun)
 
 func collect_item(id: int):
 	items[id] = true
@@ -63,3 +67,25 @@ func get_collected_item_ids() -> Array[int]:
 		if items[i] == true:
 			result.append(i)
 	return result
+
+func _on_item_equipped(item_id: int):
+	if item_id >= 100 and item_id <= 199: # gun
+		equipped_gun = item_id
+		_load_gun()
+	elif item_id >= 200 and item_id <= 299: # gadget
+		equipped_gun = item_id
+		_load_gadget()
+	elif item_id >= 400 and item_id <= 499: # melee
+		equipped_melee = item_id
+		_load_melee()
+
+func switch_to_melee():
+	is_melee_equipped = true
+	_load_melee()
+
+func switch_to_gun():
+	is_melee_equipped = false
+	_load_gun()
+
+func _on_quick_select_item_equipped(item_id):
+	_on_item_equipped(item_id)
