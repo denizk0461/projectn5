@@ -60,14 +60,15 @@ func _input(event):
 		$GUI/PauseMenu.open()
 	
 	elif event.is_action_pressed("quick_select_action"):
-		if _targeted_npc == null:
-			$GUI/QuickSelect.activate()
-		else:
+		if not _targeted_npc == null:
 			_position_player_for_conversation()
 			$HUD/TalkToNPC.hide()
 			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
 			$HUD/DialogueBox.show()
 			$Pivot/DialogueCamera.make_current()
+		else:
+			$GUI/QuickSelect.prepare_menu()
+			$GUI/QuickSelect.activate()
 		get_tree().paused = true
 	
 	elif event.is_action_pressed("melee"):
@@ -126,7 +127,7 @@ func _physics_process(delta):
 	if _floor_plane and is_on_floor():
 		# TODO standing on sans crashes the game because of these lines!
 		# what to do when intersection is null?
-		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
+#		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
 		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
 		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
 		x *= direction.x

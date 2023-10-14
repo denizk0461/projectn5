@@ -10,7 +10,7 @@ var gun_ammo_count: Dictionary = {
 }
 
 # must be length 8
-var quick_select: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
+var quick_select: Array[int] = [101, -1, -1, -1, -1, -1, -1, -1]
 var equipped_melee: int = 401
 var equipped_gun: int = 101
 var is_melee_equipped: bool = true # false if gun/gadget
@@ -26,7 +26,6 @@ var active_item: int = 0
 func _ready():
 	# load inventory items perhaps?
 	print(get_collected_item_ids())
-	pass # Replace with function body.
 
 func _load_item(id: int):
 	var equipped_item_node = get_node("../Pivot/EquippedItem")
