@@ -11,4 +11,5 @@ var item_assignments: Dictionary = {
 	601: "Ammo/PurpleGunAmmo",
 }
 var item_resource_path: String = "res://Items/%s.tscn"
+var item_icon_path: String = "res://Items/%s.png"
 var projectile_path: String = "res://Items/Weapons/Projectiles/%s.tscn"

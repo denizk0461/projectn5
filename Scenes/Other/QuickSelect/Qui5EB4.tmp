@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://plh5aii2ck1t"]
+
+[ext_resource type="PackedScene" uid="uid://dxh3u48mnshy5" path="res://Scenes/Other/QuickSelect/QuickSelectSlot.tscn" id="1_hl4j2"]
+[ext_resource type="Script" path="res://Scenes/Other/QuickSelect/QuickSelect.gd" id="1_vshht"]
+
+[node name="QuickSelect" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vshht")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.266667)
+
+[node name="Item0" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_top = -300.0
+offset_bottom = -300.0
+action_mode = 0
+
+[node name="Item1" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = -200.0
+action_mode = 0
+
+[node name="Item2" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = 300.0
+offset_right = 300.0
+action_mode = 0
+
+[node name="Item3" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 200.0
+action_mode = 0
+
+[node name="Item4" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_top = 300.0
+offset_bottom = 300.0
+action_mode = 0
+
+[node name="Item5" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = -200.0
+offset_top = 200.0
+offset_right = -200.0
+offset_bottom = 200.0
+action_mode = 0
+
+[node name="Item6" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = -300.0
+offset_right = -300.0
+action_mode = 0
+
+[node name="Item7" parent="." instance=ExtResource("1_hl4j2")]
+layout_mode = 1
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -200.0
+offset_bottom = -200.0
+action_mode = 0
+
+[connection signal="focus_entered" from="Item0" to="." method="_on_item_0_focus_entered"]
+[connection signal="mouse_entered" from="Item0" to="." method="_on_item_0_mouse_entered"]
+[connection signal="focus_entered" from="Item1" to="." method="_on_item_1_focus_entered"]
+[connection signal="mouse_entered" from="Item1" to="." method="_on_item_1_mouse_entered"]
+[connection signal="focus_entered" from="Item2" to="." method="_on_item_2_focus_entered"]
+[connection signal="mouse_entered" from="Item2" to="." method="_on_item_2_mouse_entered"]
+[connection signal="focus_entered" from="Item3" to="." method="_on_item_3_focus_entered"]
+[connection signal="mouse_entered" from="Item3" to="." method="_on_item_3_mouse_entered"]
+[connection signal="focus_entered" from="Item4" to="." method="_on_item_4_focus_entered"]
+[connection signal="mouse_entered" from="Item4" to="." method="_on_item_4_mouse_entered"]
+[connection signal="focus_entered" from="Item5" to="." method="_on_item_5_focus_entered"]
+[connection signal="mouse_entered" from="Item5" to="." method="_on_item_5_mouse_entered"]
+[connection signal="focus_entered" from="Item6" to="." method="_on_item_6_focus_entered"]
+[connection signal="mouse_entered" from="Item6" to="." method="_on_item_6_mouse_entered"]
+[connection signal="focus_entered" from="Item7" to="." method="_on_item_7_focus_entered"]
+[connection signal="mouse_entered" from="Item7" to="." method="_on_item_7_mouse_entered"]

@@ -11,6 +11,10 @@ func prepare_menu():
 	for index in _quick_select_items.size():
 		if not _quick_select_items[index] == -1:
 			get_node("Item%s" % index)
+			var s = ItemManager.item_assignments[_quick_select_items[index]]
+			var a = ItemManager.item_icon_path % s
+			print(a)
+			$Item0/Slot.texture = load(a)
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
@@ -30,7 +34,6 @@ func _equip_new_item():
 func activate():
 	_is_active = true
 	self.show()
-#	$Item0.grab_focus()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(_delta):
@@ -60,49 +63,57 @@ func _process(_delta):
 				$Item0.grab_focus()
 
 func _on_item_0_mouse_entered():
-	$Item0.grab_focus()
+	if not _quick_select_items[0] == -1:
+		$Item0.grab_focus()
 
 func _on_item_0_focus_entered():
 	_index_to_equip = 0
 
 func _on_item_1_mouse_entered():
-	$Item1.grab_focus()
+	if not _quick_select_items[1] == -1:
+		$Item1.grab_focus()
 
 func _on_item_1_focus_entered():
 	_index_to_equip = 1
 
 func _on_item_2_mouse_entered():
-	$Item2.grab_focus()
+	if not _quick_select_items[2] == -1:
+		$Item2.grab_focus()
 
 func _on_item_2_focus_entered():
 	_index_to_equip = 2
 
 func _on_item_3_mouse_entered():
-	$Item3.grab_focus()
+	if not _quick_select_items[3] == -1:
+		$Item3.grab_focus()
 
 func _on_item_3_focus_entered():
 	_index_to_equip = 3
 
 func _on_item_4_mouse_entered():
-	$Item4.grab_focus()
+	if not _quick_select_items[4] == -1:
+		$Item4.grab_focus()
 
 func _on_item_4_focus_entered():
 	_index_to_equip = 4
 
 func _on_item_5_mouse_entered():
-	$Item5.grab_focus()
+	if not _quick_select_items[5] == -1:
+		$Item5.grab_focus()
 
 func _on_item_5_focus_entered():
 	_index_to_equip = 5
 
 func _on_item_6_mouse_entered():
-	$Item6.grab_focus()
+	if not _quick_select_items[6] == -1:
+		$Item6.grab_focus()
 
 func _on_item_6_focus_entered():
 	_index_to_equip = 6
 
 func _on_item_7_mouse_entered():
-	$Item7.grab_focus()
+	if not _quick_select_items[7] == -1:
+		$Item7.grab_focus()
 
 func _on_item_7_focus_entered():
 	_index_to_equip = 7
