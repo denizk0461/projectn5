@@ -70,12 +70,15 @@ func get_collected_item_ids() -> Array[int]:
 func _on_item_equipped(item_id: int):
 	if item_id >= 100 and item_id <= 199: # gun
 		equipped_gun = item_id
+		is_melee_equipped = false
 		_load_gun()
 	elif item_id >= 200 and item_id <= 299: # gadget
 		equipped_gun = item_id
+		is_melee_equipped = false
 		_load_gadget()
 	elif item_id >= 400 and item_id <= 499: # melee
 		equipped_melee = item_id
+		is_melee_equipped = true
 		_load_melee()
 
 func switch_to_melee():

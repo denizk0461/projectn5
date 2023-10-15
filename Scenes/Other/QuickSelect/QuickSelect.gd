@@ -24,23 +24,14 @@ func _input(event):
 		get_tree().paused = false
 		self.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func _equip_new_item():
-	if (not _index_to_equip == -1
-			and not _quick_select_items[_index_to_equip] == -1
-	):
-		item_equipped.emit(_quick_select_items[_index_to_equip])
-
-func activate():
-	_is_active = true
-	self.show()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _process(_delta):
-	# grabbing the input here results in errors in other menus such as the pause menu!
+		
 	if _is_active:
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var input_angle = rad_to_deg(direction.angle_to(Vector2.UP))
+		if input_angle > 0.0:
+			input_angle -= 360.0
+		input_angle *= -1
+		print(input_angle)
 		if not direction == Vector2.ZERO:
 			# TODO test this!!
 			if input_angle < 23.0:
@@ -61,6 +52,17 @@ func _process(_delta):
 				$Item7.grab_focus()
 			else:
 				$Item0.grab_focus()
+
+func _equip_new_item():
+	if (not _index_to_equip == -1
+			and not _quick_select_items[_index_to_equip] == -1
+	):
+		item_equipped.emit(_quick_select_items[_index_to_equip])
+
+func activate():
+	_is_active = true
+	self.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_item_0_mouse_entered():
 	if not _quick_select_items[0] == -1:
