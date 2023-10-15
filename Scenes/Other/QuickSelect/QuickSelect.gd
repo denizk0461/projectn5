@@ -31,9 +31,7 @@ func _input(event):
 		if input_angle > 0.0:
 			input_angle -= 360.0
 		input_angle *= -1
-		print(input_angle)
 		if not direction == Vector2.ZERO:
-			# TODO test this!!
 			if input_angle < 23.0:
 				$Item0.grab_focus()
 			elif input_angle < 68.0:
