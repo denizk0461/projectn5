@@ -19,6 +19,7 @@ var _ground_normal: Vector3
 var _floor_plane = Plane(Vector3.UP)
 var _xz = Vector3.ZERO
 var _max_player_health: int = 4 # total max that the player can achieve in game is 8
+var _is_second_jump: bool = false
 
 @onready var _player_health: int = _max_player_health
 
@@ -53,6 +54,7 @@ func _input(event):
 			_jump_count += 1
 			_has_jumped = true
 			
+			_is_second_jump = _jump_count == 2
 			disallow_second_jump_after(0.6)
 	
 	elif event.is_action_pressed("pause") and not get_tree().paused:
@@ -77,6 +79,12 @@ func _input(event):
 		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
 		pass
+		if is_on_floor():
+			# regular attack
+			pass
+		else:
+			# air attack
+			pass
 
 func disallow_second_jump_after(seconds: float):
 	var jc = _total_jump_count
@@ -99,7 +107,7 @@ func _process(delta):
 	$SpringArm3D.position = position
 	
 	# TODO rewrite this for semi-automatic and automatic weapons
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and not _is_second_jump:
 		_shoot()
 
 func _physics_process(delta):
@@ -156,6 +164,7 @@ func _physics_process(delta):
 			and $GroundAngleCast.get_collision_normal().angle_to(Vector3.UP) > floor_max_angle
 	):
 		_jump_count = 2
+		_is_second_jump = true
 	
 	if is_on_floor():
 		if not _wants_to_jump:
@@ -172,6 +181,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		_wants_to_jump = false
 		_jump_count = 0
+		_is_second_jump = false
 
 func target_npc(npc: Node3D):
 	_targeted_npc = npc
