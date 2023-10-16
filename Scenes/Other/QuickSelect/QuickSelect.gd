@@ -32,23 +32,23 @@ func _input(event):
 			input_angle -= 360.0
 		input_angle *= -1
 		if not direction == Vector2.ZERO:
-			if input_angle < 23.0:
+			if input_angle < 23.0 and not _quick_select_items[0] == -1:
 				$Item0.grab_focus()
-			elif input_angle < 68.0:
+			elif input_angle < 68.0 and not _quick_select_items[1] == -1:
 				$Item1.grab_focus()
-			elif input_angle < 112.0:
+			elif input_angle < 112.0 and not _quick_select_items[2] == -1:
 				$Item2.grab_focus()
-			elif input_angle < 157.0:
+			elif input_angle < 157.0 and not _quick_select_items[3] == -1:
 				$Item3.grab_focus()
-			elif input_angle < 202.0:
+			elif input_angle < 202.0 and not _quick_select_items[4] == -1:
 				$Item4.grab_focus()
-			elif input_angle < 247.0:
+			elif input_angle < 247.0 and not _quick_select_items[5] == -1:
 				$Item5.grab_focus()
-			elif input_angle < 292.0:
+			elif input_angle < 292.0 and not _quick_select_items[6] == -1:
 				$Item6.grab_focus()
-			elif input_angle < 337.0:
+			elif input_angle < 337.0 and not _quick_select_items[7] == -1:
 				$Item7.grab_focus()
-			else:
+			elif not _quick_select_items[0] == -1:
 				$Item0.grab_focus()
 
 func _equip_new_item():
