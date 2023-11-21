@@ -11,7 +11,7 @@ func prepare_menu():
 	for index in _quick_select_items.size():
 		if not _quick_select_items[index] == -1:
 			
-			var texture = ItemManager.item_icon_path % ItemManager.item_assignments[_quick_select_items[index]]
+			var texture = ItemManager.get_icon_path(_quick_select_items[index])
 			get_node("Item%s/Slot" % index).texture = load(texture)
 
 # Called when the node enters the scene tree for the first time.

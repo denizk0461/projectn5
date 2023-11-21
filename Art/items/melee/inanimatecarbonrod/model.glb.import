@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://pbrdvv5nb0ru"
-path="res://.godot/imported/InanimateCarbonRod.glb-876753d6911b4a49094744e59ec9b057.scn"
+path="res://.godot/imported/model.glb-732cca1ef93ad7555d109284387e7289.scn"
 
 [deps]
 
-source_file="res://Items/Weapons/InanimateCarbonRod.glb"
-dest_files=["res://.godot/imported/InanimateCarbonRod.glb-876753d6911b4a49094744e59ec9b057.scn"]
+source_file="res://Art/items/melee/inanimatecarbonrod/model.glb"
+dest_files=["res://.godot/imported/model.glb-732cca1ef93ad7555d109284387e7289.scn"]
 
 [params]
 

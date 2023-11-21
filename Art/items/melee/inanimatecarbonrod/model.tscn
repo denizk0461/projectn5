@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dg42sfct50ev1"]
 
-[ext_resource type="PackedScene" uid="uid://pbrdvv5nb0ru" path="res://Items/Weapons/InanimateCarbonRod.glb" id="1_gjirb"]
+[ext_resource type="PackedScene" uid="uid://pbrdvv5nb0ru" path="res://Art/items/melee/inanimatecarbonrod/model.glb" id="1_gjirb"]
 
 [node name="Melee" type="Node3D"]
 

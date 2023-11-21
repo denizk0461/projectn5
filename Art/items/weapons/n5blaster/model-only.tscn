@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://u8fwfjn8buo5"]
+
+[ext_resource type="PackedScene" uid="uid://b0xchy2ppgh7y" path="res://Art/items/weapons/n5blaster/model.glb" id="1_n28si"]
+
+[node name="model" instance=ExtResource("1_n28si")]
+
+[node name="BodyGlass" parent="." index="1"]
+transparency = 0.2
+
+[node name="Icosphere" parent="." index="4"]
+transform = Transform3D(1.24161, 0, 0, 0, -1.06023, 0.646136, 0, -0.646136, -1.06023, -0.618987, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="14"]
+autoplay = "IcosphereAction_002"

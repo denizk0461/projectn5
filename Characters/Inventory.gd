@@ -1,18 +1,19 @@
 extends Node3D
 
 var items: Dictionary = {
-	101: true,
+#	101: true,
+	102: true,
 	401: true,
 }
 
 var gun_ammo_count: Dictionary = {
-	101: 38,
+	102: 60,
 }
 
 # must be length 8
-var quick_select: Array[int] = [101, 101, 101, 101, 101, 101, 101, 101]
+var quick_select: Array[int] = [102,102,102,102,102,102,102,102]
 var equipped_melee: int = 401
-var equipped_gun: int = 101
+var equipped_gun: int = 102
 var is_melee_equipped: bool = true # false if gun/gadget
 
 # 0 = melee
@@ -29,7 +30,7 @@ func _ready():
 
 func _load_item(id: int):
 	var equipped_item_node = get_node("../Pivot/EquippedItem")
-	var item = load(ItemManager.item_resource_path % ItemManager.item_assignments[id]).instantiate()
+	var item = load(ItemManager.get_scene_path(id)).instantiate()
 	var currently_equipped_item = equipped_item_node.get_child(0)
 	if not currently_equipped_item == null:
 		equipped_item_node.remove_child(currently_equipped_item)
