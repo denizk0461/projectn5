@@ -8,7 +8,7 @@
 transparency = 0.2
 
 [node name="Icosphere" parent="." index="4"]
-transform = Transform3D(1.24161, 0, 0, 0, -1.06023, 0.646136, 0, -0.646136, -1.06023, -0.618987, 0, 0)
+transform = Transform3D(1.24161, 0, 0, 0, -1.01895, -0.709451, 0, 0.709451, -1.01895, -0.618987, 0, 0)
 
 [node name="AnimationPlayer" parent="." index="14"]
 autoplay = "IcosphereAction_002"

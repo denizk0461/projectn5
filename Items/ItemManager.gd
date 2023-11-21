@@ -20,3 +20,6 @@ func get_icon_path(id) -> String:
 
 func get_scene_path(id) -> String:
 	return "res://Art/items/%s/model.tscn" % item_assignments[id]
+
+func get_projectile_path(id) -> String:
+	return "res://Art/items/%s/projectile.tscn" % item_assignments[id]

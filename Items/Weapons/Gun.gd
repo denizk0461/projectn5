@@ -18,7 +18,7 @@ var _may_shoot: bool = true
 func shoot():
 	if _may_shoot and _inventory.shoot_gun(gun_id):
 		var direction = ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
-		var projectile = load(ItemManager.projectile_path % projectile_name).instantiate()
+		var projectile = load(ItemManager.get_projectile_path(gun_id)).instantiate()
 		projectile.position = $ProjectileSpawn.global_position
 		projectile.linear_velocity = direction * projectile_speed
 		_projectiles.add_child(projectile)
