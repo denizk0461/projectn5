@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://uj20v01lvt7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv8jn"]
+albedo_color = Color(0.462745, 0.341176, 0.145098, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fkv82"]
+
+[node name="MenuItem" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0880899, -100.303, 0.509134)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.19187, 0, 0)
+fov = 30.0
+
+[node name="ItemSpot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 2, 0, 0)
+material_override = SubResource("StandardMaterial3D_nv8jn")
+mesh = SubResource("PlaneMesh_fkv82")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.155264, 0.0214063, -0.987641, 0.00275358, 0.999752, 0.0221017, 0.987869, -0.00615113, 0.155166, -3.12438, 0, 1.49901)

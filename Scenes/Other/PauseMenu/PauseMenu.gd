@@ -63,6 +63,8 @@ func open():
 	
 	$MainMenu.show()
 	$MainMenu/ButtonResume.grab_focus()
+	
+	$WeaponsMenu/VBoxContainer/ItemPreviewContainer/ItemPreview.display_item(102)
 
 func _on_button_resume_pressed():
 	_resume()

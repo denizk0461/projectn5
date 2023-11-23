@@ -100,7 +100,7 @@ func _shoot():
 		# don't shoot upon equipping the gun
 		$Inventory.switch_to_gun()
 	else:
-		$Pivot/EquippedItem.get_node("Gun").shoot() # convert to signal
+		$Pivot/EquippedItem.get_node("Item").shoot() # convert to signal
 
 func _process(delta):
 	# position camera relative to the player

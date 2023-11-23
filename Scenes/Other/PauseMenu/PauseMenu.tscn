@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=16 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
 [ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="3_84ds7"]
+[ext_resource type="PackedScene" uid="uid://cvhvxmkbqfuwj" path="res://Art/items/other/menu/menu_item_slot.tscn" id="3_tvyc5"]
 [ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://Scenes/Other/PauseMenu/Flags/en.png" id="4_86qds"]
+[ext_resource type="Script" path="res://Art/items/other/menu/ItemPreview.gd" id="4_punpn"]
 [ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://Scenes/Other/PauseMenu/Flags/de.png" id="5_8bavr"]
+[ext_resource type="PackedScene" uid="uid://uj20v01lvt7w" path="res://Art/items/other/menu/item_preview.tscn" id="5_w64qg"]
 [ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://Scenes/Other/PauseMenu/UIButton.tscn" id="6_q4t4u"]
 [ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="7_5635n"]
 [ext_resource type="Texture2D" uid="uid://cpq1m5b4njvj5" path="res://Art/PauseMenu/DS5.png" id="8_8tt5n"]
@@ -80,8 +83,7 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../ButtonResume")
 text = "MENU_PAUSE_BUTTON_QUIT"
 
-[node name="WeaponsMenu" type="VBoxContainer" parent="."]
-visible = false
+[node name="WeaponsMenu" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,11 +97,70 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WeaponsMenu"]
-custom_minimum_size = Vector2(200, 0)
+[node name="WeaponsGrid" type="VBoxContainer" parent="WeaponsMenu"]
 layout_mode = 2
-text = "This is the weapons menu"
-fit_content = true
+
+[node name="WeaponsRow0" type="HBoxContainer" parent="WeaponsMenu/WeaponsGrid"]
+layout_mode = 2
+
+[node name="Slot0" parent="WeaponsMenu/WeaponsGrid/WeaponsRow0" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot1" parent="WeaponsMenu/WeaponsGrid/WeaponsRow0" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot2" parent="WeaponsMenu/WeaponsGrid/WeaponsRow0" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="WeaponsRow1" type="HBoxContainer" parent="WeaponsMenu/WeaponsGrid"]
+layout_mode = 2
+
+[node name="Slot3" parent="WeaponsMenu/WeaponsGrid/WeaponsRow1" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot4" parent="WeaponsMenu/WeaponsGrid/WeaponsRow1" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot5" parent="WeaponsMenu/WeaponsGrid/WeaponsRow1" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="WeaponsRow2" type="HBoxContainer" parent="WeaponsMenu/WeaponsGrid"]
+layout_mode = 2
+
+[node name="Slot6" parent="WeaponsMenu/WeaponsGrid/WeaponsRow2" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot7" parent="WeaponsMenu/WeaponsGrid/WeaponsRow2" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot8" parent="WeaponsMenu/WeaponsGrid/WeaponsRow2" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="WeaponsRow3" type="HBoxContainer" parent="WeaponsMenu/WeaponsGrid"]
+layout_mode = 2
+
+[node name="Slot9" parent="WeaponsMenu/WeaponsGrid/WeaponsRow3" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot10" parent="WeaponsMenu/WeaponsGrid/WeaponsRow3" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="Slot11" parent="WeaponsMenu/WeaponsGrid/WeaponsRow3" instance=ExtResource("3_tvyc5")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WeaponsMenu"]
+layout_mode = 2
+
+[node name="ItemPreviewContainer" type="SubViewportContainer" parent="WeaponsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemPreview" type="SubViewport" parent="WeaponsMenu/VBoxContainer/ItemPreviewContainer"]
+handle_input_locally = false
+size = Vector2i(512, 332)
+render_target_update_mode = 4
+script = ExtResource("4_punpn")
+
+[node name="MenuItem" parent="WeaponsMenu/VBoxContainer/ItemPreviewContainer/ItemPreview" instance=ExtResource("5_w64qg")]
 
 [node name="GadgetsMenu" type="VBoxContainer" parent="."]
 visible = false
@@ -165,6 +226,7 @@ text = "This is the items menu"
 fit_content = true
 
 [node name="OptionsMenu" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 723.0
 offset_top = 287.0
@@ -254,9 +316,10 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("7_5635n")
-text = "platformer by denizk0461, build 0.0.0.1, 2023-10-07"
+text = "Project N5 by denizk0461, build 0.0.0.3, 2023-11-23"
 
 [node name="ControlsMenu" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

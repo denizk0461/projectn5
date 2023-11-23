@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvhvxmkbqfuwj"]
+
+[ext_resource type="Texture2D" uid="uid://gqejtaft4bvc" path="res://Art/items/other/menu/MenuItemSlot.png" id="1_kscqj"]
+[ext_resource type="Texture2D" uid="uid://blqxdnkcl7xsq" path="res://Art/items/other/menu/MenuItemSlot_Selected.png" id="2_1rej6"]
+
+[node name="QuickSelectItem" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.078125
+anchor_bottom = 0.138889
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 75)
+texture_normal = ExtResource("1_kscqj")
+texture_focused = ExtResource("2_1rej6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

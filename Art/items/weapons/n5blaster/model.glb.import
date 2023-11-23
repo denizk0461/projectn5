@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0xchy2ppgh7y"
+uid="uid://bfpxqncoyqr52"
 path="res://.godot/imported/model.glb-c46dfe6633eec4f07ee348df49cfdfb0.scn"
 
 [deps]
@@ -31,11 +31,11 @@ import_script/path=""
 _subresources={
 "animations": {
 "IcosphereAction_002": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://Art/items/weapons/n5blaster/animation.res",
+"save_to_file/path": "",
 "settings/loop_mode": 1,
-"slice_1/end_frame": 6,
+"slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
 "slice_1/save_to_file/enabled": false,
