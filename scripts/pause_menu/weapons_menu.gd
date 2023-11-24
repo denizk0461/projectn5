@@ -7,6 +7,8 @@ extends HBoxContainer
 
 signal equip_weapon_from_weapons_menu(id: int)
 
+var _currently_clicked_item: int
+
 # items displayed in the item slots, in order
 var _item_slot_ids = [
 	102, 101, 101,
@@ -36,50 +38,62 @@ func _ready():
 	]
 	
 	for i in _item_slots.size():
-		print(_item_slots[i].get_node("Slot"))
 		_item_slots[i].get_node("Slot").texture = load(ItemManager.get_icon_path(_item_slot_ids[i]))
-	
-	_item_preview_viewport.display_item(102) # display current item here
+		
+	_highlight_equipped_item_on_ready()
+#	$WeaponsGrid/WeaponsRow0/Slot0.emit_signal("pressed")
 
-func select_item(id):
-#	if  == id:
-#		return
-	# send to inventory to equip this item
+func _highlight_equipped_item_on_ready():
+	var id = 102 # TODO
+	_currently_clicked_item = id
+	_item_preview_viewport.display_item(id)
+	
+	for i in _item_slots.size():
+		if _item_slot_ids[i] == id:
+			_item_slots[i].emit_signal("pressed")
+			return
+
+func _select_item(id):
+	# check if the item has been pressed repeatedly
+	if _currently_clicked_item == id:
+		return
+	
+	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
 	equip_weapon_from_weapons_menu.emit(id)
 
 func _on_slot_0_pressed():
-	select_item(_item_slot_ids[0])
+	_select_item(_item_slot_ids[0])
 
 func _on_slot_1_pressed():
-	select_item(_item_slot_ids[1])
+	_select_item(_item_slot_ids[1])
 
 func _on_slot_2_pressed():
-	select_item(_item_slot_ids[2])
+	_select_item(_item_slot_ids[2])
 
 func _on_slot_3_pressed():
-	select_item(_item_slot_ids[3])
+	_select_item(_item_slot_ids[3])
 
 func _on_slot_4_pressed():
-	select_item(_item_slot_ids[4])
+	_select_item(_item_slot_ids[4])
 
 func _on_slot_5_pressed():
-	select_item(_item_slot_ids[5])
+	_select_item(_item_slot_ids[5])
 
 func _on_slot_6_pressed():
-	select_item(_item_slot_ids[6])
+	_select_item(_item_slot_ids[6])
 
 func _on_slot_7_pressed():
-	select_item(_item_slot_ids[7])
+	_select_item(_item_slot_ids[7])
 
 func _on_slot_8_pressed():
-	select_item(_item_slot_ids[8])
+	_select_item(_item_slot_ids[8])
 
 func _on_slot_9_pressed():
-	select_item(_item_slot_ids[9])
+	_select_item(_item_slot_ids[9])
 
 func _on_slot_10_pressed():
-	select_item(_item_slot_ids[10])
+	_select_item(_item_slot_ids[10])
 
 func _on_slot_11_pressed():
-	select_item(_item_slot_ids[11])
+	_select_item(_item_slot_ids[11])
