@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
 [ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="3_84ds7"]
 [ext_resource type="Script" path="res://scripts/pause_menu/weapons_menu.gd" id="3_d35m6"]
-[ext_resource type="PackedScene" uid="uid://cvhvxmkbqfuwj" path="res://Art/items/other/menu/menu_item_slot.tscn" id="3_tvyc5"]
+[ext_resource type="PackedScene" uid="uid://xek1l2c1rvuc" path="res://Art/items/other/menu/menu_item_slot.tscn" id="3_tvyc5"]
 [ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://Scenes/Other/PauseMenu/Flags/en.png" id="4_86qds"]
 [ext_resource type="Script" path="res://Art/items/other/menu/ItemPreview.gd" id="4_punpn"]
 [ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://Scenes/Other/PauseMenu/Flags/de.png" id="5_8bavr"]

@@ -7,6 +7,11 @@ extends HBoxContainer
 
 signal equip_weapon_from_weapons_menu(id: int)
 
+var _base_slot_texture_normal = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_normal.png").get_image())
+var _base_slot_texture_hovered = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_hovered.png").get_image())
+var _selected_slot_texture_normal = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_selected.png").get_image())
+var _selected_slot_texture_hovered = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_selected_hovered.png").get_image())
+
 var _currently_clicked_item: int
 
 # items displayed in the item slots, in order
@@ -39,21 +44,24 @@ func _ready():
 	
 	for i in _item_slots.size():
 		_item_slots[i].get_node("Slot").texture = load(ItemManager.get_icon_path(_item_slot_ids[i]))
-		
+
+func show_and_focus():
+	show()
 	_highlight_equipped_item_on_ready()
-#	$WeaponsGrid/WeaponsRow0/Slot0.emit_signal("pressed")
 
 func _highlight_equipped_item_on_ready():
-	var id = 102 # TODO
+	var id = get_node("../../../Inventory").equipped_gun # this is jank but works
 	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
 	
 	for i in _item_slots.size():
 		if _item_slot_ids[i] == id:
-			_item_slots[i].emit_signal("pressed")
+			_item_slots[i].grab_focus()
+			_highlight_slot(i)
 			return
 
-func _select_item(id):
+func _select_item(index):
+	var id = _item_slot_ids[index]
 	# check if the item has been pressed repeatedly
 	if _currently_clicked_item == id:
 		return
@@ -61,39 +69,57 @@ func _select_item(id):
 	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
 	equip_weapon_from_weapons_menu.emit(id)
+	_highlight_slot(index)
+
+func _set_slot_textures(slot, is_selected):
+	if is_selected:
+		slot.texture_normal = _selected_slot_texture_normal
+		slot.texture_hover = _selected_slot_texture_hovered
+		slot.texture_focused = _selected_slot_texture_hovered
+	else:
+		slot.texture_normal = _base_slot_texture_normal
+		slot.texture_hover = _base_slot_texture_hovered
+		slot.texture_focused = _base_slot_texture_hovered
+
+func _highlight_slot(index):
+	for i in _item_slots.size():
+		if i == index:
+			_set_slot_textures(_item_slots[i], true)
+		else:
+			_set_slot_textures(_item_slots[i], false)
 
 func _on_slot_0_pressed():
-	_select_item(_item_slot_ids[0])
+	_select_item(0)
 
 func _on_slot_1_pressed():
-	_select_item(_item_slot_ids[1])
+	_select_item(1)
 
 func _on_slot_2_pressed():
-	_select_item(_item_slot_ids[2])
+	_select_item(2)
 
 func _on_slot_3_pressed():
-	_select_item(_item_slot_ids[3])
+	_select_item(3)
 
 func _on_slot_4_pressed():
-	_select_item(_item_slot_ids[4])
+	_select_item(4)
 
 func _on_slot_5_pressed():
-	_select_item(_item_slot_ids[5])
+	_select_item(5)
 
 func _on_slot_6_pressed():
-	_select_item(_item_slot_ids[6])
+	_select_item(6)
 
 func _on_slot_7_pressed():
-	_select_item(_item_slot_ids[7])
+	_select_item(7)
 
 func _on_slot_8_pressed():
-	_select_item(_item_slot_ids[8])
+	_select_item(8)
 
 func _on_slot_9_pressed():
-	_select_item(_item_slot_ids[9])
+	_select_item(9)
 
 func _on_slot_10_pressed():
-	_select_item(_item_slot_ids[10])
+	_select_item(10)
 
 func _on_slot_11_pressed():
-	_select_item(_item_slot_ids[11])
+	_select_item(11)

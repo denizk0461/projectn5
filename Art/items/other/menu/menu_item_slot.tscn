@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvhvxmkbqfuwj"]
+[gd_scene load_steps=2 format=3 uid="uid://xek1l2c1rvuc"]
 
-[ext_resource type="Texture2D" uid="uid://gqejtaft4bvc" path="res://Art/items/other/menu/MenuItemSlot.png" id="1_kscqj"]
-[ext_resource type="Texture2D" uid="uid://blqxdnkcl7xsq" path="res://Art/items/other/menu/MenuItemSlot_Selected.png" id="2_1rej6"]
+[ext_resource type="Texture2D" uid="uid://gqejtaft4bvc" path="res://Art/items/other/menu/menu_item_slot_normal.png" id="1_kv414"]
 
 [node name="QuickSelectItem" type="TextureButton"]
 anchors_preset = -1
@@ -10,8 +9,8 @@ anchor_bottom = 0.138889
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(75, 75)
-texture_normal = ExtResource("1_kscqj")
-texture_focused = ExtResource("2_1rej6")
+action_mode = 0
+texture_normal = ExtResource("1_kv414")
 metadata/_edit_use_anchors_ = true
 
 [node name="Slot" type="TextureRect" parent="."]

@@ -76,7 +76,7 @@ func _on_button_reload_pressed():
 func _on_button_weapons_pressed():
 	_menu_index = 1
 	$MainMenu.hide()
-	$WeaponsMenu.show()
+	$WeaponsMenu.show_and_focus()
 
 func _on_button_gadgets_pressed():
 	_menu_index = 2
