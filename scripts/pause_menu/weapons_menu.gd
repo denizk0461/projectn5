@@ -50,7 +50,8 @@ func show_and_focus():
 	_highlight_equipped_item_on_ready()
 
 func _highlight_equipped_item_on_ready():
-	var id = get_node("../../../Inventory").equipped_gun # this is jank but works
+	# this is jank but works
+	var id = get_node("../../../Inventory").equipped_gun
 	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
 	
