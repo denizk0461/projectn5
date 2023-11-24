@@ -6,6 +6,8 @@ var _menu_index: int = 0
 @onready var _player_camera = get_node("/root/Main/Player/SpringArm3D")
 # TODO alternatively maybe a PlayerOptions node?
 
+signal equip_weapon_from_menu(id)
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 #		_resume() # commented out because of glitch: pressing the button registers
@@ -63,8 +65,6 @@ func open():
 	
 	$MainMenu.show()
 	$MainMenu/ButtonResume.grab_focus()
-	
-	$WeaponsMenu/VBoxContainer/ItemPreviewContainer/ItemPreview.display_item(102)
 
 func _on_button_resume_pressed():
 	_resume()
@@ -127,3 +127,6 @@ func _on_view_controls_button_pressed():
 	_menu_index = 51
 	$OptionsMenu.hide()
 	$ControlsMenu.show()
+
+func _on_equip_weapon_from_weapons_menu(id):
+	equip_weapon_from_menu.emit(id)

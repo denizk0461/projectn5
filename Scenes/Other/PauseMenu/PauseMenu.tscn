@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=17 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
 [ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="3_84ds7"]
+[ext_resource type="Script" path="res://scripts/pause_menu/weapons_menu.gd" id="3_d35m6"]
 [ext_resource type="PackedScene" uid="uid://cvhvxmkbqfuwj" path="res://Art/items/other/menu/menu_item_slot.tscn" id="3_tvyc5"]
 [ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://Scenes/Other/PauseMenu/Flags/en.png" id="4_86qds"]
 [ext_resource type="Script" path="res://Art/items/other/menu/ItemPreview.gd" id="4_punpn"]
@@ -96,6 +97,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_d35m6")
 
 [node name="WeaponsGrid" type="VBoxContainer" parent="WeaponsMenu"]
 layout_mode = 2
@@ -899,6 +901,19 @@ offset_bottom = -20.0
 [connection signal="pressed" from="MainMenu/ButtonItems" to="." method="_on_button_items_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonOptions" to="." method="_on_button_options_pressed"]
 [connection signal="pressed" from="MainMenu/ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="equip_weapon_from_weapons_menu" from="WeaponsMenu" to="." method="_on_equip_weapon_from_weapons_menu"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow0/Slot0" to="WeaponsMenu" method="_on_slot_0_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow0/Slot1" to="WeaponsMenu" method="_on_slot_1_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow0/Slot2" to="WeaponsMenu" method="_on_slot_2_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow1/Slot3" to="WeaponsMenu" method="_on_slot_3_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow1/Slot4" to="WeaponsMenu" method="_on_slot_4_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow1/Slot5" to="WeaponsMenu" method="_on_slot_5_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow2/Slot6" to="WeaponsMenu" method="_on_slot_6_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow2/Slot7" to="WeaponsMenu" method="_on_slot_7_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow2/Slot8" to="WeaponsMenu" method="_on_slot_8_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow3/Slot9" to="WeaponsMenu" method="_on_slot_9_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow3/Slot10" to="WeaponsMenu" method="_on_slot_10_pressed"]
+[connection signal="pressed" from="WeaponsMenu/WeaponsGrid/WeaponsRow3/Slot11" to="WeaponsMenu" method="_on_slot_11_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/ViewControlsButton" to="." method="_on_view_controls_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/Container/LanguageContainer/German" to="." method="_on_german_pressed"]

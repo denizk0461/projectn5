@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cb6ayp21a6pey"
-path="res://.godot/imported/PurpleGun.glb-e07be548bf40dacdcf8eca3004f0325f.scn"
+uid="uid://bl6lkavve2s86"
+path="res://.godot/imported/projectile.glb-98a8ef21fb7a2c5c05508b7eabc6279d.scn"
 
 [deps]
 
-source_file="res://Items/Weapons/PurpleGun.glb"
-dest_files=["res://.godot/imported/PurpleGun.glb-e07be548bf40dacdcf8eca3004f0325f.scn"]
+source_file="res://Art/items/weapons/purplegun/projectile.glb"
+dest_files=["res://.godot/imported/projectile.glb-98a8ef21fb7a2c5c05508b7eabc6279d.scn"]
 
 [params]
 

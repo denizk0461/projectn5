@@ -2,7 +2,7 @@ extends Node
 
 var item_assignments: Dictionary = {
 	# 1xx == guns
-#	101: "Weapons/PurpleGun",
+	101: "weapons/purplegun",
 	102: "weapons/n5blaster",
 	# 2xx == gadgets
 	# 3xx == items
@@ -11,6 +11,9 @@ var item_assignments: Dictionary = {
 	# 6xx == ammunition
 #	601: "Ammo/PurpleGunAmmo",
 }
+
+var _weapon_data_lookup_table = null # TODO
+
 var item_resource_path: String = "res://Items/%s.tscn"
 var item_icon_path: String = "res://Items/%s.png"
 var projectile_path: String = "res://Items/Weapons/Projectiles/%s.tscn"

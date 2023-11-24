@@ -1,17 +1,18 @@
 extends Node3D
 
 var items: Dictionary = {
-#	101: true,
+	101: true,
 	102: true,
 	401: true,
 }
 
 var gun_ammo_count: Dictionary = {
+	101: 40,
 	102: 60,
 }
 
 # must be length 8
-var quick_select: Array[int] = [102,102,102,102,102,102,102,102]
+var quick_select: Array[int] = [102,101,102,102,101,102,102,101]
 var equipped_melee: int = 401
 var equipped_gun: int = 102
 var is_melee_equipped: bool = true # false if gun/gadget
@@ -92,3 +93,6 @@ func switch_to_gun():
 
 func _on_quick_select_item_equipped(item_id):
 	_on_item_equipped(item_id)
+
+func _on_equip_weapon_from_menu(id):
+	_on_item_equipped(id)

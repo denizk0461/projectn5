@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kh3bnnfxje3e"
-path="res://.godot/imported/PurpleGun.png-c0571a88c6ec520f86192a0fdd6dc949.ctex"
+path="res://.godot/imported/icon.png-385c50f49c0baf1ef51d77a742cfe1e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Weapons/PurpleGun.png"
-dest_files=["res://.godot/imported/PurpleGun.png-c0571a88c6ec520f86192a0fdd6dc949.ctex"]
+source_file="res://Art/items/weapons/purplegun/icon.png"
+dest_files=["res://.godot/imported/icon.png-385c50f49c0baf1ef51d77a742cfe1e7.ctex"]
 
 [params]
 

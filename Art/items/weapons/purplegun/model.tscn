@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://brarydahiao0f"]
 
-[ext_resource type="PackedScene" uid="uid://cb6ayp21a6pey" path="res://Items/Weapons/PurpleGun.glb" id="1_a6vh0"]
+[ext_resource type="PackedScene" uid="uid://cb6ayp21a6pey" path="res://Art/items/weapons/purplegun/model.glb" id="1_a6vh0"]
 [ext_resource type="Script" path="res://Items/Weapons/Gun.gd" id="1_ts6hx"]
-[ext_resource type="Texture2D" uid="uid://kh3bnnfxje3e" path="res://Items/Weapons/PurpleGun.png" id="2_8v2ij"]
+[ext_resource type="Texture2D" uid="uid://kh3bnnfxje3e" path="res://Art/items/weapons/purplegun/icon.png" id="2_frlwh"]
 
-[node name="Gun" type="Node3D"]
+[node name="Item" type="Node3D"]
 script = ExtResource("1_ts6hx")
 gun_id = 101
 ammo_id = 601
@@ -14,12 +14,12 @@ projectile_speed = 40.0
 despawn_after_secs = 3.0
 shoot_timeout = 0.1
 shoot_type = "Semi"
-icon = ExtResource("2_8v2ij")
-
-[node name="PurpleGun" parent="." instance=ExtResource("1_a6vh0")]
+icon = ExtResource("2_frlwh")
 
 [node name="ProjectileSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.255604, 0.453279)
 
 [node name="ProjectileVelocityHelper" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.255604, -0.073917)
+
+[node name="model" parent="." instance=ExtResource("1_a6vh0")]
