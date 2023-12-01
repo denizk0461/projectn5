@@ -9,8 +9,8 @@ radius = 0.1
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
-continuous_cd = true
 lock_rotation = true
+continuous_cd = true
 
 [node name="BlueIcosphere" parent="." instance=ExtResource("1_lcd6b")]
 

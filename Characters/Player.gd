@@ -122,10 +122,17 @@ func _physics_process(delta):
 		if not Input.is_action_pressed("strafe"):
 			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), _rotation_speed * delta)
 	
+	var show_crosshair: bool = false
 	if Input.is_action_pressed("strafe"):
+		show_crosshair = true
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))#.rotated(Vector3.UP, deg_to_rad(180.0))
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
+	
+	if show_crosshair:
+		$HUD/CrosshairContainer.show()
+	else:
+		$HUD/CrosshairContainer.hide()
 	
 	# slope direction correction
 	_ground_normal = $GroundAngleCast.get_collision_normal()
