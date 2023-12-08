@@ -22,6 +22,7 @@ var _max_player_health: int = 4 # total max that the player can achieve in game 
 var _is_second_jump: bool = false
 
 @onready var _player_health: int = _max_player_health
+@onready var _message_handler = $HUD/MessageHandler
 
 # TODOs
 # prevent jumping on slope when sliding down
@@ -64,7 +65,7 @@ func _input(event):
 	elif event.is_action_pressed("quick_select_action"):
 		if not _targeted_npc == null:
 			_position_player_for_conversation()
-			$HUD/TalkToNPC.hide()
+			#$HUD/TalkToNPC.hide()
 			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
 			$HUD/DialogueBox.show()
 			$Pivot/DialogueCamera.make_current()
@@ -89,6 +90,8 @@ func _input(event):
 func disallow_second_jump_after(seconds: float):
 	var jc = _total_jump_count
 	# only allow the player to jump a second jump within a few seconds of the first jump
+	# TODO replace this with a Timer node in the scene tree
+	# this creates a new Timer every time it is called
 	await get_tree().create_timer(seconds).timeout
 	# check if the player has jumped since the timer started. this is to prevent
 	# cancelling later jumps
@@ -192,11 +195,11 @@ func _physics_process(delta):
 
 func target_npc(npc: Node3D):
 	_targeted_npc = npc
-	$HUD/TalkToNPC.show()
+	_message_handler.show_message("HUD_TALK_TO_NPC")
 
 func forget_npc():
 	_targeted_npc = null
-	$HUD/TalkToNPC.hide()
+	_message_handler.hide_message()
 
 # position player in front of NPC and face NPC for conversation
 func _position_player_for_conversation():

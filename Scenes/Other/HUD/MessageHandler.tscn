@@ -1,16 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnlrmqoo4kren"]
+[gd_scene load_steps=3 format=3 uid="uid://cnlrmqoo4kren"]
 
 [ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="1_61eq8"]
+[ext_resource type="Script" path="res://scripts/player/hud/MessageHandler.gd" id="1_v5wcn"]
 
-[node name="TalkToNPC" type="Control"]
+[node name="MessageHandler" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v5wcn")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextField" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -25,5 +27,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_61eq8")
 theme_override_font_sizes/font_size = 50
-text = "HUD_TALK_TO_NPC"
 horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

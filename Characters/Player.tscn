@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_hdnqp"]
 [ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://Scenes/Other/PauseMenu/PauseMenu.tscn" id="2_0t8qg"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_gav3a"]
-[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/TalkToNPC.tscn" id="2_mr8yo"]
+[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/MessageHandler.tscn" id="2_mr8yo"]
 [ext_resource type="Script" path="res://Characters/PlayerCamera.gd" id="2_uwasm"]
 [ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://Scenes/Other/QuickSelect/QuickSelect.tscn" id="3_6ctt2"]
 [ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="3_xe23v"]
@@ -24,7 +24,7 @@ script = ExtResource("1_hdnqp")
 [node name="PlayerHUD" parent="HUD" instance=ExtResource("2_gav3a")]
 metadata/_edit_use_anchors_ = true
 
-[node name="TalkToNPC" parent="HUD" instance=ExtResource("2_mr8yo")]
+[node name="MessageHandler" parent="HUD" instance=ExtResource("2_mr8yo")]
 visible = false
 
 [node name="DialogueBox" parent="HUD" instance=ExtResource("3_xe23v")]
