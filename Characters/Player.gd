@@ -37,6 +37,7 @@ func _ready():
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
 	$SpringArm3D.add_excluded_object(self)
+	_message_handler.show_timed_message("hello world!")
 
 func _input(event):
 	if event.is_action_pressed("jump") and _jump_count < 2:

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player/hud/MessageHandler.gd" id="1_v5wcn"]
 
 [node name="MessageHandler" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

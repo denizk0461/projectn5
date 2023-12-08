@@ -25,7 +25,6 @@ script = ExtResource("1_hdnqp")
 metadata/_edit_use_anchors_ = true
 
 [node name="MessageHandler" parent="HUD" instance=ExtResource("2_mr8yo")]
-visible = false
 
 [node name="DialogueBox" parent="HUD" instance=ExtResource("3_xe23v")]
 visible = false
