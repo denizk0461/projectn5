@@ -23,5 +23,7 @@ func hide_message(instantly: bool = false):
 	if instantly:
 		self.modulate.a = 0
 	else:
-		# FIXME this function call crashes the game every time I quit the game without a timer set – why?
+		# TODO? this function call crashes the game every time I quit the game
+		# without a timer set, and I don't see why it should do that, so let's
+		# just pretend that nothing has ever happened
 		get_tree().create_tween().tween_property(self, "modulate:a", 0, TWEEN_TIME)
