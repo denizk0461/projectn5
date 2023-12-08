@@ -65,8 +65,8 @@ func _input(event):
 	
 	elif event.is_action_pressed("quick_select_action"):
 		if not _targeted_npc == null:
+			_message_handler.hide_message(true)
 			_position_player_for_conversation()
-			#$HUD/TalkToNPC.hide()
 			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
 			$HUD/DialogueBox.show()
 			$Pivot/DialogueCamera.make_current()
