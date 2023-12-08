@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=15 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_tgrxh"]
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrkq048evyjt" path="res://World/WishYouWereHere/WishYouWereHere.glb" id="8_oos2q"]
 [ext_resource type="PackedScene" uid="uid://1lycd4n65no0" path="res://World/Stairs/Stairs.glb" id="9_tmii8"]
 [ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://World/Wall/WallRedBricks.tscn" id="10_c561t"]
+[ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://Art/items/weapons/n5blaster/model.tscn" id="11_877vx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_n72ak")
@@ -24,8 +25,6 @@ sky = SubResource("Sky_fbya3")
 ambient_light_source = 3
 ambient_light_color = Color(0.843137, 0.54902, 0.592157, 1)
 glow_enabled = true
-glow_intensity = 2.84
-glow_strength = 0.0
 fog_light_energy = 0.77
 fog_height = 2.0
 fog_height_density = 0.676
@@ -77,3 +76,6 @@ transform = Transform3D(-0.864336, 0, 0.502914, 0, 1, 0, -0.502914, 0, -0.864336
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12, 9)
 
 [node name="Player" parent="." instance=ExtResource("2_muv3g")]
+
+[node name="Item" parent="." instance=ExtResource("11_877vx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02619, 0.0104237, 1.70033)
