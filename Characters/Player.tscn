@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="3_xe23v"]
 [ext_resource type="Script" path="res://Characters/Inventory.gd" id="4_5q0q3"]
 [ext_resource type="Texture2D" uid="uid://dsumio4pi2woy" path="res://Art/items/weapons/n5blaster/crosshair.png" id="5_vlwtq"]
-[ext_resource type="PackedScene" uid="uid://0hclswkxisyb" path="res://Art/character/models/TestCharacter.glb" id="8_8arf0"]
+[ext_resource type="PackedScene" uid="uid://b6aci2ndgqa5j" path="res://Art/character/models/TestCharacter.glb" id="8_8arf0"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e7qgu"]
 height = 1.65
@@ -54,16 +54,30 @@ visible = false
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="EquippedItem" type="Node3D" parent="Pivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.886261, 1.095, -0.0432902)
-
 [node name="DialogueCamera" type="Camera3D" parent="Pivot"]
 transform = Transform3D(-0.5378, 0, -0.843072, 0, 1, 0, 0.843072, 0, -0.5378, -2.26186, 1.26757, -0.445807)
 current = true
 fov = 85.0
 
-[node name="TestCharacter" parent="Pivot" instance=ExtResource("8_8arf0")]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Pivot"]
+transform = Transform3D(-0.0619023, 1.20264e-08, 1.38362e-08, 1.56811e-08, 3.62192e-09, 0.0619023, 9.16142e-09, 0.0619023, -5.21182e-09, -0.233262, 1.14915, 0.772684)
+bone_name = "Hand.R"
+bone_idx = 24
+use_external_skeleton = true
+external_skeleton = NodePath("../Character/Armature/Skeleton3D")
+
+[node name="EquippedItem" type="Node3D" parent="Pivot/BoneAttachment3D"]
+transform = Transform3D(-16.1545, 1.41227e-06, 0, -3.63798e-12, 7.06134e-07, 16.1545, 1.41227e-06, 16.1545, -7.06135e-07, -1.68264, 0, -0.964001)
+
+[node name="Character" parent="Pivot" instance=ExtResource("8_8arf0")]
 transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Pivot/Character/Armature" index="0"]
+bones/5/rotation = Quaternion(1.3303e-07, 2.1725e-09, -0.503013, 0.864279)
+bones/22/rotation = Quaternion(0.540089, 0.456403, 0.456403, 0.540089)
+
+[node name="AnimationPlayer" parent="Pivot/Character" index="1"]
+autoplay = "PointItem"
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
@@ -88,3 +102,5 @@ shape = SubResource("CylinderShape3D_e7qgu")
 [connection signal="health_changed" from="." to="HUD/PlayerHUD" method="_on_player_health_changed"]
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
 [connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]
+
+[editable path="Pivot/Character"]

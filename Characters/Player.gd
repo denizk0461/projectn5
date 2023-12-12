@@ -78,6 +78,7 @@ func _input(event):
 	elif event.is_action_pressed("melee"):
 		if not $Inventory.is_melee_equipped:
 			$Inventory.switch_to_melee()
+			$Pivot/Character/AnimationPlayer.play("Idle")
 		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
 		pass
@@ -103,8 +104,9 @@ func _shoot():
 	if $Inventory.is_melee_equipped:
 		# don't shoot upon equipping the gun
 		$Inventory.switch_to_gun()
+		$Pivot/Character/AnimationPlayer.play("PointItem")
 	else:
-		$Pivot/EquippedItem.get_node("Item").shoot() # convert to signal
+		$Pivot/BoneAttachment3D/EquippedItem.get_node("Item").shoot() # convert to signal
 
 func _process(delta):
 	# position camera relative to the player
