@@ -13,6 +13,33 @@ var item_assignments: Dictionary = {
 }
 
 var _weapon_data_lookup_table = {
+	"101": {
+		"type": "weapon",
+		"v1": {
+			"name": "Purple Gun V1",
+			"description": "This is the overly long description for the base level Purple Gun. Why is this overly long? Because I need to test whether long texts scroll properly in the Weapons menu. Yup. That's the only reason. Enjoy the rest of this text: America is a nation that can be defined in a single word: ASUFUTIMAEHAEHFUTBW.",
+			"damage": 999,
+			"max_ammo": 60,
+			"ammo_refill": 12,
+			"price": 1
+		},
+		"v2": {
+			"name": "Purple Gun V2",
+			"description": "Second upgrade Purple Gun!",
+			"damage": 999,
+			"max_ammo": 120,
+			"ammo_refill": 24,
+			"price": 2
+		},
+		"v3": {
+			"name": "Purple Gun V★",
+			"description": "This is the final version of the Purple Gun.",
+			"damage": 999,
+			"max_ammo": 200,
+			"ammo_refill": 40,
+			"price": 3
+		},
+	},
 	"102": {
 		"type": "weapon",
 		"v1": {
@@ -38,20 +65,20 @@ var _weapon_data_lookup_table = {
 			"max_ammo": 200,
 			"ammo_refill": 40,
 			"price": 50000
-		}
-	}
+		},
+	},
 }
 
 var item_resource_path: String = "res://Items/%s.tscn"
 var item_icon_path: String = "res://Items/%s.png"
 var projectile_path: String = "res://Items/Weapons/Projectiles/%s.tscn"
 
-var ATTRIBUTE_NAME: String = "name"
-var ATTRIBUTE_DESCRIPTION: String = "description"
-var ATTRIBUTE_DAMAGE: String = "damage"
-var ATTRIBUTE_MAX_AMMO: String = "max_ammo"
-var ATTRIBUTE_AMMO_REFILL: String = "ammo_refill"
-var ATTRIBUTE_PRICE: String = "price"
+var ATTR_NAME: String = "name"
+var ATTR_DESCRIPTION: String = "description"
+var ATTR_DAMAGE: String = "damage"
+var ATTR_MAX_AMMO: String = "max_ammo"
+var ATTR_AMMO_REFILL: String = "ammo_refill"
+var ATTR_PRICE: String = "price"
 
 func get_item_attribute(id: int, version: int, attribute: String):
 	return _weapon_data_lookup_table["%d" % id]["v%d" % version][attribute]

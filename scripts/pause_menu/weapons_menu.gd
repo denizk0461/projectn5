@@ -23,7 +23,7 @@ var _item_slot_ids = [
 ]
 
 func _ready():
-	_item_preview_viewport = $VBoxContainer/ItemPreviewContainer/ItemPreview
+	_item_preview_viewport = $PreviewContainer/ItemPreviewContainer/ItemPreview
 	_item_slots = [
 		$WeaponsGrid/WeaponsRow0/Slot0,
 		$WeaponsGrid/WeaponsRow0/Slot1,
@@ -69,8 +69,14 @@ func _select_item(index):
 	
 	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
+	_set_item_text(id)
 	equip_weapon_from_weapons_menu.emit(id)
 	_highlight_slot(index)
+
+func _set_item_text(id):
+	# TODO need to get item version from save
+	$PreviewContainer/WeaponTitle.text = ItemManager.get_item_attribute(id, 1, ItemManager.ATTR_NAME)
+	$PreviewContainer/WeaponDescription.text = ItemManager.get_item_attribute(id, 1, ItemManager.ATTR_DESCRIPTION)
 
 func _set_slot_textures(slot, is_selected):
 	if is_selected:

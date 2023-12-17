@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://df5ovt2ks4nt8"]
+[gd_scene load_steps=18 format=3 uid="uid://df5ovt2ks4nt8"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_xjv70"]
 [ext_resource type="PackedScene" uid="uid://cgmg5duiaqro4" path="res://Scenes/Other/PauseMenu/PauseMenuButton.tscn" id="2_dqxb7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://uj20v01lvt7w" path="res://Art/items/other/menu/item_preview.tscn" id="5_w64qg"]
 [ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://Scenes/Other/PauseMenu/UIButton.tscn" id="6_q4t4u"]
 [ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="7_5635n"]
+[ext_resource type="FontFile" uid="uid://dylkoo8j17fiw" path="res://Fonts/Kanit-Bold.ttf" id="7_a7p25"]
 [ext_resource type="Texture2D" uid="uid://cpq1m5b4njvj5" path="res://Art/PauseMenu/DS5.png" id="8_8tt5n"]
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/ControlsMenu.gd" id="8_momh2"]
 [ext_resource type="PackedScene" uid="uid://dbs1wdtbodct2" path="res://Scenes/UI/MediumText.tscn" id="9_x3app"]
@@ -150,19 +151,33 @@ layout_mode = 2
 [node name="Slot11" parent="WeaponsMenu/WeaponsGrid/WeaponsRow3" instance=ExtResource("3_tvyc5")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WeaponsMenu"]
+[node name="PreviewContainer" type="VBoxContainer" parent="WeaponsMenu"]
 layout_mode = 2
 
-[node name="ItemPreviewContainer" type="SubViewportContainer" parent="WeaponsMenu/VBoxContainer"]
+[node name="ItemPreviewContainer" type="SubViewportContainer" parent="WeaponsMenu/PreviewContainer"]
 layout_mode = 2
 
-[node name="ItemPreview" type="SubViewport" parent="WeaponsMenu/VBoxContainer/ItemPreviewContainer"]
+[node name="ItemPreview" type="SubViewport" parent="WeaponsMenu/PreviewContainer/ItemPreviewContainer"]
 handle_input_locally = false
 size = Vector2i(512, 332)
 render_target_update_mode = 4
 script = ExtResource("4_punpn")
 
-[node name="MenuItem" parent="WeaponsMenu/VBoxContainer/ItemPreviewContainer/ItemPreview" instance=ExtResource("5_w64qg")]
+[node name="MenuItem" parent="WeaponsMenu/PreviewContainer/ItemPreviewContainer/ItemPreview" instance=ExtResource("5_w64qg")]
+
+[node name="WeaponTitle" type="Label" parent="WeaponsMenu/PreviewContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_a7p25")
+theme_override_font_sizes/font_size = 42
+autowrap_mode = 3
+
+[node name="WeaponDescription" type="Label" parent="WeaponsMenu/PreviewContainer"]
+custom_minimum_size = Vector2(512, 45)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_5635n")
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 3
 
 [node name="GadgetsMenu" type="VBoxContainer" parent="."]
 visible = false
