@@ -30,7 +30,7 @@ func _ready():
 	pass
 
 func _load_item(id: int):
-	var equipped_item_node = get_node("../Pivot/BoneAttachment3D/EquippedItem")
+	var equipped_item_node = get_node("../Pivot/Character/BoneAttachment3D/EquippedItem")
 	var item = load(ItemManager.get_scene_path(id)).instantiate()
 	var currently_equipped_item = equipped_item_node.get_child(0)
 	if not currently_equipped_item == null:
