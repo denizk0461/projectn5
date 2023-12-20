@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg42sfct50ev1"]
+
+[ext_resource type="PackedScene" uid="uid://pbrdvv5nb0ru" path="res://player/items/401/v1/model.glb" id="1_gjirb"]
+
+[node name="Melee" type="Node3D"]
+
+[node name="InanimateCarbonRod" parent="." instance=ExtResource("1_gjirb")]

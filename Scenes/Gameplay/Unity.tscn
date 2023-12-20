@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrkq048evyjt" path="res://World/WishYouWereHere/WishYouWereHere.glb" id="8_oos2q"]
 [ext_resource type="PackedScene" uid="uid://1lycd4n65no0" path="res://World/Stairs/Stairs.glb" id="9_tmii8"]
 [ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://World/Wall/WallRedBricks.tscn" id="10_c561t"]
-[ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://Art/items/weapons/n5blaster/model.tscn" id="11_877vx"]
+[ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://player/items/101/v1/item.tscn" id="11_877vx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_n72ak")

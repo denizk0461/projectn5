@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Characters/Character.gd" id="1_fc3ww"]
 [ext_resource type="PackedScene" uid="uid://bfl86j3kwhefg" path="res://Characters/TestCharacter.glb" id="1_q2wfq"]
 
-[sub_resource type="Animation" id="Animation_htwdk"]
+[sub_resource type="Animation" id="Animation_hw1s6"]
 resource_name = "Idle"
 length = 0.001
 tracks/0/type = "rotation_3d"
@@ -35,7 +35,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, -0.58471, 2.19107e-08, -9.98375e-09, 0.811242)
 
-[sub_resource type="Animation" id="Animation_js2vn"]
+[sub_resource type="Animation" id="Animation_unuy8"]
 resource_name = "PointItem"
 length = 0.001
 tracks/0/type = "rotation_3d"
@@ -67,7 +67,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, -0.58471, 2.19107e-08, -9.98375e-09, 0.811242)
 
-[sub_resource type="Animation" id="Animation_dk2c7"]
+[sub_resource type="Animation" id="Animation_neqd7"]
 resource_name = "Walk"
 length = 1.66667
 loop_mode = 1
@@ -100,11 +100,11 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, -2.21322e-08, -2.50487e-09, -0.083686, 0.996492)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o14jd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7532s"]
 _data = {
-"Idle": SubResource("Animation_htwdk"),
-"PointItem": SubResource("Animation_js2vn"),
-"Walk": SubResource("Animation_dk2c7")
+"Idle": SubResource("Animation_hw1s6"),
+"PointItem": SubResource("Animation_unuy8"),
+"Walk": SubResource("Animation_neqd7")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wfpdq"]
@@ -182,7 +182,7 @@ deterministic = false
 root_node = NodePath("../TestCharacter")
 root_motion_track = NodePath("Armature/Skeleton3D:Root")
 libraries = {
-"": SubResource("AnimationLibrary_o14jd")
+"": SubResource("AnimationLibrary_7532s")
 }
 tree_root = SubResource("AnimationNodeBlendTree_8bvgh")
 anim_player = NodePath("../TestCharacter/AnimationPlayer")

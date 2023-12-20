@@ -16,10 +16,10 @@ var _currently_clicked_item: int
 
 # items displayed in the item slots, in order
 var _item_slot_ids = [
-	102, 101, 101,
-	101, 102, 102,
-	102, 101, 101,
-	101, 102, 101
+	199, 101, 101,
+	101, 199, 199,
+	199, 101, 101,
+	101, 199, 101
 ]
 
 func _ready():
