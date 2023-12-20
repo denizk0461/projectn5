@@ -142,7 +142,7 @@ node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"HandPosition",
 script = ExtResource("1_fc3ww")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-0.0619023, 1.20263e-08, 6.45692e-09, 8.30175e-09, 3.6219e-09, 0.0619023, 9.16139e-09, 0.0619023, -5.21179e-09, -0.233262, 1.14915, 0.772684)
+transform = Transform3D(-1, 2.87882e-08, -1.04308e-07, -1.04308e-07, -3.92643e-07, 1, 2.87882e-08, 1, 3.92643e-07, -3.76823, 6.80822, 12.4823)
 bone_name = "Hand.R"
 bone_idx = 24
 use_external_skeleton = true
