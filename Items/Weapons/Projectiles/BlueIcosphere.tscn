@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cims1k8yxpxw6"]
 
-[ext_resource type="PackedScene" uid="uid://bfnu2bjreu3qx" path="res://Items/Weapons/Projectiles/BlueIcosphere.glb" id="1_x584q"]
+[ext_resource type="PackedScene" uid="uid://bfnu2bjreu3qx" path="res://items/Weapons/Projectiles/BlueIcosphere.glb" id="1_x584q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pnro8"]
 radius = 0.1

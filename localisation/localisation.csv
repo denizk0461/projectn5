@@ -1,0 +1,45 @@
+Key,en,de
+NPC_SANS_TEACHER_0,You either die a student or you live long enough to see yourself become the teacher.,Entweder du stirbst als Schüler oder du lebst lange genug um zu sehen wie du zum Lehrer wirst.
+NPC_SANS_TEACHER_1,get lost kiddo,verlier dich kindo
+MENU_PAUSE_BUTTON_RESUME,Resume Game,Spiel fortsetzen
+MENU_PAUSE_BUTTON_RESET,Reset Current Scene,Szene zurücksetzen
+MENU_PAUSE_BUTTON_WEAPONS,Weapons,Waffen
+MENU_PAUSE_BUTTON_GADGETS,Gadgets,Geräte
+MENU_PAUSE_BUTTON_QUICK_SELECT,Quick Select,Schnellauswahl
+MENU_PAUSE_BUTTON_ITEMS,Items,Items
+MENU_PAUSE_BUTTON_OPTIONS,Options,Optionen
+MENU_PAUSE_BUTTON_QUIT,Quit Game,Spiel beenden
+MENU_OPTIONS_TITLE,Options,Optionen
+MENU_OPTIONS_CAMERA_SENSITIVITY_MOUSE,Camera rotation speed (mouse),Kamera-Rotationsgeschwindigkeit (Maus)
+MENU_OPTIONS_CAMERA_SENSITIVITY_CONTROLLER,Camera rotation speed (controller),Kamera-Rotationsgeschwindigkeit (Controller)
+MENU_OPTIONS_VIEW_CONTROLS,View Controls,Controllerbelegung
+MENU_OPTIONS_SAVE_GAME,Save Game,Spiel speichern
+MENU_OPTIONS_LOAD_GAME,Load Game,Spiel laden
+MENU_BACK,Back,Zurück
+HUD_TALK_TO_NPC,[Action] Talk to NPC,[Aktion] Mit NPC sprechen
+NPC_NAME_SANS,Sans,Ohne
+MENU_OPTIONS_CONTROLS_MOVE,Move,Bewegen
+MENU_OPTIONS_CONTROLS_CAMERA,Look Around,Kamera bewegen
+MENU_OPTIONS_CONTROLS_STRAFE,Strafe,Seitwärts
+MENU_OPTIONS_CONTROLS_AIM,Precise Aiming,Präzise zielen
+MENU_OPTIONS_CONTROLS_DPAD,Quick Switch Guns,Schnell Waffe wechseln
+MENU_OPTIONS_CONTROLS_JUMP,Jump,Springen
+MENU_OPTIONS_CONTROLS_QUICK_SELECT,Switch Guns / Action,Waffe wechseln / Aktion
+MENU_OPTIONS_CONTROLS_SHOOT,Use Gun / Gadget,Waffe / Gerät nutzen
+MENU_OPTIONS_CONTROLS_MELEE,Strike,Schlagen
+MENU_OPTIONS_CONTROLS_PAUSE,Pause Game,Spiel pausieren
+MENU_OPTIONS_CONTROLS_SHOULDER_R,TODO,TODO
+MENU_OPTIONS_CONTROLS_SELECT,TODO,TODO
+ITEM_101_NAME_V1,N5 Blaster,N5 Blaster
+ITEM_101_NAME_V2,N5 Cannon,N5 Cannon
+ITEM_101_NAME_V3,N5 Megacannon,N5 Megacannon
+ITEM_101_DESC_V1,This is the description for the N5 Blaster.,Dies ist die Beschreibung des N5 Blaster.
+ITEM_101_DESC_V2,This is the description for the N5 Cannon.,Dies ist die Beschreibung des N5 Cannon.
+ITEM_101_DESC_V3,This is the description for the N5 Megacannon.,Dies ist die Beschreibung des N5 Megacannon.
+ITEM_199_NAME_V1,Purple Gun v1,Lila Waffe v1
+ITEM_199_NAME_V2,Purple Gun v2,Lila Waffe v2
+ITEM_199_NAME_V3,Purple Gun v3,Lila Waffe v3
+ITEM_199_DESC_V1,This is the description for the Purple Gun v1.,Dies ist die Beschreibung der Lila Waffe v1.
+ITEM_199_DESC_V2,This is the description for the Purple Gun v2.,Dies ist die Beschreibung der Lila Waffe v2.
+ITEM_199_DESC_V3,This is the description for the Purple Gun v3.,Dies ist die Beschreibung der Lila Waffe v3.
+ITEM_401_NAME,Inanimate Carbon Rod,Unbelebter Kohlenstoffstab

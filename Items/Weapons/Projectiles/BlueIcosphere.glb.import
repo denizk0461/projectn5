@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bfnu2bjreu3qx"
-path="res://.godot/imported/BlueIcosphere.glb-2d9596c234e9aec45470a574d9f69a03.scn"
+path="res://.godot/imported/BlueIcosphere.glb-351007ba6163ff006a4430a77eaff75b.scn"
 
 [deps]
 
-source_file="res://Items/Weapons/Projectiles/BlueIcosphere.glb"
-dest_files=["res://.godot/imported/BlueIcosphere.glb-2d9596c234e9aec45470a574d9f69a03.scn"]
+source_file="res://items/Weapons/Projectiles/BlueIcosphere.glb"
+dest_files=["res://.godot/imported/BlueIcosphere.glb-351007ba6163ff006a4430a77eaff75b.scn"]
 
 [params]
 

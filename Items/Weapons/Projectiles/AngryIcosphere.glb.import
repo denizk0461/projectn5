@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bgkucbrc3e4s2"
-path="res://.godot/imported/AngryIcosphere.glb-81a6c33046fdb058e18ba6fc88af97d6.scn"
+path="res://.godot/imported/AngryIcosphere.glb-32e59f745b59654d77c2ce73e813a7c2.scn"
 
 [deps]
 
-source_file="res://Items/Weapons/Projectiles/AngryIcosphere.glb"
-dest_files=["res://.godot/imported/AngryIcosphere.glb-81a6c33046fdb058e18ba6fc88af97d6.scn"]
+source_file="res://items/Weapons/Projectiles/AngryIcosphere.glb"
+dest_files=["res://.godot/imported/AngryIcosphere.glb-32e59f745b59654d77c2ce73e813a7c2.scn"]
 
 [params]
 

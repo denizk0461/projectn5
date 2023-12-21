@@ -4,24 +4,24 @@ var _weapon_data_lookup_table = {
 	"101": { # N5 Blaster
 		"type": "weapon",
 		"v1": {
-			"name": "WEAPON_102_NAME_V1",
-			"description": "WEAPON_102_DESC_V1",
+			"name": "ITEM_101_NAME_V1",
+			"description": "ITEM_101_DESC_V1",
 			"damage": 999,
 			"max_ammo": 60,
 			"ammo_refill": 12,
 			"price": 0
 		},
 		"v2": {
-			"name": "WEAPON_102_NAME_V2",
-			"description": "WEAPON_102_DESC_V2",
+			"name": "ITEM_101_NAME_V2",
+			"description": "ITEM_101_DESC_V2",
 			"damage": 999,
 			"max_ammo": 120,
 			"ammo_refill": 24,
 			"price": 10000
 		},
 		"v3": {
-			"name": "WEAPON_102_NAME_V3",
-			"description": "WEAPON_102_DESC_V3",
+			"name": "ITEM_101_NAME_V3",
+			"description": "ITEM_101_DESC_V3",
 			"damage": 999,
 			"max_ammo": 200,
 			"ammo_refill": 40,
@@ -64,14 +64,16 @@ var ATTR_MAX_AMMO: String = "max_ammo"
 var ATTR_AMMO_REFILL: String = "ammo_refill"
 var ATTR_PRICE: String = "price"
 
+var _ITEM_PATH: String = "res://items/equippables"
+
 func get_item_attribute(id: int, version: int, attribute: String):
 	return _weapon_data_lookup_table["%d" % id]["v%d" % version][attribute]
 
 func get_icon_path(id) -> String:
-	return "res://player/items/%d/icon.webp" % id
+	return "%s/%d/icon.webp" % [_ITEM_PATH, id]
 
 func get_scene_path(id, version) -> String:
-	return "res://player/items/%d/v%d/item.tscn" % [id, version]
+	return "%s/%d/v%d/item.tscn" % [_ITEM_PATH, id, version]
 
 func get_projectile_path(id, version) -> String:
-	return "res://player/items/%d/v%d/projectile.tscn" % [id, version]
+	return "%s/%d/v%d/projectile.tscn" % [_ITEM_PATH, id, version]
