@@ -4,24 +4,24 @@ var _weapon_data_lookup_table = {
 	"101": { # N5 Blaster
 		"type": "weapon",
 		"v1": {
-			"name": "WEAPON_102_NAME_V1",
-			"description": "WEAPON_102_DESC_V1",
+			"name": "ITEM_101_NAME_V1",
+			"description": "ITEM_101_DESC_V1",
 			"damage": 999,
 			"max_ammo": 60,
 			"ammo_refill": 12,
 			"price": 0
 		},
 		"v2": {
-			"name": "WEAPON_102_NAME_V2",
-			"description": "WEAPON_102_DESC_V2",
+			"name": "ITEM_101_NAME_V2",
+			"description": "ITEM_101_DESC_V2",
 			"damage": 999,
 			"max_ammo": 120,
 			"ammo_refill": 24,
 			"price": 10000
 		},
 		"v3": {
-			"name": "WEAPON_102_NAME_V3",
-			"description": "WEAPON_102_DESC_V3",
+			"name": "ITEM_101_NAME_V3",
+			"description": "ITEM_101_DESC_V3",
 			"damage": 999,
 			"max_ammo": 200,
 			"ammo_refill": 40,

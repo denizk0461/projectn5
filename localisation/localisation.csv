@@ -30,16 +30,16 @@ MENU_OPTIONS_CONTROLS_MELEE,Strike,Schlagen
 MENU_OPTIONS_CONTROLS_PAUSE,Pause Game,Spiel pausieren
 MENU_OPTIONS_CONTROLS_SHOULDER_R,TODO,TODO
 MENU_OPTIONS_CONTROLS_SELECT,TODO,TODO
-WEAPON_101_NAME_V1,Purple Gun,Lila Waffe
-WEAPON_101_NAME_V2,Purple Gun,Lila Waffe
-WEAPON_101_NAME_V3,Purple Gun,Lila Waffe
-WEAPON_101_DESC_V1,This is the description for the Purple Gun v1.,Dies ist die Beschreibung der Lila Waffe v1.
-WEAPON_101_DESC_V2,This is the description for the Purple Gun v2.,Dies ist die Beschreibung der Lila Waffe v2.
-WEAPON_101_DESC_V3,This is the description for the Purple Gun v3.,Dies ist die Beschreibung der Lila Waffe v3.
-WEAPON_102_NAME_V1,N5 Blaster,N5 Blaster
-WEAPON_102_NAME_V2,N5 Cannon,N5 Cannon
-WEAPON_102_NAME_V3,N5 Megacannon,N5 Megacannon
-WEAPON_102_DESC_V1,This is the description for the N5 Blaster.,Dies ist die Beschreibung des N5 Blaster.
-WEAPON_102_DESC_V2,This is the description for the N5 Cannon.,Dies ist die Beschreibung des N5 Cannon.
-WEAPON_102_DESC_V3,This is the description for the N5 Megacannon.,Dies ist die Beschreibung des N5 Megacannon.
-MELEE_401_NAME,Inanimate Carbon Rod,Unbelebter Kohlenstoffstab
+ITEM_101_NAME_V1,N5 Blaster,N5 Blaster
+ITEM_101_NAME_V2,N5 Cannon,N5 Cannon
+ITEM_101_NAME_V3,N5 Megacannon,N5 Megacannon
+ITEM_101_DESC_V1,This is the description for the N5 Blaster.,Dies ist die Beschreibung des N5 Blaster.
+ITEM_101_DESC_V2,This is the description for the N5 Cannon.,Dies ist die Beschreibung des N5 Cannon.
+ITEM_101_DESC_V3,This is the description for the N5 Megacannon.,Dies ist die Beschreibung des N5 Megacannon.
+ITEM_199_NAME_V1,Purple Gun v1,Lila Waffe v1
+ITEM_199_NAME_V2,Purple Gun v2,Lila Waffe v2
+ITEM_199_NAME_V3,Purple Gun v3,Lila Waffe v3
+ITEM_199_DESC_V1,This is the description for the Purple Gun v1.,Dies ist die Beschreibung der Lila Waffe v1.
+ITEM_199_DESC_V2,This is the description for the Purple Gun v2.,Dies ist die Beschreibung der Lila Waffe v2.
+ITEM_199_DESC_V3,This is the description for the Purple Gun v3.,Dies ist die Beschreibung der Lila Waffe v3.
+ITEM_401_NAME,Inanimate Carbon Rod,Unbelebter Kohlenstoffstab

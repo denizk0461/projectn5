@@ -427,7 +427,7 @@ quick_select_action={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/localisation.de.translation", "res://translations/localisation.en.translation")
+locale/translations=PackedStringArray("res://localisation/localisation.de.translation", "res://localisation/localisation.en.translation")
 
 [physics]
 
