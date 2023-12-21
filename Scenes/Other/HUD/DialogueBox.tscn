@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://s1nlekyytcvx"]
 
 [ext_resource type="Script" path="res://Scenes/Other/HUD/DialogueBox.gd" id="1_4laj4"]
-[ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://Fonts/Kanit-Medium.ttf" id="1_ii6j8"]
-[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="2_qrlvt"]
+[ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://fonts/kanit/kanit_medium.ttf" id="1_ii6j8"]
+[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://fonts/kanit/kanit_semibolditalic.ttf" id="2_qrlvt"]
 
 [node name="DialogueBox" type="Control"]
 process_mode = 2

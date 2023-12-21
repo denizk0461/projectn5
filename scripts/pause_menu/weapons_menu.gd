@@ -7,10 +7,10 @@ extends HBoxContainer
 
 signal equip_weapon_from_weapons_menu(id: int)
 
-var _base_slot_texture_normal = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_normal.png").get_image())
-var _base_slot_texture_hovered = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_hovered.png").get_image())
-var _selected_slot_texture_normal = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_selected.png").get_image())
-var _selected_slot_texture_hovered = ImageTexture.create_from_image(load("res://Art/items/other/menu/menu_item_slot_selected_hovered.png").get_image())
+var _base_slot_texture_normal = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_normal.png").get_image())
+var _base_slot_texture_hovered = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_hovered.png").get_image())
+var _selected_slot_texture_normal = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_selected.png").get_image())
+var _selected_slot_texture_hovered = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_selected_hovered.png").get_image())
 
 var _currently_clicked_item: int
 

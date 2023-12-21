@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnlrmqoo4kren"]
 
-[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://Fonts/Kanit-SemiBoldItalic.ttf" id="1_61eq8"]
+[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://fonts/kanit/kanit_semibolditalic.ttf" id="1_61eq8"]
 [ext_resource type="Script" path="res://scripts/player/hud/MessageHandler.gd" id="1_v5wcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdj7h"]

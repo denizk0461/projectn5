@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cabnwqbpm1qhd"]
 
-[ext_resource type="FontFile" uid="uid://dygl7fdaemub6" path="res://Fonts/Kanit-SemiBold.ttf" id="1_gtrrq"]
+[ext_resource type="FontFile" uid="uid://dygl7fdaemub6" path="res://fonts/kanit/kanit_semibold.ttf" id="1_gtrrq"]
 
 [node name="UIButton" type="Button"]
 anchors_preset = -1

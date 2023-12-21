@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://juylb4f72xq3"]
 
 [ext_resource type="PackedScene" uid="uid://ncb6g3gb36xi" path="res://items/equippables/101/v1/model.glb" id="1_t1pb3"]
-[ext_resource type="Material" uid="uid://8rh3g0prpf7s" path="res://Art/materials/glass.tres" id="2_6xc31"]
+[ext_resource type="Material" uid="uid://8rh3g0prpf7s" path="res://materials/glass.tres" id="2_6xc31"]
 
 [node name="model" instance=ExtResource("1_t1pb3")]
 

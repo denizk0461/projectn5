@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://xek1l2c1rvuc"]
+
+[ext_resource type="Texture2D" uid="uid://gqejtaft4bvc" path="res://player/ui/pause_menu/items_common/menu_item_slot_normal.png" id="1_kv414"]
+
+[node name="QuickSelectItem" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.078125
+anchor_bottom = 0.138889
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 75)
+action_mode = 0
+texture_normal = ExtResource("1_kv414")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
