@@ -1,3 +1,4 @@
-# An untitled action/platformer game
-
-This game is my first attempt at developing a game using Godot. I'm planning to create a game based off an idea that has been stuck in my head for many months. It takes inspiration from the PS2 Ratchet & Clank games. I'm not sure whether I will succeed. We'll see how far I get!
+# Project N5
+**Project N5** is my first attempt at creating a video game using Godot. I'm aiming to create an action-adventure 3D platformer in the style of Ratchet & Clank.
+## Progress Log
+View my progress [here](https://denizk0461.github.io/projects/projectn5/devlog.html)!

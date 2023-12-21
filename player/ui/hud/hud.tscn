@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj7faiptpc2ap"]
+
+[ext_resource type="Script" path="res://player/ui/hud/hud.gd" id="1_p4ekl"]
+[ext_resource type="PackedScene" uid="uid://bfy07ls2r20tu" path="res://player/ui/hud/health/health_bar.tscn" id="2_8mui5"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p4ekl")
+
+[node name="AmmoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 31.0
+offset_right = 360.0
+offset_bottom = 122.0
+
+[node name="CountLabel" type="RichTextLabel" parent="AmmoPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 66
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+
+[node name="Icon" type="TextureRect" parent="AmmoPanel"]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 91.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" parent="." instance=ExtResource("2_8mui5")]
+layout_mode = 1
+offset_top = 50.0
+offset_bottom = 150.0

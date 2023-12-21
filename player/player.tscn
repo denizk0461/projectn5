@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=11 format=3 uid="uid://diryunrxqcygg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
-[ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_aasqu"]
-[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/MessageHandler.tscn" id="3_8c36d"]
-[ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="4_x4wgt"]
+[ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
+[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://player/ui/hud/messages/message_handler.tscn" id="3_6aahp"]
 [ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://items/equippables/101/crosshair.webp" id="5_a2uri"]
-[ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://Scenes/Other/PauseMenu/PauseMenu.tscn" id="6_gflff"]
+[ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://player/ui/pause_menu/front_screen/pause_menu.tscn" id="6_gflff"]
 [ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="7_ntdeo"]
 [ext_resource type="PackedScene" uid="uid://cwgjb2ijo7tsb" path="res://player/character/character.tscn" id="8_0u8ef"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="9_r6gip"]
@@ -24,10 +23,7 @@ script = ExtResource("1_22tkf")
 [node name="PlayerHUD" parent="HUD" instance=ExtResource("2_aasqu")]
 metadata/_edit_use_anchors_ = true
 
-[node name="MessageHandler" parent="HUD" instance=ExtResource("3_8c36d")]
-
-[node name="DialogueBox" parent="HUD" instance=ExtResource("4_x4wgt")]
-visible = false
+[node name="MessageHandler" parent="HUD" instance=ExtResource("3_6aahp")]
 
 [node name="CrosshairContainer" type="TextureRect" parent="HUD"]
 anchors_preset = 8

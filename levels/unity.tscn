@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://e0xkhcfoeswg"]
+
+[ext_resource type="Script" path="res://levels/common/world.gd" id="1_ppww0"]
+[ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://levels/assets/unity/skybox.jpg" id="2_merql"]
+[ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://levels/assets/unity/unity.glb" id="3_s47va"]
+[ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://levels/assets/unity/mislabelled_slopes.glb" id="4_21h2e"]
+[ext_resource type="PackedScene" uid="uid://bqrkq048evyjt" path="res://levels/assets/unity/wish_you_were_here/wish_you_were_here.glb" id="5_jvscs"]
+[ext_resource type="PackedScene" uid="uid://1lycd4n65no0" path="res://levels/assets/unity/stairs.glb" id="6_q0ndu"]
+[ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://levels/assets/unity/redbrickwall/redbrickwall.tscn" id="7_qma2n"]
+[ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="8_hvtxc"]
+[ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://items/equippables/101/v1/model.tscn" id="9_ua3kj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
+panorama = ExtResource("2_merql")
+
+[sub_resource type="Sky" id="Sky_fbya3"]
+sky_material = SubResource("PanoramaSkyMaterial_ceavi")
+
+[sub_resource type="Environment" id="Environment_trqa7"]
+background_mode = 2
+background_color = Color(0.85098, 0.501961, 0.772549, 1)
+sky = SubResource("Sky_fbya3")
+glow_enabled = true
+glow_intensity = 8.0
+fog_light_energy = 0.77
+fog_height = 2.0
+fog_height_density = 0.676
+adjustment_brightness = 8.0
+adjustment_contrast = 8.0
+adjustment_saturation = 8.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ppww0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_trqa7")
+
+[node name="unity" parent="." instance=ExtResource("3_s47va")]
+transform = Transform3D(0.698896, 0, 0, 0, 1, 0, 0, 0, 0.698896, 0, -3, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.635161, 0.76271, -0.121834, 0.460343, 0.500482, 0.733213, 0.620205, 0.409623, -0.668995, 42.7617, 8.71348, -93.4303)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.691362, -0.440126, 0.572982, -18.496, 16.6639, 19.336)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Slopes" parent="." instance=ExtResource("4_21h2e")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.4965, 0, 3.26849)
+
+[node name="Projectiles" type="Node3D" parent="."]
+
+[node name="WishYouWereHere" parent="." instance=ExtResource("5_jvscs")]
+transform = Transform3D(0.241322, 0, -0.54933, 0, 0.6, 0, 0.54933, 0, 0.241322, -12.9409, -3.70862, -32.6411)
+
+[node name="Stairs" parent="." instance=ExtResource("6_q0ndu")]
+transform = Transform3D(-0.864336, 0, 0.502914, 0, 1, 0, -0.502914, 0, -0.864336, 1.41878, -2.92805, -17.321)
+
+[node name="Stairs2" parent="." instance=ExtResource("6_q0ndu")]
+transform = Transform3D(-0.864336, 0, 0.502914, 0, 1, 0, -0.502914, 0, -0.864336, 3.06649, -0.955258, -16.3976)
+
+[node name="Wall" parent="." instance=ExtResource("7_qma2n")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12, 9)
+
+[node name="Player" parent="." instance=ExtResource("8_hvtxc")]
+
+[node name="Item" parent="." instance=ExtResource("9_ua3kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02619, 0.0104237, 1.70033)

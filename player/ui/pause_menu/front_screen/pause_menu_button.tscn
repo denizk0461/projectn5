@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgmg5duiaqro4"]
+
+[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://fonts/kanit/kanit_semibolditalic.ttf" id="1_kciuj"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(500, 0)
+theme_override_fonts/font = ExtResource("1_kciuj")
+theme_override_font_sizes/font_size = 42
+action_mode = 0
