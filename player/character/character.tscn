@@ -124,7 +124,7 @@ filters = ["Armature/Skeleton3D:UpperArm.L", "Armature/Skeleton3D:UpperArm.R"]
 filters = ["Armature/Skeleton3D:UpperArm.L", "Armature/Skeleton3D:UpperArm.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8bvgh"]
-graph_offset = Vector2(-275.842, 112.915)
+graph_offset = Vector2(-9.6, 143.2)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_vbrhv")
 nodes/Animation/position = Vector2(106.667, 520)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_wfpdq")
@@ -165,12 +165,12 @@ bones/23/rotation = Quaternion(-1.21385e-15, -7.10543e-15, -7.45057e-09, 1)
 bones/34/rotation = Quaternion(0.707107, 2.91751e-10, -2.84081e-07, 0.707107)
 bones/36/rotation = Quaternion(0.573635, 0.413453, 0.573635, -0.413453)
 bones/36/scale = Vector3(1, 1, 1)
-bones/37/rotation = Quaternion(-0.571345, 0.124301, 0.172459, 0.792699)
+bones/37/rotation = Quaternion(-0.583637, 0.035419, 0.0491413, 0.809753)
 bones/37/scale = Vector3(1, 1, 1)
 bones/39/rotation = Quaternion(-1.77525e-07, -8.98063e-10, -0.707107, 0.707107)
 bones/40/rotation = Quaternion(0.573635, -0.413453, -0.573635, -0.413453)
 bones/40/scale = Vector3(1, 1, 1)
-bones/41/rotation = Quaternion(-0.568177, 0.138063, 0.191552, 0.788303)
+bones/41/rotation = Quaternion(-0.582391, 0.0520225, 0.0721774, 0.808025)
 bones/41/scale = Vector3(1, 1, 1)
 bones/43/rotation = Quaternion(-1.77525e-07, 8.98063e-10, 0.707107, 0.707107)
 
