@@ -14,7 +14,6 @@ func prepare_menu():
 			var texture = ItemManager.get_icon_path(_quick_select_items[index])
 			get_node("Item%s/Slot" % index).texture = load(texture)
 
-# Called when the node enters the scene tree for the first time.
 func _input(event):
 	if event.is_action_released("quick_select_action") and _is_active:
 		_equip_new_item()

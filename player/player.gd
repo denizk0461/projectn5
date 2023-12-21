@@ -18,7 +18,7 @@ var _targeted_npc: Node3D = null
 var _ground_normal: Vector3
 var _floor_plane = Plane(Vector3.UP)
 var _xz = Vector3.ZERO
-var _max_player_health: int = 4 # total max that the player can achieve in game is 8
+var _max_player_health: int = 4 # max_player_health should be taken from the player's save file
 var _is_second_jump: bool = false
 
 @onready var _player_health: int = _max_player_health
@@ -32,8 +32,6 @@ func _ready():
 	$Inventory.switch_to_melee()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
-	
-	# max_player_health should be taken from the player's save file
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
 	$SpringArm3D.add_excluded_object(self)
 	_message_handler.show_timed_message("hello world!")

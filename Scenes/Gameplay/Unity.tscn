@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://World/unity/unity.glb" id="1_tgrxh"]
 [ext_resource type="Script" path="res://Scenes/Gameplay/World.gd" id="1_w8l07"]
-[ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://Characters/Player.tscn" id="2_muv3g"]
+[ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="2_muv3g"]
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://World/dino.jpg" id="2_n72ak"]
 [ext_resource type="AudioStream" uid="uid://bxht66cwdm7xy" path="res://OST/KrustyKrabRemix.ogg" id="5_7tayt"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://World/Slopes.glb" id="5_lmw58"]

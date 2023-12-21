@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://diryunrxqcygg"]
 
-[ext_resource type="Script" path="res://Characters/Player.gd" id="1_hdnqp"]
-[ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://Scenes/Other/PauseMenu/PauseMenu.tscn" id="2_0t8qg"]
-[ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_gav3a"]
-[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/MessageHandler.tscn" id="2_mr8yo"]
-[ext_resource type="Script" path="res://Characters/PlayerCamera.gd" id="2_uwasm"]
-[ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="3_6ctt2"]
-[ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="3_xe23v"]
-[ext_resource type="Script" path="res://Characters/Inventory.gd" id="4_5q0q3"]
-[ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://items/equippables/101/crosshair.webp" id="5_71fqe"]
-[ext_resource type="PackedScene" uid="uid://cwgjb2ijo7tsb" path="res://Characters/Character.tscn" id="8_tjdmv"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
+[ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_aasqu"]
+[ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/MessageHandler.tscn" id="3_8c36d"]
+[ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="4_x4wgt"]
+[ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://items/equippables/101/crosshair.webp" id="5_a2uri"]
+[ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://Scenes/Other/PauseMenu/PauseMenu.tscn" id="6_gflff"]
+[ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="7_ntdeo"]
+[ext_resource type="PackedScene" uid="uid://cwgjb2ijo7tsb" path="res://player/character/character.tscn" id="8_0u8ef"]
+[ext_resource type="Script" path="res://player/player_camera.gd" id="9_r6gip"]
+[ext_resource type="Script" path="res://player/inventory.gd" id="10_jm8ho"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e7qgu"]
 height = 1.65
@@ -17,16 +17,16 @@ radius = 0.26
 
 [node name="Player" type="CharacterBody3D"]
 floor_max_angle = 0.628319
-script = ExtResource("1_hdnqp")
+script = ExtResource("1_22tkf")
 
 [node name="HUD" type="Node3D" parent="."]
 
-[node name="PlayerHUD" parent="HUD" instance=ExtResource("2_gav3a")]
+[node name="PlayerHUD" parent="HUD" instance=ExtResource("2_aasqu")]
 metadata/_edit_use_anchors_ = true
 
-[node name="MessageHandler" parent="HUD" instance=ExtResource("2_mr8yo")]
+[node name="MessageHandler" parent="HUD" instance=ExtResource("3_8c36d")]
 
-[node name="DialogueBox" parent="HUD" instance=ExtResource("3_xe23v")]
+[node name="DialogueBox" parent="HUD" instance=ExtResource("4_x4wgt")]
 visible = false
 
 [node name="CrosshairContainer" type="TextureRect" parent="HUD"]
@@ -41,15 +41,15 @@ offset_right = 50.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_71fqe")
+texture = ExtResource("5_a2uri")
 expand_mode = 1
 
 [node name="GUI" type="Node3D" parent="."]
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource("2_0t8qg")]
+[node name="PauseMenu" parent="GUI" instance=ExtResource("6_gflff")]
 visible = false
 
-[node name="QuickSelect" parent="GUI" instance=ExtResource("3_6ctt2")]
+[node name="QuickSelect" parent="GUI" instance=ExtResource("7_ntdeo")]
 visible = false
 
 [node name="Pivot" type="Node3D" parent="."]
@@ -59,19 +59,19 @@ transform = Transform3D(-0.5378, 0, -0.843072, 0, 1, 0, 0.843072, 0, -0.5378, -2
 current = true
 fov = 85.0
 
-[node name="Character" parent="Pivot" instance=ExtResource("8_tjdmv")]
+[node name="Character" parent="Pivot" instance=ExtResource("8_0u8ef")]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
 margin = 0.2
-script = ExtResource("2_uwasm")
+script = ExtResource("9_r6gip")
 
 [node name="GameplayCamera" type="Camera3D" parent="SpringArm3D"]
 v_offset = 1.5
 fov = 80.0
 
 [node name="Inventory" type="Node3D" parent="."]
-script = ExtResource("4_5q0q3")
+script = ExtResource("10_jm8ho")
 
 [node name="GroundAngleCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0553062, 0)

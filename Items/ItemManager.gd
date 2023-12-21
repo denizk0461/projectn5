@@ -1,5 +1,7 @@
 extends Node
 
+# TODO convert this from a JSON-type structure to a separate data structure?
+# what would be the best way to do that?
 var _weapon_data_lookup_table = {
 	"101": { # N5 Blaster
 		"type": "weapon",
