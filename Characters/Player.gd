@@ -25,10 +25,7 @@ var _is_second_jump: bool = false
 @onready var _message_handler = $HUD/MessageHandler
 
 # TODOs
-# prevent jumping on slope when sliding down
 # disallow double jumping if close to the ground (maybe?)
-
-signal health_changed(new_health: int)
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
@@ -216,7 +213,7 @@ func _position_player_for_conversation():
 	velocity = Vector3.ZERO
 
 func _take_damage():
-	var is_dead = $HUD/PlayerHUD/HealthBar.heal()
+	var is_dead = $HUD/PlayerHUD/HealthBar.take_damage()
 	
 	if is_dead:
 		_die()
