@@ -64,14 +64,16 @@ var ATTR_MAX_AMMO: String = "max_ammo"
 var ATTR_AMMO_REFILL: String = "ammo_refill"
 var ATTR_PRICE: String = "price"
 
+var _ITEM_PATH: String = "res://items/equippables"
+
 func get_item_attribute(id: int, version: int, attribute: String):
 	return _weapon_data_lookup_table["%d" % id]["v%d" % version][attribute]
 
 func get_icon_path(id) -> String:
-	return "res://player/items/%d/icon.webp" % id
+	return "%s/%d/icon.webp" % [_ITEM_PATH, id]
 
 func get_scene_path(id, version) -> String:
-	return "res://player/items/%d/v%d/item.tscn" % [id, version]
+	return "%s/%d/v%d/item.tscn" % [_ITEM_PATH, id, version]
 
 func get_projectile_path(id, version) -> String:
-	return "res://player/items/%d/v%d/projectile.tscn" % [id, version]
+	return "%s/%d/v%d/projectile.tscn" % [_ITEM_PATH, id, version]
