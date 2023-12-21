@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dhitarcdnu1c5"
+path="res://.godot/imported/slot_clickmap.bmp-fa991cb2bbb5c6b58cde49612977d005.res"
+
+[deps]
+
+source_file="res://player/ui/quick_select/slot/slot_clickmap.bmp"
+dest_files=["res://.godot/imported/slot_clickmap.bmp-fa991cb2bbb5c6b58cde49612977d005.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

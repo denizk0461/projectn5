@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj7faiptpc2ap"]
+[gd_scene load_steps=3 format=3 uid="uid://bj7faiptpc2ap"]
 
 [ext_resource type="Script" path="res://Scenes/Other/HUD/PlayerHUD.gd" id="1_lgvxp"]
+[ext_resource type="PackedScene" uid="uid://bfy07ls2r20tu" path="res://player/ui/hud/health/health_bar.tscn" id="2_h2tve"]
 
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
@@ -43,24 +44,7 @@ offset_bottom = 91.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HealthBarContainer" type="VBoxContainer" parent="."]
+[node name="HealthBar" parent="." instance=ExtResource("2_h2tve")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 42.0
-offset_right = 20.0
-offset_bottom = 82.0
-grow_horizontal = 2
-theme_override_constants/separation = 100
-
-[node name="Bar0" type="HBoxContainer" parent="HealthBarContainer"]
-layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
-
-[node name="Bar1" type="HBoxContainer" parent="HealthBarContainer"]
-layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
+offset_top = 50.0
+offset_bottom = 150.0

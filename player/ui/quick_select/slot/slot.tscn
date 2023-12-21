@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxh3u48mnshy5"]
+
+[ext_resource type="Texture2D" uid="uid://gt221we135a7" path="res://player/ui/quick_select/slot/slot_normal.png" id="1_12p4j"]
+[ext_resource type="Texture2D" uid="uid://crx8dt7cwoev1" path="res://player/ui/quick_select/slot/slot_highlighted.png" id="2_ix1vb"]
+[ext_resource type="BitMap" uid="uid://dhitarcdnu1c5" path="res://player/ui/quick_select/slot/slot_clickmap.bmp" id="3_gd4lx"]
+[ext_resource type="Script" path="res://player/ui/quick_select/slot/slot.gd" id="4_45jhr"]
+
+[node name="QuickSelectItem" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.125
+anchor_bottom = 0.133333
+pivot_offset = Vector2(120, 72)
+texture_normal = ExtResource("1_12p4j")
+texture_focused = ExtResource("2_ix1vb")
+texture_click_mask = ExtResource("3_gd4lx")
+stretch_mode = 0
+script = ExtResource("4_45jhr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Slot" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.291667
+anchor_top = 0.152778
+anchor_right = 0.708333
+anchor_bottom = 0.847222
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

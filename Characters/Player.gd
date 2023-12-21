@@ -35,9 +35,12 @@ func _ready():
 	$Inventory.switch_to_melee()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
-	$HUD/PlayerHUD.setup_health_bar(_max_player_health)
+	
+	# max_player_health should be taken from the player's save file
+	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
 	$SpringArm3D.add_excluded_object(self)
 	_message_handler.show_timed_message("hello world!")
+	_take_damage()
 
 func _input(event):
 	if event.is_action_pressed("jump") and _jump_count < 2:
@@ -213,18 +216,14 @@ func _position_player_for_conversation():
 	velocity = Vector3.ZERO
 
 func _take_damage():
-	if _player_health > 0:
-		_player_health -= 1
-		health_changed.emit(_player_health)
+	var is_dead = $HUD/PlayerHUD/HealthBar.heal()
 	
-	if _player_health == 0:
+	if is_dead:
 		_die()
 	# timeout (invincibility frames)
 
 func _heal():
-	if _player_health < _max_player_health:
-		_player_health += 1
-		health_changed.emit(_player_health)
+	$HUD/PlayerHUD/HealthBar.heal()
 
 func _die():
 	print("you are DEAD muhahahhahahha!")

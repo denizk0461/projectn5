@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://Scenes/Other/HUD/PlayerHUD.tscn" id="2_gav3a"]
 [ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://Scenes/Other/HUD/MessageHandler.tscn" id="2_mr8yo"]
 [ext_resource type="Script" path="res://Characters/PlayerCamera.gd" id="2_uwasm"]
-[ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://Scenes/Other/QuickSelect/QuickSelect.tscn" id="3_6ctt2"]
+[ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="3_6ctt2"]
 [ext_resource type="PackedScene" uid="uid://s1nlekyytcvx" path="res://Scenes/Other/HUD/DialogueBox.tscn" id="3_xe23v"]
 [ext_resource type="Script" path="res://Characters/Inventory.gd" id="4_5q0q3"]
 [ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://player/items/101/crosshair.webp" id="5_dsyud"]
