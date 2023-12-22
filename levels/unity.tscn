@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=14 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="Script" path="res://levels/common/world.gd" id="1_ppww0"]
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://levels/assets/unity/skybox.jpg" id="2_merql"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://levels/assets/unity/redbrickwall/redbrickwall.tscn" id="7_qma2n"]
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="8_hvtxc"]
 [ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://items/equippables/101/v1/model.tscn" id="9_ua3kj"]
+[ext_resource type="PackedScene" uid="uid://wyew3noppc1e" path="res://items/pickups/ammo_pickup/ammo_pickup.tscn" id="10_610ej"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_merql")
@@ -67,3 +68,6 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12,
 
 [node name="Item" parent="." instance=ExtResource("9_ua3kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02619, 0.0104237, 1.70033)
+
+[node name="ammo_pickup" parent="." instance=ExtResource("10_610ej")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.664324, 4.76837e-07, 3.2919)
