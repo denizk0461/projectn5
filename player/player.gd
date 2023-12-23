@@ -34,7 +34,7 @@ func _ready():
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
 	$SpringArm3D.add_excluded_object(self)
-	_message_handler.show_timed_message("hello world!")
+	_message_handler.show_timed_message("ITEM_101_NAME_V3")
 	_take_damage()
 
 func _input(event):
@@ -223,3 +223,14 @@ func _heal():
 func _die():
 	print("you are DEAD muhahahhahahha!")
 	pass # TODO
+
+func collect_ammo_pickup(weapon_id: int) -> bool:
+	var reload_values = $Inventory.reload_gun(weapon_id)
+	if reload_values["has_collected"]:
+		_message_handler.show_timed_message(
+			tr("HUD_COLLECTED_AMMO").format({
+				"refill_amount": reload_values["refill_amount"],
+				"weapon_name": tr(ItemManager.get_item_attribute(weapon_id, 1, ItemManager.ATTR_NAME)),
+			})
+		)
+	return reload_values["has_collected"]

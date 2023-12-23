@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://levels/assets/unity/redbrickwall/redbrickwall.tscn" id="7_qma2n"]
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="8_hvtxc"]
 [ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://items/equippables/101/v1/model.tscn" id="9_ua3kj"]
-[ext_resource type="PackedScene" uid="uid://wyew3noppc1e" path="res://items/pickups/ammo_pickup/ammo_pickup.tscn" id="10_610ej"]
+[ext_resource type="PackedScene" uid="uid://stn068ae0shq" path="res://items/pickups/ammo_pickup/ammo_pickup2.tscn" id="10_oshwr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_merql")
@@ -69,5 +69,49 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12,
 [node name="Item" parent="." instance=ExtResource("9_ua3kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02619, 0.0104237, 1.70033)
 
-[node name="ammo_pickup" parent="." instance=ExtResource("10_610ej")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.664324, 4.76837e-07, 3.2919)
+[node name="AmmoPickups" type="Node3D" parent="."]
+
+[node name="AmmoPickup" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 10.8147, 0.0104065, -10.9425)
+
+[node name="AmmoPickup10" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 77.3958, 0.0104065, -27.6191)
+
+[node name="AmmoPickup11" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 72.6559, 0.0104065, 41.1861)
+
+[node name="AmmoPickup12" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -67.6557, 0.0104065, 2.24711)
+
+[node name="AmmoPickup13" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -66.1094, 0.0104065, 30.4343)
+
+[node name="AmmoPickup14" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 37.4018, 0.0104065, 81.9224)
+
+[node name="AmmoPickup15" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -28.0998, 0.0104065, 57.8416)
+
+[node name="AmmoPickup2" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -62.1935, 0.0104065, -40.2807)
+
+[node name="AmmoPickup3" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -41.406, 0.0104065, -55.2113)
+
+[node name="AmmoPickup4" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 7.17173, 0.0104065, -77.2891)
+
+[node name="AmmoPickup5" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 44.0682, 0.0104065, -78.6356)
+
+[node name="AmmoPickup6" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 38.6098, 0.0104065, -53.0129)
+
+[node name="AmmoPickup7" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 23.904, 0.0104065, -32.556)
+
+[node name="AmmoPickup8" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -23.4171, 0.0104065, -0.66194)
+
+[node name="AmmoPickup9" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 21.0803, 0.0104065, 20.502)

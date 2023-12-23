@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cymgpg0gyidgn"]
-
-[ext_resource type="Script" path="res://items/pickups/collection.gd" id="1_bgpu8"]
-
-[node name="Collection" type="Node3D"]
-script = ExtResource("1_bgpu8")

@@ -14,7 +14,7 @@
 height = 1.65
 radius = 0.26
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 0.628319
 script = ExtResource("1_22tkf")
 
