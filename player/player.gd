@@ -98,6 +98,11 @@ func _handle_jump():
 			
 			_is_second_jump = _jump_count == 2
 			disallow_second_jump_after(0.6)
+		
+		if _is_second_jump:
+			$Pivot/Character.second_jump()
+		else:
+			$Pivot/Character.first_jump()
 
 func disallow_second_jump_after(seconds: float):
 	var jump_count_before_timer = _total_jump_count
@@ -212,6 +217,10 @@ func _physics_process(delta):
 		_target_velocity.z = 0
 	velocity = _target_velocity
 	move_and_slide()
+	if direction_2d == Vector2.ZERO:
+		$Pivot/Character.stand_still()
+	else:
+		$Pivot/Character.walk()
 	
 	if is_on_floor():
 		_wants_to_jump = false

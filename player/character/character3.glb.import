@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfl86j3kwhefg"
-path="res://.godot/imported/test_character.glb-d3c73b800963f1aefdcf95422ed5d1b4.scn"
+uid="uid://cqldndqrxrl41"
+path="res://.godot/imported/character3.glb-90bbc84f288f265bb88f331b4d56ce51.scn"
 
 [deps]
 
-source_file="res://player/character/test_character.glb"
-dest_files=["res://.godot/imported/test_character.glb-d3c73b800963f1aefdcf95422ed5d1b4.scn"]
+source_file="res://player/character/character3.glb"
+dest_files=["res://.godot/imported/character3.glb-90bbc84f288f265bb88f331b4d56ce51.scn"]
 
 [params]
 
@@ -25,13 +25,13 @@ meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=60.0
+animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "animations": {
-"Walk": {
+"Walk_Legs": {
 "save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
