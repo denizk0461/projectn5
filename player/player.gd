@@ -20,12 +20,30 @@ var _floor_plane = Plane(Vector3.UP)
 var _xz = Vector3.ZERO
 var _max_player_health: int = 4 # max_player_health should be taken from the player's save file
 var _is_second_jump: bool = false
+var _is_sliding: bool = false
 
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
 
-# TODOs
-# disallow double jumping if close to the ground (maybe?)
+# states
+#const STATE_JUMP_FLOORED = 0
+#const STATE_JUMP_SINGLE_JUMPED = 1
+#const STATE_JUMP_DOUBLE_JUMPED = 2
+#var _state_jump: int = STATE_JUMP_FLOORED
+#
+#const STATE_ALLOWED_JUMPS_0 = 0
+#const STATE_ALLOWED_JUMPS_1 = 1
+#const STATE_ALLOWED_JUMPS_2 = 2
+#var _state_jumps_allowed: int = STATE_ALLOWED_JUMPS_2
+#
+#const STATE_MOVEMENT_ALLOWED = 0
+#const STATE_MOVEMENT_DISALLOWED = 0
+#var _state_movement: int = STATE_MOVEMENT_ALLOWED
+#
+#const STATE_CHARACTER_IN_AIR = 0
+#const STATE_CHARACTER_FLOORED = 0
+#const STATE_CHARACTER_SLIDING = 0
+#var _state_character: int = STATE_MOVEMENT_ALLOWED
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
@@ -33,11 +51,36 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
+	
+	# prevent SpringArm3D (camera) from colliding with player character
 	$SpringArm3D.add_excluded_object(self)
-	_message_handler.show_timed_message("ITEM_101_NAME_V3")
 
 func _input(event):
-	if event.is_action_pressed("jump") and _jump_count < 2:
+	if event.is_action_pressed("jump"):
+		_handle_jump()
+	
+	elif event.is_action_pressed("pause") and not get_tree().paused:
+		_pause_game()
+	
+	elif event.is_action_pressed("quick_select_action"):
+		_open_quick_select()
+	
+	elif event.is_action_pressed("melee"):
+		if not $Inventory.is_melee_equipped:
+			$Inventory.switch_to_melee()
+			$Pivot/Character.lower_arm()
+		# attack! 
+		# attack immediately whether the melee weapon is already equipped or not
+		pass
+		if is_on_floor():
+			# regular attack
+			pass
+		else:
+			# air attack
+			pass
+
+func _handle_jump():
+	if _jump_count < 2:
 		_target_velocity.y = _jump_speed
 		_wants_to_jump = true
 		_total_jump_count += 1
@@ -55,47 +98,25 @@ func _input(event):
 			
 			_is_second_jump = _jump_count == 2
 			disallow_second_jump_after(0.6)
-	
-	elif event.is_action_pressed("pause") and not get_tree().paused:
-		get_tree().paused = true
-		$GUI/PauseMenu.open()
-	
-	elif event.is_action_pressed("quick_select_action"):
-		if not _targeted_npc == null:
-			_message_handler.hide_message(true)
-			_position_player_for_conversation()
-			$HUD/DialogueBox.start_dialogue(_targeted_npc.npc_name, _targeted_npc.dialogue)
-			$HUD/DialogueBox.show()
-			$Pivot/DialogueCamera.make_current()
-		else:
-			$GUI/QuickSelect.prepare_menu()
-			$GUI/QuickSelect.activate()
-		get_tree().paused = true
-	
-	elif event.is_action_pressed("melee"):
-		if not $Inventory.is_melee_equipped:
-			$Inventory.switch_to_melee()
-			$Pivot/Character.lower_arm()
-		# attack! 
-		# attack immediately whether the melee weapon is already equipped or not
-		pass
-		if is_on_floor():
-			# regular attack
-			pass
-		else:
-			# air attack
-			pass
 
 func disallow_second_jump_after(seconds: float):
-	var jc = _total_jump_count
-	# only allow the player to jump a second jump within a few seconds of the first jump
-	# TODO replace this with a Timer node in the scene tree
-	# this creates a new Timer every time it is called
-	await get_tree().create_timer(seconds).timeout
+	var jump_count_before_timer = _total_jump_count
+	# only allow the player to jump a second jump within a brief period after the first jump
+	$SecondJumpTimer.start(seconds)
+	await $SecondJumpTimer.timeout
 	# check if the player has jumped since the timer started. this is to prevent
 	# cancelling later jumps
-	if jc == _total_jump_count and _jump_count != 2 and not is_on_floor():
+	if jump_count_before_timer == _total_jump_count and _jump_count != 2 and not is_on_floor():
 		_jump_count = 2
+
+func _pause_game():
+	get_tree().paused = true
+	$GUI/PauseMenu.open()
+
+func _open_quick_select():
+	$GUI/QuickSelect.prepare_menu()
+	$GUI/QuickSelect.activate()
+	get_tree().paused = true
 
 func _shoot():
 	if $Inventory.is_melee_equipped:
@@ -129,7 +150,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("strafe"):
 		show_crosshair = true
 		var rotation_rads = $SpringArm3D.rotation.y
-		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))#.rotated(Vector3.UP, deg_to_rad(180.0))
+		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
 	
 	if show_crosshair:
@@ -170,11 +191,13 @@ func _physics_process(delta):
 	
 	# disallow further jumping if the player lands on a steep slope
 	# slope steepness is governed by CharacterController3D's floor_max_angle attribute
+	_is_sliding = false
 	if ($GroundAngleCast.get_collider() 
 			and $GroundAngleCast.get_collision_normal().angle_to(Vector3.UP) > floor_max_angle
 	):
 		_jump_count = 2
 		_is_second_jump = true
+		_is_sliding = true
 	
 	if is_on_floor():
 		if not _wants_to_jump:
@@ -184,7 +207,9 @@ func _physics_process(delta):
 		if _target_velocity.y > _max_falling_velocity:
 			_target_velocity.y = _target_velocity.y - (_fall_acceleration * delta)
 	
-	
+	if _is_sliding:
+		_target_velocity.x = 0
+		_target_velocity.z = 0
 	velocity = _target_velocity
 	move_and_slide()
 	
