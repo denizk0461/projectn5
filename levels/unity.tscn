@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=18 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="Script" path="res://levels/common/world.gd" id="1_ppww0"]
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://levels/assets/unity/skybox.jpg" id="2_merql"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="8_hvtxc"]
 [ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://items/equippables/101/v1/model.tscn" id="9_ua3kj"]
 [ext_resource type="PackedScene" uid="uid://stn068ae0shq" path="res://items/pickups/ammo_pickup/ammo_pickup2.tscn" id="10_oshwr"]
+[ext_resource type="Script" path="res://levels/common/death_plane.gd" id="11_lepd3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
 panorama = ExtResource("2_merql")
@@ -29,6 +30,16 @@ fog_height_density = 0.676
 adjustment_brightness = 8.0
 adjustment_contrast = 8.0
 adjustment_saturation = 8.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_df2lh"]
+size = Vector3(400, 1, 400)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohdhw"]
+albedo_color = Color(0.596078, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lg6jx"]
+material = SubResource("StandardMaterial3D_ohdhw")
+size = Vector2(400, 400)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ppww0")
@@ -115,3 +126,15 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -23.4171, 0.0104065, -0
 
 [node name="AmmoPickup9" parent="AmmoPickups" instance=ExtResource("10_oshwr")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 21.0803, 0.0104065, 20.502)
+
+[node name="DeathPlane" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.6824, 0)
+script = ExtResource("11_lepd3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathPlane"]
+shape = SubResource("BoxShape3D_df2lh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DeathPlane"]
+mesh = SubResource("PlaneMesh_lg6jx")
+
+[connection signal="body_entered" from="DeathPlane" to="DeathPlane" method="_on_body_entered"]

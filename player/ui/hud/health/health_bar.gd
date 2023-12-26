@@ -31,7 +31,13 @@ func heal():
 		_player_health_current += 1
 		_set_health()
 
-func take_damage() -> bool:
+# returns whether the player is dead
+func take_damage(kill_instantly: bool) -> bool:
+	if kill_instantly:
+		_player_health_current = 0
+		_set_health()
+		return true
+	
 	if _player_health_current > 0:
 		_player_health_current -= 1
 		_set_health()

@@ -35,7 +35,6 @@ func _ready():
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
 	$SpringArm3D.add_excluded_object(self)
 	_message_handler.show_timed_message("ITEM_101_NAME_V3")
-	_take_damage()
 
 func _input(event):
 	if event.is_action_pressed("jump") and _jump_count < 2:
@@ -210,8 +209,8 @@ func _position_player_for_conversation():
 	$Pivot.rotation.y = atan2(delta.x, delta.z) + deg_to_rad(180.0)
 	velocity = Vector3.ZERO
 
-func _take_damage():
-	var is_dead = $HUD/PlayerHUD/HealthBar.take_damage()
+func take_damage(kill_instantly: bool = false):
+	var is_dead = $HUD/PlayerHUD/HealthBar.take_damage(kill_instantly)
 	
 	if is_dead:
 		_die()
@@ -222,6 +221,7 @@ func _heal():
 
 func _die():
 	print("you are DEAD muhahahhahahha!")
+	get_tree().reload_current_scene()
 	pass # TODO
 
 func collect_ammo_pickup(weapon_id: int) -> bool:
