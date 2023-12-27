@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://levels/assets/unity/skybox.jpg" id="2_merql"]
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://levels/assets/unity/unity.glb" id="3_s47va"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://levels/assets/unity/mislabelled_slopes.glb" id="4_21h2e"]
+[ext_resource type="PackedScene" uid="uid://pdvsvgn24f05" path="res://enemies/test_enemy/test_enemy.tscn" id="4_lablk"]
 [ext_resource type="PackedScene" uid="uid://bqrkq048evyjt" path="res://levels/assets/unity/wish_you_were_here/wish_you_were_here.glb" id="5_jvscs"]
 [ext_resource type="PackedScene" uid="uid://1lycd4n65no0" path="res://levels/assets/unity/stairs.glb" id="6_q0ndu"]
 [ext_resource type="PackedScene" uid="uid://dgkv13gogs1k5" path="res://levels/assets/unity/redbrickwall/redbrickwall.tscn" id="7_qma2n"]
 [ext_resource type="PackedScene" uid="uid://diryunrxqcygg" path="res://player/player.tscn" id="8_hvtxc"]
-[ext_resource type="PackedScene" uid="uid://juylb4f72xq3" path="res://items/equippables/101/v1/model.tscn" id="9_ua3kj"]
 [ext_resource type="PackedScene" uid="uid://stn068ae0shq" path="res://items/pickups/ammo_pickup/ammo_pickup2.tscn" id="10_oshwr"]
 [ext_resource type="Script" path="res://levels/common/death_plane.gd" id="11_lepd3"]
 
@@ -58,6 +58,12 @@ transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.
 
 [node name="Enemies" type="Node3D" parent="."]
 
+[node name="TestEnemy" parent="Enemies" instance=ExtResource("4_lablk")]
+transform = Transform3D(0.529934, 0, -0.848039, 0, 1, 0, 0.848039, 0, 0.529934, -48.3724, 0, -1.75941)
+
+[node name="TestEnemy2" parent="Enemies" instance=ExtResource("4_lablk")]
+transform = Transform3D(-0.429203, 0, -0.903208, 0, 1, 0, 0.903208, 0, -0.429203, -45.5803, -9.53674e-07, 1.65457)
+
 [node name="Slopes" parent="." instance=ExtResource("4_21h2e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95.4965, 0, 3.26849)
 
@@ -77,9 +83,6 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 12,
 
 [node name="Player" parent="." instance=ExtResource("8_hvtxc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.2703, 0, -0.67115)
-
-[node name="Item" parent="." instance=ExtResource("9_ua3kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02619, 0.0104237, 1.70033)
 
 [node name="AmmoPickups" type="Node3D" parent="."]
 

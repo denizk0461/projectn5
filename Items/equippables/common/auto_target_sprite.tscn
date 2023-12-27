@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6esnbt2b5smi"]
+
+[ext_resource type="Texture2D" uid="uid://sqw4vw3iepid" path="res://items/equippables/common/auto_target.webp" id="1_auq6t"]
+[ext_resource type="Script" path="res://items/equippables/common/auto_target_sprite.gd" id="2_fjfsi"]
+
+[node name="AutoTargetSprite" type="Sprite2D"]
+texture = ExtResource("1_auq6t")
+script = ExtResource("2_fjfsi")

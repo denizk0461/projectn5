@@ -12,6 +12,6 @@ func display_item(id):
 	if not currently_displayed_item == null:
 		$MenuItem/ItemSpot.remove_child(currently_displayed_item)
 	var item = load(ItemManager.get_scene_path(id, 1)).instantiate()
-	item.get_node("model").position = Vector3.ZERO
+	item.get_node("Model").position = Vector3.ZERO
 	$MenuItem/ItemSpot.add_child(item)
 	# reset rotation

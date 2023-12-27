@@ -22,4 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.255604, 0.453
 [node name="ProjectileVelocityHelper" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.255604, -0.073917)
 
-[node name="model" parent="." instance=ExtResource("1_a6vh0")]
+[node name="Model" parent="." instance=ExtResource("1_a6vh0")]

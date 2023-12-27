@@ -1150,7 +1150,7 @@ node_connections = [&"Blend2", 0, &"SecondJump", &"Blend2", 1, &"HandPosition", 
 script = ExtResource("1_fc3ww")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="."]
-transform = Transform3D(-1, -1.49012e-07, 4.27124e-07, 4.77295e-07, 4.22879e-07, 1, -7.45058e-08, 1, -3.38696e-07, -0.270528, 1.1844, 0.564979)
+transform = Transform3D(-1, -1.3411e-07, -4.22242e-07, -3.80396e-07, 4.23039e-07, 1, -1.04308e-07, 1, -3.38696e-07, -0.270528, 1.1844, 0.564979)
 bone_name = "Hand.R"
 bone_idx = 22
 use_external_skeleton = true
@@ -1182,12 +1182,10 @@ parameters/SecondJump/request = 0
 
 [node name="Skeleton3D" parent="Character3/Armature" index="0"]
 bones/2/rotation = Quaternion(5.24203e-08, -8.33828e-08, -0.792431, 0.609962)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(1.6068e-07, 6.75462e-08, -0.463091, 0.886311)
 bones/3/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(0.707107, -1.50729e-14, 3.09086e-08, 0.707107)
 bones/19/rotation = Quaternion(-1.3651e-07, -6.20434e-08, 0.792431, 0.609962)
-bones/19/scale = Vector3(1, 1, 1)
 bones/20/rotation = Quaternion(0.528882, 0.469345, 0.391171, 0.589055)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(1.37454e-08, 3.33473e-08, 0.0697565, 0.997564)
@@ -1205,15 +1203,13 @@ bones/32/position = Vector3(-0.0664445, 0.0404807, 0.017085)
 bones/32/rotation = Quaternion(0.503824, -0.496146, 0.496146, 0.503825)
 bones/33/rotation = Quaternion(-0.317598, -0.00487779, -4.89866e-08, 0.948213)
 bones/34/rotation = Quaternion(1, 0, 0, -2.98023e-08)
-bones/36/rotation = Quaternion(0.19366, 0.15737, 0.610694, 0.751521)
+bones/36/rotation = Quaternion(-0.227541, -0.184902, 0.602929, 0.741966)
 bones/37/rotation = Quaternion(0.0610486, -9.4758e-09, -1.43024e-08, 0.998135)
 bones/38/rotation = Quaternion(-0.707107, -5.33851e-08, 2.21972e-07, 0.707107)
-bones/38/scale = Vector3(1, 1, 1)
-bones/39/rotation = Quaternion(-0.126812, 4.14147e-10, 5.6691e-08, 0.991927)
-bones/41/rotation = Quaternion(-0.226256, 0.183858, -0.603248, 0.742359)
-bones/42/rotation = Quaternion(0.00108727, 7.45058e-09, -8.09453e-12, 0.999999)
+bones/39/rotation = Quaternion(1.60922e-09, 4.17495e-10, 5.71524e-08, 1)
+bones/41/rotation = Quaternion(0.19496, -0.158427, -0.61042, 0.751185)
+bones/42/rotation = Quaternion(0.0601609, 7.4371e-09, -4.4822e-10, 0.998189)
 bones/43/rotation = Quaternion(-0.707107, 5.33851e-08, -2.21972e-07, 0.707107)
-bones/43/scale = Vector3(1, 1, 1)
-bones/44/rotation = Quaternion(-7.60499e-11, 4.61707e-15, 9.28045e-15, 1)
+bones/44/rotation = Quaternion(-0.107326, 1.5277e-15, 3.98828e-15, 0.994224)
 
 [editable path="Character3"]
