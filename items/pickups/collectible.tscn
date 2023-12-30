@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cymgpg0gyidgn"]
+
+[ext_resource type="Script" path="res://items/pickups/collectible.gd" id="1_3v4gw"]
+
+[node name="Collectible" type="Area3D"]
+script = ExtResource("1_3v4gw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

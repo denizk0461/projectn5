@@ -140,6 +140,7 @@ func _process(delta):
 		_shoot()
 
 func _physics_process(delta):
+	#print(Engine.get_frames_per_second())
 	var direction_2d = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var direction = Vector3(direction_2d.x, 0.0, direction_2d.y)
 

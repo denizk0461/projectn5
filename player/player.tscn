@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
 [ext_resource type="PackedScene" uid="uid://cnlrmqoo4kren" path="res://player/ui/hud/messages/message_handler.tscn" id="3_6aahp"]
-[ext_resource type="PackedScene" uid="uid://b6esnbt2b5smi" path="res://items/equippables/common/auto_target_sprite.tscn" id="5_2ckc7"]
+[ext_resource type="PackedScene" uid="uid://b6esnbt2b5smi" path="res://items/equippables/common/auto_target/auto_target_sprite.tscn" id="5_8sgjl"]
 [ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://items/equippables/101/crosshair.webp" id="5_a2uri"]
 [ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://player/ui/pause_menu/front_screen/pause_menu.tscn" id="6_gflff"]
 [ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="7_ntdeo"]
@@ -41,7 +41,7 @@ grow_vertical = 2
 texture = ExtResource("5_a2uri")
 expand_mode = 1
 
-[node name="AutoTargetSprite" parent="HUD" instance=ExtResource("5_2ckc7")]
+[node name="AutoTargetSprite" parent="HUD" instance=ExtResource("5_8sgjl")]
 
 [node name="GUI" type="Node3D" parent="."]
 
