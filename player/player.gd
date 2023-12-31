@@ -99,10 +99,22 @@ func _handle_jump():
 			_is_second_jump = _jump_count == 2
 			disallow_second_jump_after(0.6)
 		
-		if _is_second_jump:
-			$Pivot/Character.second_jump()
-		else:
+		_jump_state_change()
+
+func _jump_state_change():
+	match _jump_count:
+		1:
 			$Pivot/Character.first_jump()
+			print(1)
+		2:
+			$Pivot/Character.second_jump()
+			$HUD/AutoTargetSprite.hide()
+			print(2)
+		_: # 0
+			print(
+				0
+			)
+			$HUD/AutoTargetSprite.show()
 
 func disallow_second_jump_after(seconds: float):
 	var jump_count_before_timer = _total_jump_count
@@ -224,8 +236,10 @@ func _physics_process(delta):
 		$Pivot/Character.walk()
 	
 	if is_on_floor():
+		if _jump_count > 0:
+			_jump_count = 0
+			_jump_state_change()
 		_wants_to_jump = false
-		_jump_count = 0
 		_is_second_jump = false
 
 func target_npc(npc: Node3D):
