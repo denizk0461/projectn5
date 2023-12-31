@@ -96,8 +96,6 @@ func _handle_jump():
 		else:
 			_jump_count += 1
 			_has_jumped = true
-			
-			_is_second_jump = _jump_count == 2
 			disallow_second_jump_after(0.6)
 		
 		_jump_state_change()
@@ -106,15 +104,11 @@ func _jump_state_change():
 	match _jump_count:
 		1:
 			$Pivot/Character.first_jump()
-			print(1)
 		2:
 			$Pivot/Character.second_jump()
 			$HUD/AutoTargetSprite.hide()
-			print(2)
+			_is_second_jump = true
 		_: # 0
-			print(
-				0
-			)
 			$HUD/AutoTargetSprite.show()
 
 func disallow_second_jump_after(seconds: float):
