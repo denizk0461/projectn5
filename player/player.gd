@@ -60,6 +60,7 @@ func _input(event):
 		_handle_jump()
 	
 	elif event.is_action_pressed("pause") and not get_tree().paused:
+		set_process_input(false)
 		_pause_game()
 	
 	elif event.is_action_pressed("quick_select_action"):
@@ -293,3 +294,8 @@ func show_vendor_message():
 
 func hide_vendor_message():
 	_message_handler.hide_message(_message_handler.MESSAGE_SMALL)
+
+
+func _on_pause_menu_on_pause_menu_closed():
+	#get_tree().paused = false
+	set_process_input(true)

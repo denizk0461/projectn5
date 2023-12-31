@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3dnq1mhtehaw" path="res://player/ui/pause_menu/options_menu/options_menu.tscn" id="4_2eprf"]
 [ext_resource type="FontFile" uid="uid://cncaotha3bqnj" path="res://fonts/kanit/kanit_medium.ttf" id="8_ol3b3"]
 
-[node name="Control" type="Control"]
+[node name="PauseMenu" type="Control"]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15

@@ -6,13 +6,14 @@ var _menu_index: int = 0
 # TODO alternatively maybe a PlayerOptions node?
 
 signal equip_weapon_from_menu(id)
+signal on_pause_menu_closed()
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-#		_resume() # commented out because of glitch: pressing the button registers
+		_resume()
+		#_resume() # commented out because of glitch: pressing the button registers
 		# that the menu should be closed, thus closing the menu and unpausing the
 		# game, but in-game it is also registered, thus pausing the game again
-		pass
 	elif event.is_action_pressed("ui_cancel"):
 		_navigate_back()
 
@@ -53,6 +54,7 @@ func _navigate_back():
 func open():
 	show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	set_process_input(true)
 	_menu_index = 0
 	# hide everything just to be safe
 	$WeaponsMenu.hide()
@@ -104,8 +106,10 @@ func _on_button_options_pressed():
 
 func _resume():
 	get_tree().paused = false
+	set_process_input(false)
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	on_pause_menu_closed.emit()
 
 func _on_button_quit_pressed():
 	# later in development, check if the player saved before quitting the game!

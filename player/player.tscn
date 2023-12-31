@@ -88,4 +88,5 @@ one_shot = true
 script = ExtResource("11_87gof")
 
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
+[connection signal="on_pause_menu_closed" from="GUI/PauseMenu" to="." method="_on_pause_menu_on_pause_menu_closed"]
 [connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]
