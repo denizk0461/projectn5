@@ -230,11 +230,11 @@ func _physics_process(delta):
 
 func target_npc(npc: Node3D):
 	_targeted_npc = npc
-	_message_handler.show_message("HUD_TALK_TO_NPC")
+	_message_handler.show_message(_message_handler.MESSAGE_REGULAR, "HUD_TALK_TO_NPC")
 
 func forget_npc():
 	_targeted_npc = null
-	_message_handler.hide_message()
+	_message_handler.hide_message(_message_handler.MESSAGE_REGULAR)
 
 # position player in front of NPC and face NPC for conversation
 func _position_player_for_conversation():
@@ -263,9 +263,19 @@ func collect_ammo_pickup(weapon_id: int) -> bool:
 	var reload_values = $Inventory.reload_gun(weapon_id)
 	if reload_values["has_collected"]:
 		_message_handler.show_timed_message(
+			_message_handler.MESSAGE_REGULAR,
 			tr("HUD_COLLECTED_AMMO").format({
 				"refill_amount": reload_values["refill_amount"],
 				"weapon_name": tr(ItemManager.get_item_attribute(weapon_id, 1, ItemManager.ATTR_NAME)),
 			})
 		)
 	return reload_values["has_collected"]
+
+func show_vendor_message():
+	_message_handler.show_message(
+		_message_handler.MESSAGE_SMALL,
+		"MESSAGE_OPEN_VENDOR",
+	)
+
+func hide_vendor_message():
+	_message_handler.hide_message(_message_handler.MESSAGE_SMALL)

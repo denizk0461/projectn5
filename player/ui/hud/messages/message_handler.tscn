@@ -14,7 +14,6 @@ Panel/styles/panel = SubResource("StyleBoxFlat_pdj7h")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_dfl7s")
 
 [node name="MessageHandler" type="Control"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +22,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gquuf")
 
-[node name="Background" type="PanelContainer" parent="."]
+[node name="Message" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -38,19 +38,52 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_jn7y5")
 
-[node name="Margin" type="MarginContainer" parent="Background"]
+[node name="Margin" type="MarginContainer" parent="Message"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 8
 
-[node name="TextField" type="Label" parent="Background/Margin"]
+[node name="TextField" type="Label" parent="Message/Margin"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
 theme_override_fonts/font = ExtResource("2_she3e")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="Message"]
+one_shot = true
+
+[node name="MessageSmall" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.5
+offset_top = -860.0
+offset_right = 32.5
+offset_bottom = -769.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_jn7y5")
+
+[node name="Margin" type="MarginContainer" parent="MessageSmall"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 8
+
+[node name="TextField" type="Label" parent="MessageSmall/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
+theme_override_fonts/font = ExtResource("2_she3e")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="MessageSmall"]
 one_shot = true

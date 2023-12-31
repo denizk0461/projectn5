@@ -17,7 +17,11 @@ var _may_shoot: bool = true
 
 func shoot():
 	if _may_shoot and _inventory.shoot_gun(gun_id):
-		var direction = ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
+		var direction: Vector3
+		if not $ProjectileSpawn/AutoTarget == null and $ProjectileSpawn/AutoTarget.is_targeting_enemy():
+			direction = ($ProjectileSpawn/AutoTarget.get_targeted_enemy_global_position() - $ProjectileSpawn.global_position).normalized()
+		else:
+			direction = ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
 		var projectile = load(ItemManager.get_projectile_path(gun_id, 1)).instantiate()
 		projectile.position = $ProjectileSpawn.global_position
 		projectile.linear_velocity = direction * projectile_speed

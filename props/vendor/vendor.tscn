@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmg15fwjwvdqt"]
+
+[ext_resource type="PackedScene" uid="uid://dgsyf5jnnqn3j" path="res://props/vendor/vendor.glb" id="1_ikcuc"]
+[ext_resource type="Script" path="res://props/vendor/vendor.gd" id="1_wvkt6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dwhul"]
+height = 0.451555
+radius = 1.71766
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgtsy"]
+height = 1.95468
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl5dw"]
+size = Vector3(0.84, 0.84, 0.84)
+
+[node name="Vendor" type="Area3D"]
+script = ExtResource("1_wvkt6")
+
+[node name="Mesh" parent="." instance=ExtResource("1_ikcuc")]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0)
+shape = SubResource("CylinderShape3D_dwhul")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976373, 0)
+shape = SubResource("CapsuleShape3D_rgtsy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424, 0)
+shape = SubResource("BoxShape3D_pl5dw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -77,7 +77,9 @@ func get_icon_path(id) -> String:
 	return "%s/%d/icon.webp" % [_ITEM_PATH, id]
 
 func get_scene_path(id, version) -> String:
-	return "%s/%d/v%d/item.tscn" % [_ITEM_PATH, id, version]
+	var a = "%s/%d/v%d/item.tscn" % [_ITEM_PATH, id, version]
+	print(a)
+	return a
 
 func get_projectile_path(id, version) -> String:
 	return "%s/%d/v%d/projectile.tscn" % [_ITEM_PATH, id, version]
