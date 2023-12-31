@@ -5,7 +5,13 @@ extends HBoxContainer
 
 #@onready var _inventory: Node3D
 
-signal equip_weapon_from_weapons_menu(id: int)
+signal equip_weapon_from_weapons_menu(id: int) # TODO this stopped working and needs to be overhauled
+signal on_weapons_menu_closed()
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		on_weapons_menu_closed.emit()
+		set_process_input(false)
 
 var _base_slot_texture_normal = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_normal.png").get_image())
 var _base_slot_texture_hovered = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_hovered.png").get_image())
@@ -23,6 +29,7 @@ var _item_slot_ids = [
 ]
 
 func _ready():
+	set_process_input(false)
 	_item_preview_viewport = $PreviewContainer/ItemPreviewContainer/ItemPreview
 	_item_slots = [
 		$WeaponsGrid/WeaponsRow0/Slot0,

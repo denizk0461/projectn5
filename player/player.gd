@@ -51,7 +51,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
-	
+	$SaveState.save()
 	# prevent SpringArm3D (camera) from colliding with player character
 	$SpringArm3D.add_excluded_object(self)
 

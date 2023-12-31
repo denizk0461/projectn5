@@ -3,7 +3,6 @@ extends Control
 var _menu_index: int = 0
 
 # references to nodes relevant for the options menu
-@onready var _player_camera = get_node("/root/Main/Player/SpringArm3D")
 # TODO alternatively maybe a PlayerOptions node?
 
 signal equip_weapon_from_menu(id)
@@ -18,6 +17,7 @@ func _input(event):
 		_navigate_back()
 
 func _navigate_back():
+	set_process_input(true)
 	match _menu_index:
 		0:
 			_resume()
@@ -46,11 +46,9 @@ func _navigate_back():
 			$OptionsMenu.hide()
 			$MainMenu.show()
 			$MainMenu/ButtonOptions.grab_focus()
-		51:
-			_menu_index = 5
-			$ControlsMenu.hide()
-			$OptionsMenu.show()
-			$OptionsMenu/MarginContainer/Container/ViewControlsButton.grab_focus()
+		#51:
+			#_menu_index = 5
+			#$OptionsMenu.show()
 
 func open():
 	show()
@@ -61,7 +59,6 @@ func open():
 	$GadgetsMenu.hide()
 	$ItemsMenu.hide()
 	$OptionsMenu.hide()
-	$ControlsMenu.hide()
 	
 	$MainMenu.show()
 	$MainMenu/ButtonResume.grab_focus()
@@ -74,33 +71,36 @@ func _on_button_reload_pressed():
 	_resume()
 
 func _on_button_weapons_pressed():
+	set_process_input(false)
 	_menu_index = 1
 	$MainMenu.hide()
 	$WeaponsMenu.show_and_focus()
+	$WeaponsMenu.set_process_input(true)
 
 func _on_button_gadgets_pressed():
+	set_process_input(false)
 	_menu_index = 2
 	$MainMenu.hide()
 	$GadgetsMenu.show()
 
 func _on_button_quick_select_pressed():
+	set_process_input(false)
 	_menu_index = 3
 	$MainMenu.hide()
 	$QuickSelectMenu.show()
 
 func _on_button_items_pressed():
+	set_process_input(false)
 	_menu_index = 4
 	$MainMenu.hide()
 	$ItemsMenu.show()
 
 func _on_button_options_pressed():
+	set_process_input(false)
 	_menu_index = 5
 	$MainMenu.hide()
 	$OptionsMenu.show()
-	$OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.grab_focus()
-	# set options such as sliders
-	$OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.value = _player_camera.mouse_sensitivity
-	$OptionsMenu/MarginContainer/Container/ControllerSensitivitySlider.value = _player_camera.stick_sensitivity
+	$OptionsMenu.set_process_input(true)
 
 func _resume():
 	get_tree().paused = false
@@ -111,22 +111,12 @@ func _on_button_quit_pressed():
 	# later in development, check if the player saved before quitting the game!
 	get_tree().quit()
 
-func _on_options_back_button_pressed():
-	# save settings
-	_player_camera.mouse_sensitivity = $OptionsMenu/MarginContainer/Container/MouseSensitivitySlider.value
-	_player_camera.stick_sensitivity = $OptionsMenu/MarginContainer/Container/ControllerSensitivitySlider.value
-	_navigate_back()
-
-func _on_english_pressed():
-	TranslationServer.set_locale("en")
-
-func _on_german_pressed():
-	TranslationServer.set_locale("de")
-
-func _on_view_controls_button_pressed():
-	_menu_index = 51
-	$OptionsMenu.hide()
-	$ControlsMenu.show()
-
 func _on_equip_weapon_from_weapons_menu(id):
 	equip_weapon_from_menu.emit(id)
+
+
+func _on_weapons_menu_on_weapons_menu_closed():
+	_navigate_back()
+
+func _on_options_menu_on_options_menu_closed():
+	_navigate_back()

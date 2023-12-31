@@ -2,6 +2,16 @@ extends Panel
 
 var _currently_used_controller_name: String = "nothing"
 
+signal on_controls_screen_closed()
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		on_controls_screen_closed.emit()
+		set_process_input(false)
+
+func _ready():
+	set_process_input(false)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var new_controller_name = Input.get_joy_name(0)
@@ -29,3 +39,4 @@ func _process(delta):
 				$Xbox.hide()
 				$Nintendo.hide()
 				$KBM.hide()
+	# TODO use one self-designed layout for all controllers, and one for KBM

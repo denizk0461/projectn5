@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4kthht6lr2je"
-path="res://.godot/imported/de.png-a7a3785652811d7d46ddb9b66603a147.ctex"
+uid="uid://by8y5p1ao166y"
+path="res://.godot/imported/xbox.png-3a9b5813367e8807c8d5c3bf51a1641d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/pause_menu/options/country_flags/de.png"
-dest_files=["res://.godot/imported/de.png-a7a3785652811d7d46ddb9b66603a147.ctex"]
+source_file="res://player/ui/pause_menu/options_menu/controls_screens/controller_images/xbox.png"
+dest_files=["res://.godot/imported/xbox.png-3a9b5813367e8807c8d5c3bf51a1641d.ctex"]
 
 [params]
 

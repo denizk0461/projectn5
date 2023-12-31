@@ -14,13 +14,8 @@ var items: Dictionary = {
 	#401: true, # hm
 }
 
-#var gun_ammo_count: Dictionary = {
-	#101: 60,
-	#199: 40,
-#}
-
 # must be length 8
-var quick_select: Array[int] = [101,199,101,101,199,101,101,199]
+var quick_select: Array[int] = [101,199,101,101,199,101,101,-1]
 var equipped_melee: int = 401
 var equipped_gun_id: int = 101 if quick_select[0] == 0 else quick_select[0]
 var is_melee_equipped: bool = true # false if gun/gadget

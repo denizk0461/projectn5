@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=13 format=3 uid="uid://diryunrxqcygg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwgjb2ijo7tsb" path="res://player/character/character.tscn" id="8_0u8ef"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="9_r6gip"]
 [ext_resource type="Script" path="res://player/inventory.gd" id="10_jm8ho"]
+[ext_resource type="Script" path="res://player/save_state.gd" id="11_87gof"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e7qgu"]
 height = 1.65
@@ -82,6 +83,9 @@ shape = SubResource("CylinderShape3D_e7qgu")
 
 [node name="SecondJumpTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SaveState" type="Node3D" parent="."]
+script = ExtResource("11_87gof")
 
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
 [connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]

@@ -1,0 +1,578 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy55ucsesktru"]
+
+[ext_resource type="Script" path="res://player/ui/pause_menu/options_menu/controls_screens/controls_screen.gd" id="1_38ygu"]
+[ext_resource type="Texture2D" uid="uid://cpq1m5b4njvj5" path="res://player/ui/pause_menu/options_menu/controls_screens/controller_images/playstation.png" id="2_ros5w"]
+[ext_resource type="PackedScene" uid="uid://dbs1wdtbodct2" path="res://player/ui/pause_menu/options_menu/controls_screens/controls_label.tscn" id="3_ew2y5"]
+[ext_resource type="Texture2D" uid="uid://by8y5p1ao166y" path="res://player/ui/pause_menu/options_menu/controls_screens/controller_images/xbox.png" id="4_5wmtp"]
+[ext_resource type="Texture2D" uid="uid://bsfd2xupl0g77" path="res://player/ui/pause_menu/options_menu/controls_screens/controller_images/nintendo.png" id="5_majr8"]
+
+[node name="ControlsScreen" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -900.0
+offset_top = -480.0
+offset_right = 900.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38ygu")
+
+[node name="PlayStation" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ControllerImage" type="TextureRect" parent="PlayStation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1780.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ros5w")
+stretch_mode = 4
+
+[node name="Camera" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.55
+anchor_top = 16.425
+anchor_right = 47.075
+anchor_bottom = 17.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_CAMERA"
+autowrap_mode = 3
+
+[node name="Move" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.875
+anchor_top = 16.4
+anchor_right = 10.55
+anchor_bottom = 17.55
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MOVE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Jump" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 10.325
+anchor_right = 46.325
+anchor_bottom = 11.475
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_JUMP"
+autowrap_mode = 3
+
+[node name="ShootFace" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 11.675
+anchor_right = 47.325
+anchor_bottom = 12.825
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="Strike" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 13.05
+anchor_right = 47.425
+anchor_bottom = 14.2
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MELEE"
+autowrap_mode = 3
+
+[node name="Action" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 14.425
+anchor_right = 49.125
+anchor_bottom = 15.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_QUICK_SELECT"
+autowrap_mode = 3
+
+[node name="ShoulderR" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 4.25
+anchor_right = 48.975
+anchor_bottom = 5.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOULDER_R"
+autowrap_mode = 3
+
+[node name="ShootTrigger" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 5.5
+anchor_right = 46.825
+anchor_bottom = 6.65
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="PreciseAim" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.7
+anchor_top = 4.25
+anchor_right = 9.95
+anchor_bottom = 5.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_AIM"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Strafe" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.025
+anchor_top = 5.5
+anchor_right = 9.95
+anchor_bottom = 6.65
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_STRAFE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Select" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.525
+anchor_top = 7.725
+anchor_right = 11.45
+anchor_bottom = 8.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SELECT"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Dpad" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.825
+anchor_top = 12.35
+anchor_right = 10.5
+anchor_bottom = 13.5
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_DPAD"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Pause" parent="PlayStation" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 33.575
+anchor_top = 7.725
+anchor_right = 45.3
+anchor_bottom = 8.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_PAUSE"
+autowrap_mode = 3
+
+[node name="Xbox" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ControllerImage" type="TextureRect" parent="Xbox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1780.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5wmtp")
+stretch_mode = 4
+
+[node name="Camera" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 36.125
+anchor_top = 19.35
+anchor_right = 48.65
+anchor_bottom = 20.5
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_CAMERA"
+autowrap_mode = 3
+
+[node name="Move" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_top = 12.125
+anchor_right = 11.325
+anchor_bottom = 13.275
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MOVE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Jump" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 9.85
+anchor_right = 46.325
+anchor_bottom = 11.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_JUMP"
+autowrap_mode = 3
+
+[node name="ShootFace" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 11.35
+anchor_right = 47.325
+anchor_bottom = 12.5
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="Strike" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 12.85
+anchor_right = 47.425
+anchor_bottom = 14.0
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MELEE"
+autowrap_mode = 3
+
+[node name="Action" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 14.425
+anchor_right = 49.125
+anchor_bottom = 15.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_QUICK_SELECT"
+autowrap_mode = 3
+
+[node name="ShoulderR" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 4.025
+anchor_right = 48.975
+anchor_bottom = 5.175
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOULDER_R"
+autowrap_mode = 3
+
+[node name="ShootTrigger" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.0
+anchor_top = 5.725
+anchor_right = 46.825
+anchor_bottom = 6.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="PreciseAim" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.7
+anchor_top = 4.025
+anchor_right = 9.95
+anchor_bottom = 5.175
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_AIM"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Strafe" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.025
+anchor_top = 5.725
+anchor_right = 9.95
+anchor_bottom = 6.875
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_STRAFE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Select" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 7.525
+anchor_top = 4.025
+anchor_right = 19.5
+anchor_bottom = 5.175
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SELECT"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Dpad" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.175
+anchor_top = 16.8
+anchor_right = 10.15
+anchor_bottom = 17.95
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_DPAD"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Pause" parent="Xbox" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 25.65
+anchor_top = 4.025
+anchor_right = 37.375
+anchor_bottom = 5.175
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_PAUSE"
+autowrap_mode = 3
+
+[node name="Nintendo" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ControllerImage" type="TextureRect" parent="Nintendo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 1780.0
+offset_bottom = 940.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_majr8")
+stretch_mode = 4
+
+[node name="Camera" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.7
+anchor_top = 16.25
+anchor_right = 47.225
+anchor_bottom = 17.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_CAMERA"
+autowrap_mode = 3
+
+[node name="Move" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.125
+anchor_top = 12.225
+anchor_right = 11.3
+anchor_bottom = 13.375
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MOVE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Jump" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 10.0
+anchor_right = 46.325
+anchor_bottom = 11.15
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_JUMP"
+autowrap_mode = 3
+
+[node name="ShootFace" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 11.45
+anchor_right = 47.325
+anchor_bottom = 12.6
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="Strike" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 12.95
+anchor_right = 47.425
+anchor_bottom = 14.1
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_MELEE"
+autowrap_mode = 3
+
+[node name="Action" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 34.9
+anchor_top = 14.425
+anchor_right = 49.125
+anchor_bottom = 15.575
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_QUICK_SELECT"
+autowrap_mode = 3
+
+[node name="ShoulderR" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.625
+anchor_top = 4.075
+anchor_right = 49.6
+anchor_bottom = 5.225
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOULDER_R"
+autowrap_mode = 3
+
+[node name="ShootTrigger" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 35.625
+anchor_top = 5.325
+anchor_right = 47.45
+anchor_bottom = 6.475
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SHOOT"
+autowrap_mode = 3
+
+[node name="PreciseAim" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.275
+anchor_top = 4.05
+anchor_right = 9.375
+anchor_bottom = 5.2
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_AIM"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Strafe" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.6
+anchor_top = 5.3
+anchor_right = 9.375
+anchor_bottom = 6.45
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_STRAFE"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Select" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 6.475
+anchor_top = 3.175
+anchor_right = 18.45
+anchor_bottom = 4.325
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_SELECT"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Dpad" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.1
+anchor_top = 16.25
+anchor_right = 10.225
+anchor_bottom = 17.4
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_DPAD"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Pause" parent="Nintendo" instance=ExtResource("3_ew2y5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 26.8
+anchor_top = 3.175
+anchor_right = 38.525
+anchor_bottom = 4.325
+grow_horizontal = 1
+grow_vertical = 1
+text = "MENU_OPTIONS_CONTROLS_PAUSE"
+autowrap_mode = 3
+
+[node name="KBM" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = -60.0
+offset_top = -60.0
+offset_right = -20.0
+offset_bottom = -20.0

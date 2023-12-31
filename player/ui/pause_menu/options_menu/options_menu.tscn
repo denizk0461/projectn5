@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3dnq1mhtehaw"]
+
+[ext_resource type="FontFile" uid="uid://w5owbup6tmbb" path="res://fonts/kanit/kanit_semibolditalic.ttf" id="1_l8mm8"]
+[ext_resource type="Script" path="res://player/ui/pause_menu/options_menu/options_menu.gd" id="1_qom2m"]
+[ext_resource type="PackedScene" uid="uid://cabnwqbpm1qhd" path="res://player/ui/pause_menu/ui_button.tscn" id="2_ly005"]
+[ext_resource type="Texture2D" uid="uid://dipu5as8vtdjq" path="res://player/ui/pause_menu/options_menu/country_flags/en.png" id="3_nxc0x"]
+[ext_resource type="Texture2D" uid="uid://4kthht6lr2je" path="res://player/ui/pause_menu/options_menu/country_flags/de.png" id="4_mf66b"]
+[ext_resource type="PackedScene" uid="uid://cy55ucsesktru" path="res://player/ui/pause_menu/options_menu/controls_screens/controls_screen.tscn" id="6_uiw2u"]
+
+[node name="OptionsMenu" type="Panel"]
+offset_left = 723.0
+offset_top = 287.0
+offset_right = 1197.0
+offset_bottom = 690.0
+script = ExtResource("1_qom2m")
+
+[node name="OptionsContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 474.0
+offset_bottom = 403.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Container" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+
+[node name="LabelTitle" type="Label" parent="OptionsContainer/Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l8mm8")
+theme_override_font_sizes/font_size = 28
+text = "MENU_OPTIONS_TITLE"
+
+[node name="LabelCameraMouse" type="Label" parent="OptionsContainer/Container"]
+layout_mode = 2
+text = "MENU_OPTIONS_CAMERA_SENSITIVITY_MOUSE"
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="OptionsContainer/Container"]
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+value = 1.0
+
+[node name="LabelCameraController" type="Label" parent="OptionsContainer/Container"]
+layout_mode = 2
+text = "MENU_OPTIONS_CAMERA_SENSITIVITY_CONTROLLER"
+
+[node name="ControllerSensitivitySlider" type="HSlider" parent="OptionsContainer/Container"]
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+value = 1.0
+
+[node name="ViewControlsButton" parent="OptionsContainer/Container" instance=ExtResource("2_ly005")]
+layout_mode = 2
+text = "MENU_OPTIONS_VIEW_CONTROLS"
+
+[node name="LanguageContainer" type="HBoxContainer" parent="OptionsContainer/Container"]
+layout_mode = 2
+
+[node name="English" type="TextureButton" parent="OptionsContainer/Container/LanguageContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("3_nxc0x")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="German" type="TextureButton" parent="OptionsContainer/Container/LanguageContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_mf66b")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SaveGameButton" parent="OptionsContainer/Container" instance=ExtResource("2_ly005")]
+layout_mode = 2
+text = "MENU_OPTIONS_SAVE_GAME"
+
+[node name="LoadGameButton" parent="OptionsContainer/Container" instance=ExtResource("2_ly005")]
+layout_mode = 2
+text = "MENU_OPTIONS_LOAD_GAME"
+
+[node name="OptionsBackButton" parent="OptionsContainer/Container" instance=ExtResource("2_ly005")]
+layout_mode = 2
+text = "MENU_BACK"
+
+[node name="ControlsScreen" parent="." instance=ExtResource("6_uiw2u")]
+visible = false
+layout_mode = 1
+
+[connection signal="value_changed" from="OptionsContainer/Container/MouseSensitivitySlider" to="." method="_on_mouse_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/Container/ControllerSensitivitySlider" to="." method="_on_controller_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="OptionsContainer/Container/ViewControlsButton" to="." method="_on_view_controls_button_pressed"]
+[connection signal="pressed" from="OptionsContainer/Container/LanguageContainer/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="OptionsContainer/Container/LanguageContainer/German" to="." method="_on_german_pressed"]
+[connection signal="pressed" from="OptionsContainer/Container/OptionsBackButton" to="." method="_on_options_back_button_pressed"]
+[connection signal="on_controls_screen_closed" from="ControlsScreen" to="." method="_on_controls_screen_on_controls_screen_closed"]
