@@ -66,6 +66,7 @@ func _input(event):
 		_pause_game()
 	
 	elif event.is_action_pressed("quick_select_action"):
+		_message_handler.hide_messages_instantly()
 		if _is_in_front_of_vendor:
 			_open_vendor()
 		else:
@@ -309,8 +310,12 @@ func _open_vendor():
 func _on_vendor_menu_closed():
 	set_process_input(true)
 	_show_vendor_message()
+	_message_handler.show_messages_instantly()
 
 func _on_pause_menu_on_pause_menu_closed():
 	#get_tree().paused = false
 	set_process_input(true)
+	_message_handler.show_messages_instantly()
+
+func _on_quick_select_closed():
 	_message_handler.show_messages_instantly()
