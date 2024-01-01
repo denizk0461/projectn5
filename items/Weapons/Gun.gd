@@ -1,36 +1,79 @@
 extends Node3D
 
-@export var gun_id: int
+@export_group("Gun Statistics")
+@export_range(101, 199) var gun_id: int
+@export_range(1, 3) var gun_level: int
 @export var ammo_id: int
+@export var max_ammo: int
+
+@export_group("Projectile")
 @export var projectile_offset: Vector3 = Vector3.ZERO
 @export var projectile_name: String = "AngryIcosphere"
-@export var max_ammo: int
 @export var projectile_speed: float
 @export var despawn_after_secs: float = 2.0
+
+@export_group("Misc")
 @export var shoot_timeout: float = 0.3
-@export_enum("Semi", "Automatic") var shoot_type: String
+@export_enum("Semiauto", "Automatic") var shoot_type: String
 @export var icon: CompressedTexture2D
+
 var _may_shoot: bool = true
+var _may_shoot_automatic: bool = false
+var _automatic_timeout: bool = false
 
 @onready var _projectiles = get_node("/root/Main/Projectiles")
 @onready var _inventory = get_node("/root/Main/Player/Inventory")
 
-func shoot():
+#signal get_player_rotation() -> ?
+
+func start_shooting():
+	match shoot_type:
+		"Automatic":
+			_may_shoot_automatic = true
+			#while _may_shoot_test:
+				#_shoot_once()
+		_: # semiauto
+			_shoot_once()
+
+func _process(delta):
+	if _may_shoot_automatic and not _automatic_timeout:
+		_shoot_once()
+		_automatic_timeout = true
+		$Timer.start(shoot_timeout)
+		await $Timer.timeout
+		_automatic_timeout = false
+
+func _shoot_once():
 	if _may_shoot and _inventory.shoot_gun(gun_id):
 		var direction: Vector3
 		if not $ProjectileSpawn/AutoTarget == null and $ProjectileSpawn/AutoTarget.is_targeting_enemy():
-			direction = ($ProjectileSpawn/AutoTarget.get_targeted_enemy_global_position() - $ProjectileSpawn.global_position).normalized()
+			var enemy_global_position = $ProjectileSpawn/AutoTarget.get_targeted_enemy_global_position()
+			if enemy_global_position == Vector3.ZERO:
+				direction = _get_default_projectile_direction()
+			else:
+				direction = (enemy_global_position - $ProjectileSpawn.global_position).normalized()
 		else:
-			direction = ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
-		var projectile = load(ItemManager.get_projectile_path(gun_id, 1)).instantiate()
+			direction = _get_default_projectile_direction()
+		var projectile = load(ItemManager.get_projectile_path(gun_id, gun_level)).instantiate()
 		projectile.position = $ProjectileSpawn.global_position
 		projectile.linear_velocity = direction * projectile_speed
 		_projectiles.add_child(projectile)
 		
-		if shoot_type == "Semi":
+		if shoot_type == "Semiauto":
 			_pause_shooting()
 		
 		_despawn(projectile)
+
+func _get_default_projectile_direction() -> Vector3:
+	return ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
+
+func stop_shooting():
+	print('stop')
+	_may_shoot_automatic = false
+	$Timer.stop()
+	$Timer.emit_signal("timeout")
+
+#func shoot():
 
 func _pause_shooting():
 	_may_shoot = false

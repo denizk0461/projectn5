@@ -15,14 +15,15 @@ glow_blend_mode = 0
 [node name="Item" type="Node3D"]
 script = ExtResource("1_3a356")
 gun_id = 101
+gun_level = 1
 ammo_id = 601
+max_ammo = 60
 projectile_offset = Vector3(0, 0.26, 0.5)
 projectile_name = "BlueIcosphere"
-max_ammo = 60
 projectile_speed = 40.0
 despawn_after_secs = 3.0
 shoot_timeout = 0.1
-shoot_type = "Semi"
+shoot_type = "Automatic"
 icon = ExtResource("2_fcmvh")
 
 [node name="ProjectileSpawn" type="Node3D" parent="."]
@@ -38,3 +39,5 @@ transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Model"]
 environment = SubResource("Environment_0qik2")
+
+[node name="Timer" type="Timer" parent="."]

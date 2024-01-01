@@ -33,7 +33,7 @@ func is_targeting_enemy() -> bool:
 	return not _targeted_enemy_index == -1
 
 func get_targeted_enemy_global_position() -> Vector3:
-	if is_targeting_enemy():
+	if is_targeting_enemy() and _targeted_enemy_index < _colliders.size():
 		var position = _colliders[_targeted_enemy_index].global_position
 		position.y += _colliders[_targeted_enemy_index].get_node("CollisionShape3D").shape.height / 2
 		return position

@@ -85,6 +85,16 @@ func _input(event):
 		else:
 			# air attack
 			pass
+	elif event.is_action_pressed("shoot") and not _is_second_jump:
+		if $Inventory.is_melee_equipped:
+			# don't shoot upon equipping the gun
+			$Inventory.switch_to_gun()
+			$Pivot/Character.point()
+		else:
+			$Pivot/Character/BoneAttachment3D/EquippedItem.get_node("Item").start_shooting()
+	elif event.is_action_released("shoot"):
+		if not $Inventory.is_melee_equipped:
+			$Pivot/Character/BoneAttachment3D/EquippedItem.get_node("Item").stop_shooting()
 
 func _handle_jump():
 	if _jump_count < 2:
@@ -137,12 +147,13 @@ func _open_quick_select():
 	get_tree().paused = true
 
 func _shoot():
-	if $Inventory.is_melee_equipped:
-		# don't shoot upon equipping the gun
-		$Inventory.switch_to_gun()
-		$Pivot/Character.point()
-	else:
-		$Pivot/Character/BoneAttachment3D/EquippedItem.get_node("Item").shoot() # convert to signal
+	pass
+	#if $Inventory.is_melee_equipped:
+		## don't shoot upon equipping the gun
+		#$Inventory.switch_to_gun()
+		#$Pivot/Character.point()
+	#else:
+		#$Pivot/Character/BoneAttachment3D/EquippedItem.get_node("Item").shoot() # convert to signal
 
 func _process(delta):
 	# position camera relative to the player
@@ -150,7 +161,8 @@ func _process(delta):
 	
 	# TODO rewrite this for semi-automatic and automatic weapons
 	if Input.is_action_just_pressed("shoot") and not _is_second_jump:
-		_shoot()
+		#_shoot()
+		pass
 
 func _physics_process(delta):
 	#print(Engine.get_frames_per_second())
