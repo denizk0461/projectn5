@@ -61,6 +61,7 @@ func _input(event):
 		_handle_jump()
 	
 	elif event.is_action_pressed("pause") and not get_tree().paused:
+		_message_handler.hide_messages_instantly()
 		set_process_input(false)
 		_pause_game()
 	
@@ -287,28 +288,29 @@ func collect_ammo_pickup(weapon_id: int) -> bool:
 func set_vendor_state(is_in_front: bool):
 	_is_in_front_of_vendor = is_in_front
 	if is_in_front:
-		show_vendor_message()
+		_show_vendor_message()
 	else:
-		hide_vendor_message()
+		_hide_vendor_message()
 
-func show_vendor_message():
+func _show_vendor_message():
 	_message_handler.show_message(
 		_message_handler.MESSAGE_SMALL,
 		"MESSAGE_OPEN_VENDOR",
 	)
 
-func hide_vendor_message(instantly: bool = false):
+func _hide_vendor_message(instantly: bool = false):
 	_message_handler.hide_message(_message_handler.MESSAGE_SMALL, instantly)
 
 func _open_vendor():
-	hide_vendor_message(true)
+	_hide_vendor_message(true)
 	$GUI/VendorMenu.open()
 	set_process_input(false)
 
 func _on_vendor_menu_closed():
 	set_process_input(true)
-	show_vendor_message()
+	_show_vendor_message()
 
 func _on_pause_menu_on_pause_menu_closed():
 	#get_tree().paused = false
 	set_process_input(true)
+	_message_handler.show_messages_instantly()

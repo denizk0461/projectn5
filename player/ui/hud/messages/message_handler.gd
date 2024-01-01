@@ -49,3 +49,13 @@ func hide_message(message_type: int, instantly: bool = false):
 		# without a timer set, and I don't see why it should do that, so let's
 		# just pretend that nothing has ever happened
 		get_tree().create_tween().tween_property(property, "modulate:a", 0, TWEEN_TIME)
+
+# hides messages for temporary purposes, such as opening a menu
+func hide_messages_instantly():
+	self.modulate.a = 0
+
+# shows messages after temporarily hiding them using hide_messages_instantly().
+# this MUST be called after hide_messages_instantly(), else no messages will be
+# visible afterwards
+func show_messages_instantly():
+	self.modulate.a = 1

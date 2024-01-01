@@ -8,6 +8,9 @@ func _input(event):
 	elif event.is_action_pressed("ui_cancel"):
 		_resume() # TODO will be changed once the menu gets implemented properly
 
+func _ready():
+	set_process_input(false)
+
 func open():
 	show()
 	get_tree().paused = true
