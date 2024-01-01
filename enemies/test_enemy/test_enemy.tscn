@@ -230,7 +230,7 @@ _data = {
 height = 1.6332
 radius = 1.2483
 
-[node name="TestEnemy" type="CharacterBody3D" groups=["enemy"]]
+[node name="TestEnemy" type="CharacterBody3D" groups=["enemy", "targetable"]]
 
 [node name="EnemyAttack" type="Area3D" parent="."]
 script = ExtResource("2_hnfxe")

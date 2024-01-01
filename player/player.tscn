@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=14 format=3 uid="uid://diryunrxqcygg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://df5ovt2ks4nt8" path="res://player/ui/pause_menu/front_screen/pause_menu.tscn" id="6_gflff"]
 [ext_resource type="PackedScene" uid="uid://plh5aii2ck1t" path="res://player/ui/quick_select/quick_select.tscn" id="7_ntdeo"]
 [ext_resource type="PackedScene" uid="uid://cwgjb2ijo7tsb" path="res://player/character/character.tscn" id="8_0u8ef"]
+[ext_resource type="PackedScene" uid="uid://bb0hyexf3to16" path="res://player/ui/vendor_menu/vendor_menu.tscn" id="8_rggh7"]
 [ext_resource type="Script" path="res://player/player_camera.gd" id="9_r6gip"]
 [ext_resource type="Script" path="res://player/inventory.gd" id="10_jm8ho"]
 [ext_resource type="Script" path="res://player/save_state.gd" id="11_87gof"]
@@ -52,6 +53,9 @@ visible = false
 [node name="QuickSelect" parent="GUI" instance=ExtResource("7_ntdeo")]
 visible = false
 
+[node name="VendorMenu" parent="GUI" instance=ExtResource("8_rggh7")]
+visible = false
+
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="DialogueCamera" type="Camera3D" parent="Pivot"]
@@ -90,3 +94,4 @@ script = ExtResource("11_87gof")
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
 [connection signal="on_pause_menu_closed" from="GUI/PauseMenu" to="." method="_on_pause_menu_on_pause_menu_closed"]
 [connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]
+[connection signal="on_vendor_menu_closed" from="GUI/VendorMenu" to="." method="_on_vendor_menu_closed"]

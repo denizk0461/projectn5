@@ -21,6 +21,7 @@ var _xz = Vector3.ZERO
 var _max_player_health: int = 4 # max_player_health should be taken from the player's save file
 var _is_second_jump: bool = false
 var _is_sliding: bool = false
+var _is_in_front_of_vendor: bool = false
 
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
@@ -64,7 +65,10 @@ func _input(event):
 		_pause_game()
 	
 	elif event.is_action_pressed("quick_select_action"):
-		_open_quick_select()
+		if _is_in_front_of_vendor:
+			_open_vendor()
+		else:
+			_open_quick_select()
 	
 	elif event.is_action_pressed("melee"):
 		if not $Inventory.is_melee_equipped:
@@ -280,15 +284,30 @@ func collect_ammo_pickup(weapon_id: int) -> bool:
 		)
 	return reload_values["has_collected"]
 
+func set_vendor_state(is_in_front: bool):
+	_is_in_front_of_vendor = is_in_front
+	if is_in_front:
+		show_vendor_message()
+	else:
+		hide_vendor_message()
+
 func show_vendor_message():
 	_message_handler.show_message(
 		_message_handler.MESSAGE_SMALL,
 		"MESSAGE_OPEN_VENDOR",
 	)
 
-func hide_vendor_message():
-	_message_handler.hide_message(_message_handler.MESSAGE_SMALL)
+func hide_vendor_message(instantly: bool = false):
+	_message_handler.hide_message(_message_handler.MESSAGE_SMALL, instantly)
 
+func _open_vendor():
+	hide_vendor_message(true)
+	$GUI/VendorMenu.open()
+	set_process_input(false)
+
+func _on_vendor_menu_closed():
+	set_process_input(true)
+	show_vendor_message()
 
 func _on_pause_menu_on_pause_menu_closed():
 	#get_tree().paused = false

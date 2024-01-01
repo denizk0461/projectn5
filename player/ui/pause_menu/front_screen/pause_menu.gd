@@ -11,9 +11,6 @@ signal on_pause_menu_closed()
 func _input(event):
 	if event.is_action_pressed("pause"):
 		_resume()
-		#_resume() # commented out because of glitch: pressing the button registers
-		# that the menu should be closed, thus closing the menu and unpausing the
-		# game, but in-game it is also registered, thus pausing the game again
 	elif event.is_action_pressed("ui_cancel"):
 		_navigate_back()
 

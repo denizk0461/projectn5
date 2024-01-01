@@ -20,12 +20,12 @@ func _process(delta):
 		SignalBus.on_body_target.emit(_colliders[_targeted_enemy_index])
 
 func _on_body_entered(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("targetable"):
 		_colliders.append(body)
 		#print(_colliders.size())
 
 func _on_body_exited(body):
-	if body.is_in_group("enemy"):
+	if body.is_in_group("targetable"):
 		_colliders.erase(body)
 		#print(_colliders.size())
 
