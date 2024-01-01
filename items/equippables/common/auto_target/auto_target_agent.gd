@@ -6,6 +6,10 @@ var _shortest_distance: int = 1000
 #@onready var _auto_target_sprite = get_tree().get_root().get_node("AutoTargetSprite")
 
 func _process(delta):
+	# rotates the hitbox for the auto target so it always faces forward
+	# (the direction the character is facing)
+	self.rotate(Vector3.LEFT, self.global_rotation.x)
+	
 	if _colliders.is_empty():
 		_targeted_enemy_index = -1
 		SignalBus.on_body_remove_target.emit()

@@ -7,7 +7,6 @@ extends Node3D
 @export var max_ammo: int
 
 @export_group("Projectile")
-@export var projectile_offset: Vector3 = Vector3.ZERO
 @export var projectile_name: String = "AngryIcosphere"
 @export var projectile_speed: float
 @export var despawn_after_secs: float = 2.0
@@ -21,6 +20,8 @@ var _may_shoot: bool = true
 var _may_shoot_automatic: bool = false
 var _automatic_timeout: bool = false
 
+var player_rotation: float
+
 @onready var _projectiles = get_node("/root/Main/Projectiles")
 @onready var _inventory = get_node("/root/Main/Player/Inventory")
 
@@ -30,8 +31,6 @@ func start_shooting():
 	match shoot_type:
 		"Automatic":
 			_may_shoot_automatic = true
-			#while _may_shoot_test:
-				#_shoot_once()
 		_: # semiauto
 			_shoot_once()
 
@@ -65,10 +64,9 @@ func _shoot_once():
 		_despawn(projectile)
 
 func _get_default_projectile_direction() -> Vector3:
-	return ($ProjectileSpawn.global_position - $ProjectileVelocityHelper.global_position).normalized()
+	return -Vector3.FORWARD.rotated(Vector3.UP, player_rotation)
 
 func stop_shooting():
-	print('stop')
 	_may_shoot_automatic = false
 	$Timer.stop()
 	$Timer.emit_signal("timeout")
