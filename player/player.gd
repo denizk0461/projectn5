@@ -14,7 +14,6 @@ var _has_jumped: bool = false
 var _max_falling_velocity = -160
 var _target_velocity = Vector3.ZERO
 var _jump_velocity: float = 0.0
-var _targeted_npc: Node3D = null
 var _ground_normal: Vector3
 var _floor_plane = Plane(Vector3.UP)
 var _xz = Vector3.ZERO
@@ -25,26 +24,6 @@ var _is_in_front_of_vendor: bool = false
 
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
-
-# states
-#const STATE_JUMP_FLOORED = 0
-#const STATE_JUMP_SINGLE_JUMPED = 1
-#const STATE_JUMP_DOUBLE_JUMPED = 2
-#var _state_jump: int = STATE_JUMP_FLOORED
-#
-#const STATE_ALLOWED_JUMPS_0 = 0
-#const STATE_ALLOWED_JUMPS_1 = 1
-#const STATE_ALLOWED_JUMPS_2 = 2
-#var _state_jumps_allowed: int = STATE_ALLOWED_JUMPS_2
-#
-#const STATE_MOVEMENT_ALLOWED = 0
-#const STATE_MOVEMENT_DISALLOWED = 0
-#var _state_movement: int = STATE_MOVEMENT_ALLOWED
-#
-#const STATE_CHARACTER_IN_AIR = 0
-#const STATE_CHARACTER_FLOORED = 0
-#const STATE_CHARACTER_SLIDING = 0
-#var _state_character: int = STATE_MOVEMENT_ALLOWED
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
@@ -146,18 +125,7 @@ func _open_quick_select():
 	$GUI/QuickSelect.activate()
 	get_tree().paused = true
 
-func _shoot():
-	pass
-	#if $Inventory.is_melee_equipped:
-		## don't shoot upon equipping the gun
-		#$Inventory.switch_to_gun()
-		#$Pivot/Character.point()
-	#else:
-		#$Pivot/Character/BoneAttachment3D/EquippedItem.get_node("Item").shoot() # convert to signal
-
 func _process(delta):
-	# position camera relative to the player
-	$SpringArm3D.position = position
 	
 	var item = $Pivot/Character/BoneAttachment3D/EquippedItem/Item
 	if not item == null:
@@ -194,7 +162,7 @@ func _physics_process(delta):
 	_xz = _target_velocity
 	
 	if _floor_plane and is_on_floor():
-		# TODO standing on sans crashes the game because of these lines!
+		# TODO standing on sans and certain slopes crashes the game because of these lines!
 		# what to do when intersection is null?
 #		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
 		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
@@ -253,22 +221,6 @@ func _physics_process(delta):
 			_jump_state_change()
 		_wants_to_jump = false
 		_is_second_jump = false
-
-func target_npc(npc: Node3D):
-	_targeted_npc = npc
-	_message_handler.show_message(_message_handler.MESSAGE_REGULAR, "HUD_TALK_TO_NPC")
-
-func forget_npc():
-	_targeted_npc = null
-	_message_handler.hide_message(_message_handler.MESSAGE_REGULAR)
-
-# position player in front of NPC and face NPC for conversation
-func _position_player_for_conversation():
-	var new_player_position = (Vector3.BACK * 2.0).rotated(Vector3.UP, _targeted_npc.rotation.y) + _targeted_npc.position
-	position = new_player_position
-	var delta = (position - _targeted_npc.position)
-	$Pivot.rotation.y = atan2(delta.x, delta.z) + deg_to_rad(180.0)
-	velocity = Vector3.ZERO
 
 func take_damage(kill_instantly: bool = false):
 	var is_dead = $HUD/PlayerHUD/HealthBar.take_damage(kill_instantly)

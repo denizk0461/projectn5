@@ -4,7 +4,6 @@ var mouse_sensitivity: float = 3.0
 var stick_sensitivity: float = 3.0
 
 func _ready():
-	set_as_top_level(true)
 	rotation_degrees.x = -20.0
 
 func _input(event):

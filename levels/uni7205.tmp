@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=18 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="Script" path="res://levels/common/world.gd" id="1_ppww0"]
 [ext_resource type="Shader" path="res://levels/common/sky.gdshader" id="2_a2vka"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://levels/common/death_plane.gd" id="11_lepd3"]
 [ext_resource type="PackedScene" uid="uid://dmg15fwjwvdqt" path="res://props/vendor/vendor.tscn" id="12_j3m0x"]
 [ext_resource type="PackedScene" uid="uid://c8sfu2aac4bbf" path="res://levels/assets/unity/rough_test_terrain.glb" id="13_k3j1v"]
-[ext_resource type="PackedScene" uid="uid://25tpxbc2tpw6" path="res://levels/assets/unity/rough_test_terrain_smoothened.glb" id="14_xe8so"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvd36"]
 shader = ExtResource("2_a2vka")
@@ -165,8 +164,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04213, 0.0104237, 1.67253)
 
 [node name="rough_test_terrain" parent="." instance=ExtResource("13_k3j1v")]
 transform = Transform3D(0.175207, 0, -0.0964486, 0, 0.2, 0, 0.0964486, 0, 0.175207, 16.9414, -0.158713, -17.3235)
-
-[node name="rough_test_terrain_smoothened" parent="." instance=ExtResource("14_xe8so")]
-transform = Transform3D(0.0957843, 0, -0.175572, 0, 0.2, 0, 0.175572, 0, 0.0957843, 12.3777, 0.191653, 12.2533)
 
 [connection signal="body_entered" from="DeathPlane" to="DeathPlane" method="_on_body_entered"]
