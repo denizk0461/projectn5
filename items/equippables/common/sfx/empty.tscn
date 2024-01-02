@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tekcm8je62nr"]
+
+[ext_resource type="AudioStream" uid="uid://bwofn54i3iba7" path="res://items/equippables/common/sfx/empty.wav" id="1_7wjjy"]
+
+[node name="Empty" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_7wjjy")

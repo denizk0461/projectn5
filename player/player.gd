@@ -27,7 +27,7 @@ var _is_in_front_of_vendor: bool = false
 
 func _ready():
 	$Pivot.look_at(Vector3(0.0, 0.0, 1.0), Vector3.UP)
-	$Inventory.switch_to_melee()
+	$Inventory.load_equipped_item()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$SpringArm3D/GameplayCamera.make_current()
 	$HUD/PlayerHUD/HealthBar.setup_health(_max_player_health)
@@ -126,7 +126,6 @@ func _open_quick_select():
 	get_tree().paused = true
 
 func _process(delta):
-	
 	var item = $Pivot/Character/BoneAttachment3D/EquippedItem/Item
 	if not item == null:
 		item.player_rotation = $Pivot.rotation.y
@@ -240,6 +239,7 @@ func _die():
 func collect_ammo_pickup(weapon_id: int) -> bool:
 	var reload_values = $Inventory.reload_gun(weapon_id)
 	if reload_values["has_collected"]:
+		$SFX/ReloadSound.play()
 		_message_handler.show_timed_message(
 			_message_handler.MESSAGE_REGULAR,
 			tr("HUD_COLLECTED_AMMO").format({

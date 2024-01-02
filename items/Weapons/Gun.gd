@@ -43,7 +43,9 @@ func _process(delta):
 		_automatic_timeout = false
 
 func _shoot_once():
-	if _may_shoot and _inventory.shoot_gun(gun_id):
+	var is_loaded = _inventory.shoot_gun(gun_id)
+	if _may_shoot and is_loaded:
+		$SFX/Shoot.play()
 		var direction: Vector3
 		if not $ProjectileSpawn/AutoTarget == null and $ProjectileSpawn/AutoTarget.is_targeting_enemy():
 			var enemy_global_position = $ProjectileSpawn/AutoTarget.get_targeted_enemy_global_position()
@@ -62,6 +64,9 @@ func _shoot_once():
 			_pause_shooting()
 		
 		_despawn(projectile)
+	elif not is_loaded:
+		$SFX/Empty.play()
+		_may_shoot_automatic = false
 
 func _get_default_projectile_direction() -> Vector3:
 	return -Vector3.FORWARD.rotated(Vector3.UP, player_rotation)

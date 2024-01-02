@@ -1,5 +1,6 @@
 extends Node3D
 
+var _load_from_equipped: bool = false
 var items: Dictionary = {
 	101: {
 		"collected": true,
@@ -16,14 +17,10 @@ var items: Dictionary = {
 
 # must be length 8
 var quick_select: Array[int] = [101,199,101,101,199,101,101,-1]
-var equipped_melee: int = 401
-var equipped_gun_id: int = 101 if quick_select[0] == 0 else quick_select[0]
+var _stored_melee_id: int = 401
+var _stored_gun_id: int = 101 if quick_select[0] == 0 else quick_select[0]
+var _equipped_item: int = 401
 var is_melee_equipped: bool = true # false if gun/gadget
-
-# 0 = melee
-# 1 = gun
-# defaults to melee
-var active_item: int = 0
 
 @onready var _player_hud = get_node("../HUD/PlayerHUD")
 
@@ -33,28 +30,36 @@ func _ready():
 	pass
 
 func _load_item(id: int):
-	var equipped_item_node = get_node("../Pivot/Character/BoneAttachment3D/EquippedItem")
-	var item = load(ItemManager.get_scene_path(id, 1)).instantiate()
-	var currently_equipped_item = equipped_item_node.get_child(0)
-	if not currently_equipped_item == null:
-		equipped_item_node.remove_child(currently_equipped_item)
-	equipped_item_node.add_child(item)
-	if id >= 100 and id <= 199: # item is a gun
-		_player_hud.setup_gun(item.max_ammo, item.icon)
+	if not id == _equipped_item or _load_from_equipped:
+		_load_from_equipped = false
+		_equipped_item = id
+		var equipped_item_node = get_node("../Pivot/Character/BoneAttachment3D/EquippedItem")
+		var item = load(ItemManager.get_scene_path(id, 1)).instantiate()
+		var currently_equipped_item = equipped_item_node.get_child(0)
+		if not currently_equipped_item == null:
+			equipped_item_node.remove_child(currently_equipped_item)
+		equipped_item_node.add_child(item)
+		if id >= 100 and id <= 199: # item is a gun
+			item.get_node("SFX/Equip").play()
+			_player_hud.setup_gun(item.max_ammo, item.icon)
+
+func load_equipped_item():
+	_load_from_equipped = true
+	_on_item_equipped(_equipped_item)
 
 func _load_melee():
 	_player_hud.hide_ammo_counter()
-	_load_item(equipped_melee)
+	_load_item(_stored_melee_id)
 
 func _load_gun():
-	_load_item(equipped_gun_id)
-	_set_ammo_counter(equipped_gun_id)
+	_load_item(_stored_gun_id)
+	_set_ammo_counter(_stored_gun_id)
 	
 func _set_ammo_counter(weapon_id):
-	_player_hud.set_ammo_counter(items[equipped_gun_id]["current_ammo"])
+	_player_hud.set_ammo_counter(items[_stored_gun_id]["current_ammo"])
 
 func _load_gadget():
-	_load_item(equipped_gun_id)
+	_load_item(_stored_gun_id)
 
 func collect_item(id: int):
 	items[id] = true
@@ -77,15 +82,15 @@ func get_collected_item_ids() -> Array[int]:
 
 func _on_item_equipped(item_id: int):
 	if item_id >= 100 and item_id <= 199: # gun
-		equipped_gun_id = item_id
+		_stored_gun_id = item_id
 		is_melee_equipped = false
 		_load_gun()
 	elif item_id >= 200 and item_id <= 299: # gadget
-		equipped_gun_id = item_id
+		_stored_gun_id = item_id
 		is_melee_equipped = false
 		_load_gadget()
 	elif item_id >= 400 and item_id <= 499: # melee
-		equipped_melee = item_id
+		_stored_melee_id = item_id
 		is_melee_equipped = true
 		_load_melee()
 
