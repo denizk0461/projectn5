@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://e0xkhcfoeswg"]
+[gd_scene load_steps=17 format=3 uid="uid://e0xkhcfoeswg"]
 
 [ext_resource type="Script" path="res://levels/common/world.gd" id="1_ppww0"]
-[ext_resource type="Texture2D" uid="uid://b8oobw4rhexoo" path="res://levels/assets/unity/skybox.jpg" id="2_merql"]
+[ext_resource type="Shader" path="res://levels/common/sky.gdshader" id="2_a2vka"]
 [ext_resource type="PackedScene" uid="uid://ddupslc6pmk5n" path="res://levels/assets/unity/unity.glb" id="3_s47va"]
 [ext_resource type="PackedScene" uid="uid://c7gvsmtl8jlgf" path="res://levels/assets/unity/mislabelled_slopes.glb" id="4_21h2e"]
 [ext_resource type="PackedScene" uid="uid://pdvsvgn24f05" path="res://enemies/test_enemy/test_enemy.tscn" id="4_lablk"]
@@ -13,18 +13,46 @@
 [ext_resource type="Script" path="res://levels/common/death_plane.gd" id="11_lepd3"]
 [ext_resource type="PackedScene" uid="uid://dmg15fwjwvdqt" path="res://props/vendor/vendor.tscn" id="12_j3m0x"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ceavi"]
-panorama = ExtResource("2_merql")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvd36"]
+shader = ExtResource("2_a2vka")
+shader_parameter/day_top_color = Color(0.635294, 0.592157, 0.337255, 1)
+shader_parameter/day_bottom_color = Color(0.572549, 0.027451, 0.262745, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0.643137, 0.435294, 0.560784, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
 
 [sub_resource type="Sky" id="Sky_fbya3"]
-sky_material = SubResource("PanoramaSkyMaterial_ceavi")
+sky_material = SubResource("ShaderMaterial_gvd36")
 
 [sub_resource type="Environment" id="Environment_trqa7"]
 background_mode = 2
 background_color = Color(0.85098, 0.501961, 0.772549, 1)
 sky = SubResource("Sky_fbya3")
 glow_enabled = true
-glow_intensity = 8.0
+glow_hdr_threshold = 2.0
 fog_light_energy = 0.77
 fog_height = 2.0
 fog_height_density = 0.676
@@ -35,13 +63,6 @@ adjustment_saturation = 8.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_df2lh"]
 size = Vector3(400, 1, 400)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohdhw"]
-albedo_color = Color(0.596078, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lg6jx"]
-material = SubResource("StandardMaterial3D_ohdhw")
-size = Vector2(400, 400)
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ppww0")
 
@@ -51,11 +72,9 @@ environment = SubResource("Environment_trqa7")
 [node name="unity" parent="." instance=ExtResource("3_s47va")]
 transform = Transform3D(0.698896, 0, 0, 0, 1, 0, 0, 0, 0.698896, 0, -3, 0)
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.635161, 0.76271, -0.121834, 0.460343, 0.500482, 0.733213, 0.620205, 0.409623, -0.668995, 42.7617, 8.71348, -93.4303)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.722509, 0.421152, -0.548281, 0, 0.793045, 0.609163, 0.691362, -0.440126, 0.572982, -18.496, 16.6639, 19.336)
+transform = Transform3D(-0.804407, 0.361891, -0.471131, -9.28253e-10, 0.793045, 0.609163, 0.594079, 0.490015, -0.637931, -12.3468, 5.66154, -7.00731)
+shadow_enabled = true
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -138,9 +157,6 @@ script = ExtResource("11_lepd3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathPlane"]
 shape = SubResource("BoxShape3D_df2lh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DeathPlane"]
-mesh = SubResource("PlaneMesh_lg6jx")
 
 [node name="Vendor" parent="." instance=ExtResource("12_j3m0x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.04213, 0.0104237, 1.67253)

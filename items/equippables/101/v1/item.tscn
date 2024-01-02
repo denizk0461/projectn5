@@ -7,9 +7,10 @@
 
 [sub_resource type="Environment" id="Environment_0qik2"]
 glow_enabled = true
-glow_levels/3 = 0.12
+glow_levels/1 = 0.31
+glow_levels/2 = 0.06
+glow_levels/3 = 0.0
 glow_levels/5 = 0.0
-glow_strength = 0.75
 glow_blend_mode = 0
 
 [node name="Item" type="Node3D"]
