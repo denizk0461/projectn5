@@ -64,7 +64,10 @@ func _input(event):
 		else:
 			# air attack
 			pass
-	elif event.is_action_pressed("shoot"): #and not _is_second_jump:
+	# TODO pressing the controller trigger is triggering this every time
+	# the value is changed (the trigger is depressed or released slightly,
+	# changing from 0.55 to 0.54 for example)
+	elif event.is_action_pressed("shoot"):
 		if $Inventory.is_melee_equipped:
 			# don't shoot upon equipping the gun
 			$Inventory.switch_to_gun()
