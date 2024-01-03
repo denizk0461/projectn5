@@ -21,8 +21,6 @@ func _process(delta):
 
 func target_body(body):
 	_targeted_body = body
-	#print("target acquired")
 
 func remove_target():
 	_targeted_body = null
-	#print("target lost :(")

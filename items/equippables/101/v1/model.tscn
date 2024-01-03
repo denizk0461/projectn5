@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://juylb4f72xq3"]
+[gd_scene load_steps=3 format=3 uid="uid://bjefsn7h1oslr"]
 
 [ext_resource type="PackedScene" uid="uid://ncb6g3gb36xi" path="res://items/equippables/101/v1/model.glb" id="1_t1pb3"]
 [ext_resource type="Material" uid="uid://8rh3g0prpf7s" path="res://materials/glass.tres" id="2_6xc31"]
 
 [node name="Model" instance=ExtResource("1_t1pb3")]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 0)
 
 [node name="BodyGlass" parent="." index="1"]
-material_override = ExtResource("2_6xc31")
+surface_material_override/0 = ExtResource("2_6xc31")
 
 [node name="Icosphere" parent="." index="4"]
-transform = Transform3D(1.24161, 0, 0, 0, 1.24161, 0, 0, 0, 1.24161, 0.312049, 1.18242, 0)
+transform = Transform3D(1.24161, 0, 0, 0, 1.18707, -0.363941, 0, 0.363941, 1.18707, 0.312049, 1.18242, 0)
 
 [node name="AnimationPlayer" parent="." index="14"]
 autoplay = "IcosphereAction_002"

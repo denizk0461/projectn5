@@ -2,12 +2,12 @@ extends Node3D
 
 @export_group("Gun Statistics")
 @export_range(101, 199) var gun_id: int
-@export_range(1, 3) var gun_level: int
-@export var ammo_id: int
+@export_range(1, 3) var gun_level: int = 1
+#@export var ammo_id: int
 @export var max_ammo: int
 
 @export_group("Projectile")
-@export var projectile_name: String = "AngryIcosphere"
+#@export var projectile_name: String = "AngryIcosphere"
 @export var projectile_speed: float
 @export var despawn_after_secs: float = 2.0
 
