@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="somethinggame"
+config/name="Project N5"
 run/main_scene="res://levels/unity.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

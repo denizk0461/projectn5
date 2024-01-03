@@ -17,7 +17,7 @@ var _jump_velocity: float = 0.0
 var _ground_normal: Vector3
 var _floor_plane = Plane(Vector3.UP)
 var _xz = Vector3.ZERO
-var _max_player_health: int = 4 # max_player_health should be taken from the player's save file
+var _max_player_health: int = 4 # TODO max_player_health should be taken from the player's save file
 var _is_second_jump: bool = false
 var _is_sliding: bool = false
 var _is_in_front_of_vendor: bool = false
