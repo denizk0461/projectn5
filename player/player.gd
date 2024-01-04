@@ -21,6 +21,9 @@ var _max_player_health: int = 4 # TODO max_player_health should be taken from th
 var _is_second_jump: bool = false
 var _is_sliding: bool = false
 var _is_in_front_of_vendor: bool = false
+var _invincibility_timeout: float = 0.8
+
+var _may_take_damage: bool = true
 
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
@@ -225,11 +228,16 @@ func _physics_process(delta):
 		_is_second_jump = false
 
 func take_damage(kill_instantly: bool = false):
-	var is_dead = $HUD/PlayerHUD/HealthBar.take_damage(kill_instantly)
-	
-	if is_dead:
-		_die()
-	# timeout (invincibility frames)
+	if _may_take_damage:
+		var is_dead = $HUD/PlayerHUD/HealthBar.take_damage(kill_instantly)
+		
+		if is_dead:
+			_die()
+		else:
+			_may_take_damage = false
+			$InvincibilityTimer.start(_invincibility_timeout)
+			await $InvincibilityTimer.timeout
+			_may_take_damage = true
 
 func _heal():
 	$HUD/PlayerHUD/HealthBar.heal()

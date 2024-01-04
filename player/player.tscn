@@ -82,6 +82,9 @@ target_position = Vector3(0, -0.6, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82588, 0)
 shape = SubResource("CylinderShape3D_e7qgu")
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="SecondJumpTimer" type="Timer" parent="."]
 one_shot = true
 
