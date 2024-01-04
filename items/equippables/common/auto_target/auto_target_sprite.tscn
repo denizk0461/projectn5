@@ -3,15 +3,25 @@
 [ext_resource type="Texture2D" uid="uid://sqw4vw3iepid" path="res://items/equippables/common/auto_target/auto_target.webp" id="1_r1wdn"]
 [ext_resource type="Script" path="res://items/equippables/common/auto_target/auto_target_sprite.gd" id="2_jw66w"]
 
-[node name="AutoTargetSprite" type="TextureRect"]
-anchors_preset = -1
+[node name="AutoTargetSprite" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jw66w")
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 2
 anchor_right = 0.0666667
 anchor_bottom = 0.118519
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 61.3333
+offset_bottom = 59.2592
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(64, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_r1wdn")
-script = ExtResource("2_jw66w")
 metadata/_edit_use_anchors_ = true

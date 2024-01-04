@@ -1,4 +1,4 @@
-extends TextureRect
+extends Control
 
 var _targeted_body: Node3D = null
 var _hidden_position: Vector2 = Vector2(-200, -200)
@@ -17,7 +17,7 @@ func _process(delta):
 		var position_on_camera = _camera.unproject_position(targeted_body_position)
 		# hacky but it works because 64 is half the height/width of the object.
 		# i need a better way of doing this
-		self.position = position_on_camera + Vector2(-64, -64)
+		self.position = position_on_camera
 
 func target_body(body):
 	_targeted_body = body
