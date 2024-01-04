@@ -437,6 +437,7 @@ locale/translations=PackedStringArray("res://localisation/localisation.de.transl
 
 [layer_names]
 
+3d_render/layer_2="enemy"
 3d_physics/layer_2="Layer 2"
 
 [physics]

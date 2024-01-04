@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=16 format=3 uid="uid://diryunrxqcygg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://player/inventory.gd" id="10_jm8ho"]
 [ext_resource type="Script" path="res://player/save_state.gd" id="11_87gof"]
 [ext_resource type="AudioStream" uid="uid://dqde8dxkkyv6e" path="res://items/pickups/ammo_pickup/reload.wav" id="13_bwwio"]
+[ext_resource type="Texture2D" uid="uid://brflltbbe3i36" path="res://player/drop_shadow.webp" id="14_0e12a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e7qgu"]
 height = 1.65
@@ -95,6 +96,12 @@ script = ExtResource("11_87gof")
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("13_bwwio")
+
+[node name="DropShadow" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.95, 0)
+size = Vector3(1, 16, 1)
+texture_albedo = ExtResource("14_0e12a")
+cull_mask = 1048573
 
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
 [connection signal="on_pause_menu_closed" from="GUI/PauseMenu" to="." method="_on_pause_menu_on_pause_menu_closed"]
