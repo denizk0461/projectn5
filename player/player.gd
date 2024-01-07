@@ -24,6 +24,7 @@ var _is_in_front_of_vendor: bool = false
 var _invincibility_timeout: float = 0.8
 
 var _may_take_damage: bool = true
+var _has_shot: bool = false
 
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
@@ -70,12 +71,15 @@ func _input(event):
 	# the value is changed (the trigger is depressed or released slightly,
 	# changing from 0.55 to 0.54 for example)
 	elif event.is_action_pressed("shoot"):
-		if $Inventory.is_melee_equipped:
-			# don't shoot upon equipping the gun
-			$Inventory.switch_to_gun()
-		else:
-			$Pivot/Character/BoneAttachment3D/EquippedItem/Item.start_shooting()
+		if not _has_shot:
+			_has_shot = true
+			if $Inventory.is_melee_equipped:
+				# don't shoot upon equipping the gun
+				$Inventory.switch_to_gun()
+			else:
+				$Pivot/Character/BoneAttachment3D/EquippedItem/Item.start_shooting()
 	elif event.is_action_released("shoot"):
+		_has_shot = false
 		if not $Inventory.is_melee_equipped:
 			$Pivot/Character/BoneAttachment3D/EquippedItem/Item.stop_shooting()
 
