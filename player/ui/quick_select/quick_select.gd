@@ -10,7 +10,6 @@ func prepare_menu():
 	_quick_select_items = get_node("../../Inventory").quick_select
 	for index in _quick_select_items.size():
 		if not _quick_select_items[index] == -1:
-			
 			var texture = ItemManager.get_icon_path(_quick_select_items[index])
 			get_node("Item%s/Slot" % index).texture = load(texture)
 
@@ -21,14 +20,24 @@ func _input(event):
 		get_tree().paused = false
 		self.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-	if _is_active:
+	
+	elif event is InputEventMouseMotion and _is_active:
+		var direction = event.position - $ArrowContainer.global_position
+		var input_angle = rad_to_deg(direction.angle_to(Vector2.UP))
+		if input_angle > 0.0:
+			input_angle -= 360.0
+		input_angle *= -1
+		print(input_angle)
+		$ArrowContainer.rotation_degrees = input_angle
+	
+	elif event is InputEventJoypadMotion and _is_active:
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var input_angle = rad_to_deg(direction.angle_to(Vector2.UP))
 		if input_angle > 0.0:
 			input_angle -= 360.0
 		input_angle *= -1
 		if not direction == Vector2.ZERO:
+			$ArrowContainer.rotation_degrees = input_angle
 			if input_angle < 23.0 and not _quick_select_items[0] == -1:
 				$Item0.grab_focus()
 			elif input_angle < 68.0 and not _quick_select_items[1] == -1:
@@ -45,8 +54,6 @@ func _input(event):
 				$Item6.grab_focus()
 			elif input_angle < 337.0 and not _quick_select_items[7] == -1:
 				$Item7.grab_focus()
-			elif not _quick_select_items[0] == -1:
-				$Item0.grab_focus()
 
 func _equip_new_item():
 	if (not _index_to_equip == -1

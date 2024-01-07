@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://plh5aii2ck1t"]
+[gd_scene load_steps=4 format=3 uid="uid://plh5aii2ck1t"]
 
 [ext_resource type="PackedScene" uid="uid://dxh3u48mnshy5" path="res://player/ui/quick_select/slot/slot.tscn" id="1_hl4j2"]
 [ext_resource type="Script" path="res://player/ui/quick_select/quick_select.gd" id="1_vshht"]
+[ext_resource type="Texture2D" uid="uid://dy7wos3igtv10" path="res://player/ui/quick_select/arrow.webp" id="3_m7ntv"]
 
 [node name="QuickSelect" type="Control"]
 process_mode = 2
@@ -130,6 +131,31 @@ offset_bottom = -177.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 5.49779
+
+[node name="ArrowContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Arrow" type="TextureRect" parent="ArrowContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -171.0
+offset_right = 43.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_m7ntv")
 
 [connection signal="focus_entered" from="Item0" to="." method="_on_item_0_focus_entered"]
 [connection signal="mouse_entered" from="Item0" to="." method="_on_item_0_mouse_entered"]

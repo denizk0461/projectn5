@@ -45,7 +45,7 @@ func _to_dotted_number(money: int, separator: String):
 	return str(money) + text
 
 func _load_item(item_id: int):
-	if not item_id == _equipped_item or _load_from_equipped:
+	if (not item_id == _equipped_item and not item_id == -1) or _load_from_equipped:
 		_load_from_equipped = false
 		_equipped_item = item_id
 		var equipped_item_node = get_node("../Pivot/Character/BoneAttachment3D/EquippedItem")
