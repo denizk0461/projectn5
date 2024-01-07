@@ -158,18 +158,10 @@ grow_vertical = 2
 texture = ExtResource("3_m7ntv")
 
 [connection signal="focus_entered" from="Item0" to="." method="_on_item_0_focus_entered"]
-[connection signal="mouse_entered" from="Item0" to="." method="_on_item_0_mouse_entered"]
 [connection signal="focus_entered" from="Item1" to="." method="_on_item_1_focus_entered"]
-[connection signal="mouse_entered" from="Item1" to="." method="_on_item_1_mouse_entered"]
 [connection signal="focus_entered" from="Item2" to="." method="_on_item_2_focus_entered"]
-[connection signal="mouse_entered" from="Item2" to="." method="_on_item_2_mouse_entered"]
 [connection signal="focus_entered" from="Item3" to="." method="_on_item_3_focus_entered"]
-[connection signal="mouse_entered" from="Item3" to="." method="_on_item_3_mouse_entered"]
 [connection signal="focus_entered" from="Item4" to="." method="_on_item_4_focus_entered"]
-[connection signal="mouse_entered" from="Item4" to="." method="_on_item_4_mouse_entered"]
 [connection signal="focus_entered" from="Item5" to="." method="_on_item_5_focus_entered"]
-[connection signal="mouse_entered" from="Item5" to="." method="_on_item_5_mouse_entered"]
 [connection signal="focus_entered" from="Item6" to="." method="_on_item_6_focus_entered"]
-[connection signal="mouse_entered" from="Item6" to="." method="_on_item_6_mouse_entered"]
 [connection signal="focus_entered" from="Item7" to="." method="_on_item_7_focus_entered"]
-[connection signal="mouse_entered" from="Item7" to="." method="_on_item_7_mouse_entered"]

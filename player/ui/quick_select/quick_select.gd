@@ -38,22 +38,28 @@ func _input(event):
 		input_angle *= -1
 		if not direction == Vector2.ZERO:
 			$ArrowContainer.rotation_degrees = input_angle
-			if input_angle < 23.0 and not _quick_select_items[0] == -1:
-				$Item0.grab_focus()
-			elif input_angle < 68.0 and not _quick_select_items[1] == -1:
-				$Item1.grab_focus()
-			elif input_angle < 112.0 and not _quick_select_items[2] == -1:
-				$Item2.grab_focus()
-			elif input_angle < 157.0 and not _quick_select_items[3] == -1:
-				$Item3.grab_focus()
-			elif input_angle < 202.0 and not _quick_select_items[4] == -1:
-				$Item4.grab_focus()
-			elif input_angle < 247.0 and not _quick_select_items[5] == -1:
-				$Item5.grab_focus()
-			elif input_angle < 292.0 and not _quick_select_items[6] == -1:
-				$Item6.grab_focus()
-			elif input_angle < 337.0 and not _quick_select_items[7] == -1:
-				$Item7.grab_focus()
+	
+	if _is_active:
+		var arrow_angle = $ArrowContainer.rotation_degrees
+		if (_is_in_range(arrow_angle, 0, 23) or arrow_angle >= 337.0) and not _quick_select_items[0] == -1:
+			$Item0.grab_focus()
+		elif _is_in_range(arrow_angle, 23, 68) and not _quick_select_items[1] == -1:
+			$Item1.grab_focus()
+		elif _is_in_range(arrow_angle, 68, 112) and not _quick_select_items[2] == -1:
+			$Item2.grab_focus()
+		elif _is_in_range(arrow_angle, 112, 157) and not _quick_select_items[3] == -1:
+			$Item3.grab_focus()
+		elif _is_in_range(arrow_angle, 157, 202) and not _quick_select_items[4] == -1:
+			$Item4.grab_focus()
+		elif _is_in_range(arrow_angle, 202, 247) and not _quick_select_items[5] == -1:
+			$Item5.grab_focus()
+		elif _is_in_range(arrow_angle, 247, 292) and not _quick_select_items[6] == -1:
+			$Item6.grab_focus()
+		elif _is_in_range(arrow_angle, 292, 337) and not _quick_select_items[7] == -1:
+			$Item7.grab_focus()
+
+func _is_in_range(value: float, from: float, to: float) -> bool:
+	return (value >= from and value < to)
 
 func _equip_new_item():
 	if (not _index_to_equip == -1
