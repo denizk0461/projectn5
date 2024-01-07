@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://diryunrxqcygg"]
+[gd_scene load_steps=17 format=3 uid="uid://diryunrxqcygg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_22tkf"]
 [ext_resource type="PackedScene" uid="uid://bj7faiptpc2ap" path="res://player/ui/hud/hud.tscn" id="2_aasqu"]
@@ -19,8 +19,12 @@
 height = 1.65
 radius = 0.26
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0f8vl"]
+height = 2.11267
+radius = 1.79912
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-floor_max_angle = 0.628319
+floor_max_angle = 0.715585
 script = ExtResource("1_22tkf")
 
 [node name="HUD" type="Node3D" parent="."]
@@ -103,8 +107,15 @@ size = Vector3(1, 16, 1)
 texture_albedo = ExtResource("14_0e12a")
 cull_mask = 1048573
 
+[node name="MoneyArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MoneyArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636379, 0)
+shape = SubResource("CylinderShape3D_0f8vl")
+
 [connection signal="equip_weapon_from_menu" from="GUI/PauseMenu" to="Inventory" method="_on_equip_weapon_from_menu"]
 [connection signal="on_pause_menu_closed" from="GUI/PauseMenu" to="." method="_on_pause_menu_on_pause_menu_closed"]
 [connection signal="item_equipped" from="GUI/QuickSelect" to="Inventory" method="_on_quick_select_item_equipped"]
 [connection signal="on_quick_select_closed" from="GUI/QuickSelect" to="." method="_on_quick_select_closed"]
 [connection signal="on_vendor_menu_closed" from="GUI/VendorMenu" to="." method="_on_vendor_menu_closed"]
+[connection signal="body_entered" from="MoneyArea3D" to="." method="_on_money_area_3d_body_entered"]

@@ -66,8 +66,9 @@ func _on_button_resume_pressed():
 	_resume()
 
 func _on_button_reload_pressed():
-	get_node("/root/Main").reload()
+	#get_node("/root/Main").reload()
 	_resume()
+	get_tree().reload_current_scene()
 
 func _on_button_weapons_pressed():
 	set_process_input(false)

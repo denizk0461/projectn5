@@ -1,5 +1,6 @@
 extends Node3D
 
+var _money: int = 999999
 var _load_from_equipped: bool = false
 var items: Dictionary = {
 	101: {
@@ -27,7 +28,18 @@ var is_melee_equipped: bool = true # false if gun/gadget
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load inventory items perhaps?
+	_set_money_counter()
 	pass
+
+func _set_money_counter():
+	get_node("../HUD/PlayerHUD/MoneyPanel/Label").text = _to_dotted_number(_money, " ")
+
+func _to_dotted_number(money: int, separator: String):
+	var text = ""
+	#while money >= 1000:
+		#text += "%s%03d" % [separator, (money % 1000)]
+		#money /= 1000
+	return str(money) + text
 
 func _load_item(id: int):
 	if not id == _equipped_item or _load_from_equipped:
@@ -129,4 +141,9 @@ func reload_gun(weapon_id) -> Dictionary:
 	return {
 		"has_collected": true,
 		"refill_amount": refill_amount,
-	} 
+	}
+
+func collect_money():
+	_money += 1
+	print(_money)
+	_set_money_counter()
