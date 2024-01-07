@@ -136,7 +136,7 @@ func reload_gun(weapon_id) -> Dictionary:
 		"refill_amount": refill_amount,
 	}
 
-func collect_money():
-	_money += 1
+func collect_money(value: int):
+	_money += value
 	print(_money)
 	_set_money_counter()

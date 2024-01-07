@@ -294,7 +294,7 @@ func _on_quick_select_closed():
 
 func _on_money_area_3d_body_entered(body):
 	if body.is_in_group("money"):
-		$Inventory.collect_money()
+		$Inventory.collect_money(body.money_value)
 		body.queue_free()
 
 func _on_inventory_gun_equipped():

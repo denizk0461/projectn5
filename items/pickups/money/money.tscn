@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq8158udjp6pe"]
+[gd_scene load_steps=4 format=3 uid="uid://bq8158udjp6pe"]
 
+[ext_resource type="Script" path="res://items/pickups/money/money.gd" id="1_37wi5"]
 [ext_resource type="PackedScene" uid="uid://cpomp8lqvkgdu" path="res://items/pickups/money/bolt.glb" id="1_tdkst"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_niwoi"]
@@ -7,6 +8,8 @@ radius = 0.174932
 height = 0.42001
 
 [node name="Money" type="AnimatableBody3D" groups=["money"]]
+script = ExtResource("1_37wi5")
+money_value = 5
 
 [node name="Bolt" parent="." instance=ExtResource("1_tdkst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.220504, 0)
