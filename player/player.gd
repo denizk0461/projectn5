@@ -57,7 +57,6 @@ func _input(event):
 	elif event.is_action_pressed("melee"):
 		if not $Inventory.is_melee_equipped:
 			$Inventory.switch_to_melee()
-			$Pivot/Character.lower_arm()
 		# attack! 
 		# attack immediately whether the melee weapon is already equipped or not
 		pass
@@ -74,7 +73,6 @@ func _input(event):
 		if $Inventory.is_melee_equipped:
 			# don't shoot upon equipping the gun
 			$Inventory.switch_to_gun()
-			$Pivot/Character.point()
 		else:
 			$Pivot/Character/BoneAttachment3D/EquippedItem/Item.start_shooting()
 	elif event.is_action_released("shoot"):
@@ -156,10 +154,10 @@ func _physics_process(delta):
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
 	
-	if show_crosshair:
-		$HUD/CrosshairContainer.show()
-	else:
-		$HUD/CrosshairContainer.hide()
+	#if show_crosshair:
+		#$HUD/CrosshairContainer.show()
+	#else:
+		#$HUD/CrosshairContainer.hide()
 	
 	# slope direction correction
 	_ground_normal = $GroundAngleCast.get_collision_normal()
@@ -298,3 +296,9 @@ func _on_money_area_3d_body_entered(body):
 	if body.is_in_group("money"):
 		$Inventory.collect_money()
 		body.queue_free()
+
+func _on_inventory_gun_equipped():
+	$Pivot/Character.point()
+
+func _on_inventory_melee_equipped():
+	$Pivot/Character.lower_arm()

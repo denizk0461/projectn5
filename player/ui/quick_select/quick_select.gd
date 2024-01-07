@@ -4,8 +4,7 @@ var _is_active: bool = false
 var _quick_select_items: Array[int]
 var _index_to_equip: int = -1
 
-signal item_equipped(item_id: int)
-signal on_quick_select_closed() # TODO transfer item_id change in here
+signal on_quick_select_closed(item_id: int)
 
 func prepare_menu():
 	_quick_select_items = get_node("../../Inventory").quick_select
@@ -22,7 +21,6 @@ func _input(event):
 		get_tree().paused = false
 		self.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		on_quick_select_closed.emit()
 		
 	if _is_active:
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -54,7 +52,7 @@ func _equip_new_item():
 	if (not _index_to_equip == -1
 			and not _quick_select_items[_index_to_equip] == -1
 	):
-		item_equipped.emit(_quick_select_items[_index_to_equip])
+		on_quick_select_closed.emit(_quick_select_items[_index_to_equip])
 
 func activate():
 	_is_active = true

@@ -25,6 +25,9 @@ var is_melee_equipped: bool = true # false if gun/gadget
 
 @onready var _player_hud = get_node("../HUD/PlayerHUD")
 
+signal on_gun_equipped() # for this purpose, a gadget is a gun
+signal on_melee_equipped()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# load inventory items perhaps?
@@ -41,37 +44,40 @@ func _to_dotted_number(money: int, separator: String):
 		#money /= 1000
 	return str(money) + text
 
-func _load_item(id: int):
-	if not id == _equipped_item or _load_from_equipped:
+func _load_item(item_id: int):
+	if not item_id == _equipped_item or _load_from_equipped:
 		_load_from_equipped = false
-		_equipped_item = id
+		_equipped_item = item_id
 		var equipped_item_node = get_node("../Pivot/Character/BoneAttachment3D/EquippedItem")
-		var item = load(ItemManager.get_scene_path(id, 1)).instantiate()
+		var item = load(ItemManager.get_scene_path(item_id, 1)).instantiate()
 		var currently_equipped_item = equipped_item_node.get_child(0)
 		if not currently_equipped_item == null:
 			equipped_item_node.remove_child(currently_equipped_item)
 		equipped_item_node.add_child(item)
-		if id >= 100 and id <= 199: # item is a gun
+		if item_id >= 100 and item_id <= 199: # item is a gun
+			is_melee_equipped = false
+			_stored_gun_id = item_id
 			item.get_node("SFX/Equip").play()
 			_player_hud.setup_gun(item.max_ammo, item.icon)
+			_set_ammo_counter(_stored_gun_id)
+			on_gun_equipped.emit()
+		elif item_id >= 200 and item_id <= 299: # item is a gadget
+			is_melee_equipped = false
+			_stored_gun_id = item_id
+			pass # TODO
+			on_gun_equipped.emit()
+		elif item_id >= 400 and item_id <= 499: # item is a melee weapon
+			is_melee_equipped = true
+			_stored_melee_id = item_id
+			_player_hud.hide_ammo_counter()
+			on_melee_equipped.emit()
 
 func load_equipped_item():
 	_load_from_equipped = true
-	_on_item_equipped(_equipped_item)
-
-func _load_melee():
-	_player_hud.hide_ammo_counter()
-	_load_item(_stored_melee_id)
-
-func _load_gun():
-	_load_item(_stored_gun_id)
-	_set_ammo_counter(_stored_gun_id)
+	_load_item(_equipped_item)
 	
 func _set_ammo_counter(weapon_id):
 	_player_hud.set_ammo_counter(items[_stored_gun_id]["current_ammo"])
-
-func _load_gadget():
-	_load_item(_stored_gun_id)
 
 func collect_item(id: int):
 	items[id] = true
@@ -92,33 +98,20 @@ func get_collected_item_ids() -> Array[int]:
 			result.append(i)
 	return result
 
-func _on_item_equipped(item_id: int):
-	if item_id >= 100 and item_id <= 199: # gun
-		_stored_gun_id = item_id
-		is_melee_equipped = false
-		_load_gun()
-	elif item_id >= 200 and item_id <= 299: # gadget
-		_stored_gun_id = item_id
-		is_melee_equipped = false
-		_load_gadget()
-	elif item_id >= 400 and item_id <= 499: # melee
-		_stored_melee_id = item_id
-		is_melee_equipped = true
-		_load_melee()
-
 func switch_to_melee():
-	is_melee_equipped = true
-	_load_melee()
+	_load_item(_stored_melee_id)
 
 func switch_to_gun():
-	is_melee_equipped = false
-	_load_gun()
+	_load_item(_stored_gun_id)
 
-func _on_quick_select_item_equipped(item_id):
-	_on_item_equipped(item_id)
+func _on_quick_select_closed(item_id):
+	_load_item(item_id)
 
-func _on_equip_weapon_from_menu(id):
-	_on_item_equipped(id)
+func _on_pause_menu_closed_item_selected(item_id):
+	_load_item(item_id)
+
+#func _on_equip_weapon_from_menu(id):
+	#_load_item(id)
 
 func reload_gun(weapon_id) -> Dictionary:
 	var refill = ItemManager.get_item_attribute(weapon_id, items[weapon_id]["version"], ItemManager.ATTR_AMMO_REFILL)

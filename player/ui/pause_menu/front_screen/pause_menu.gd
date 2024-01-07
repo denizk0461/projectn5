@@ -1,12 +1,13 @@
 extends Control
 
 var _menu_index: int = 0
+var _item_to_equip: int = -1
 
 # references to nodes relevant for the options menu
 # TODO alternatively maybe a PlayerOptions node?
 
-signal equip_weapon_from_menu(id)
 signal on_pause_menu_closed()
+signal on_pause_menu_closed_item_selected(item_id: int)
 
 func _input(event):
 	if event.is_action_pressed("pause"):
@@ -108,16 +109,14 @@ func _resume():
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	on_pause_menu_closed.emit()
+	on_pause_menu_closed_item_selected.emit(_item_to_equip)
 
 func _on_button_quit_pressed():
 	# later in development, check if the player saved before quitting the game!
 	get_tree().quit()
 
-func _on_equip_weapon_from_weapons_menu(id):
-	equip_weapon_from_menu.emit(id)
-
-
-func _on_weapons_menu_on_weapons_menu_closed():
+func _on_weapons_menu_on_weapons_menu_closed(item_id: int):
+	_item_to_equip = item_id
 	_navigate_back()
 
 func _on_options_menu_on_options_menu_closed():

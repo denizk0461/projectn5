@@ -3,14 +3,11 @@ extends HBoxContainer
 @onready var _item_preview_viewport
 @onready var _item_slots: Array[TextureButton]
 
-#@onready var _inventory: Node3D
-
-signal equip_weapon_from_weapons_menu(id: int) # TODO this stopped working and needs to be overhauled
-signal on_weapons_menu_closed()
+signal on_weapons_menu_closed(item_id: int)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		on_weapons_menu_closed.emit()
+		on_weapons_menu_closed.emit(_currently_clicked_item)
 		set_process_input(false)
 
 var _base_slot_texture_normal = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_normal.png").get_image())
@@ -18,7 +15,7 @@ var _base_slot_texture_hovered = ImageTexture.create_from_image(load("res://play
 var _selected_slot_texture_normal = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_selected.png").get_image())
 var _selected_slot_texture_hovered = ImageTexture.create_from_image(load("res://player/ui/pause_menu/items_common/menu_item_slot_selected_hovered.png").get_image())
 
-var _currently_clicked_item: int
+var _currently_clicked_item: int = -1
 
 # items displayed in the item slots, in order
 var _item_slot_ids = [
@@ -77,7 +74,7 @@ func _select_item(index):
 	_currently_clicked_item = id
 	_item_preview_viewport.display_item(id)
 	_set_item_text(id)
-	equip_weapon_from_weapons_menu.emit(id)
+	#equip_weapon_from_weapons_menu.emit(id)
 	_highlight_slot(index)
 
 func _set_item_text(id):
