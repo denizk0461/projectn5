@@ -288,12 +288,11 @@ func _on_vendor_menu_closed():
 	_show_vendor_message()
 	_message_handler.show_messages_instantly()
 
-func _on_pause_menu_on_pause_menu_closed():
-	#get_tree().paused = false
+func _on_pause_menu_closed():
 	set_process_input(true)
 	_message_handler.show_messages_instantly()
 
-func _on_quick_select_closed():
+func _on_quick_select_closed(item_id):
 	_message_handler.show_messages_instantly()
 
 func _on_money_area_3d_body_entered(body):
