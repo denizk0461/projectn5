@@ -26,6 +26,8 @@ var _invincibility_timeout: float = 0.8
 var _may_take_damage: bool = true
 var _has_shot: bool = false
 
+var _rng = RandomNumberGenerator.new()
+
 @onready var _player_health: int = _max_player_health
 @onready var _message_handler = $HUD/MessageHandler
 
@@ -231,6 +233,9 @@ func _physics_process(delta):
 
 func take_damage(kill_instantly: bool = false):
 	if _may_take_damage:
+		# i'm just fucking around lmao
+		$SFX/DamageSound.pitch_scale = _rng.randf_range(0.65, 1.15)
+		$SFX/DamageSound.play()
 		var is_dead = $HUD/PlayerHUD/HealthBar.take_damage(kill_instantly)
 		
 		if is_dead:

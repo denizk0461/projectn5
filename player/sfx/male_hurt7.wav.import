@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dqde8dxkkyv6e"
-path="res://.godot/imported/reload.wav-56c70a0789d6d0871bba28c52458da14.sample"
+uid="uid://boarfogtgfjcr"
+path="res://.godot/imported/male_hurt7.wav-9c9c3278c83f116acde00cfb5bacefb8.sample"
 
 [deps]
 
-source_file="res://items/pickups/ammo_pickup/reload.wav"
-dest_files=["res://.godot/imported/reload.wav-56c70a0789d6d0871bba28c52458da14.sample"]
+source_file="res://player/sfx/male_hurt7.wav"
+dest_files=["res://.godot/imported/male_hurt7.wav-9c9c3278c83f116acde00cfb5bacefb8.sample"]
 
 [params]
 
