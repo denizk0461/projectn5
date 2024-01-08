@@ -1,16 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqq6h4h5wq4d1"]
+[gd_scene load_steps=4 format=3 uid="uid://dqq6h4h5wq4d1"]
 
+[ext_resource type="Script" path="res://items/equippables/common/projectile.gd" id="1_kkajt"]
 [ext_resource type="PackedScene" uid="uid://bfnu2bjreu3qx" path="res://items/Weapons/Projectiles/BlueIcosphere.glb" id="1_lcd6b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pnro8"]
 radius = 0.1
 
-[node name="Projectile" type="RigidBody3D"]
+[node name="Projectile" type="Area3D"]
 collision_layer = 0
 collision_mask = 0
-gravity_scale = 0.0
-lock_rotation = true
-continuous_cd = true
+script = ExtResource("1_kkajt")
 
 [node name="BlueIcosphere" parent="." instance=ExtResource("1_lcd6b")]
 

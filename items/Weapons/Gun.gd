@@ -57,7 +57,8 @@ func _shoot_once():
 			direction = _get_default_projectile_direction()
 		var projectile = load(ItemManager.get_projectile_path(gun_id, gun_level)).instantiate()
 		projectile.position = $ProjectileSpawn.global_position
-		projectile.linear_velocity = direction * projectile_speed
+		#projectile.linear_velocity = direction * projectile_speed
+		projectile.start_moving(direction * projectile_speed)
 		_projectiles.add_child(projectile)
 		
 		if shoot_type == "Semiauto":

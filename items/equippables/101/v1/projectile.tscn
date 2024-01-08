@@ -1,18 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1604knnn20gm"]
+[gd_scene load_steps=7 format=3 uid="uid://b1604knnn20gm"]
 
 [ext_resource type="PackedScene" uid="uid://bfnu2bjreu3qx" path="res://items/Weapons/Projectiles/BlueIcosphere.glb" id="1_mg8rn"]
+[ext_resource type="Script" path="res://items/equippables/common/projectile.gd" id="1_sj14f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pnro8"]
 radius = 0.1
 
-[node name="Projectile" type="RigidBody3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p05pd"]
+lifetime_randomness = 0.12
+direction = Vector3(0, 1, 0)
+spread = 18.75
+initial_velocity_min = -3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -3, 0)
+radial_accel_min = -68.33
+radial_accel_max = -35.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4ye2"]
+albedo_color = Color(1, 0.682353, 1, 1)
+use_point_size = true
+point_size = 8.0
+
+[sub_resource type="PointMesh" id="PointMesh_g4mnl"]
+material = SubResource("StandardMaterial3D_w4ye2")
+
+[node name="Projectile" type="Area3D"]
 collision_layer = 0
 collision_mask = 0
-gravity_scale = 0.0
-lock_rotation = true
-continuous_cd = true
+script = ExtResource("1_sj14f")
 
 [node name="BlueIcosphere" parent="." instance=ExtResource("1_mg8rn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pnro8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 96
+lifetime = 0.22
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_p05pd")
+draw_pass_1 = SubResource("PointMesh_g4mnl")
