@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjqrr22d2p3v6"]
 
 [ext_resource type="Script" path="res://items/equippables/common/auto_target/auto_target_agent.gd" id="1_khnsl"]
-[ext_resource type="PackedScene" uid="uid://d1k7pvma7glpl" path="res://items/equippables/common/auto_target/auto_target_cone.tscn" id="2_1df68"]
+[ext_resource type="PackedScene" uid="uid://c1deeey42mw2q" path="res://items/equippables/common/auto_target/auto_target_cone.tscn" id="2_1df68"]
 
 [node name="AutoTarget" type="Area3D"]
 script = ExtResource("1_khnsl")

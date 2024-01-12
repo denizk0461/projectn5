@@ -218,18 +218,21 @@ func _physics_process(delta):
 		# TODO standing on sans and certain slopes crashes the game because of these lines!
 		# what to do when intersection is null?
 #		print("%s + %s" % [Time.get_ticks_msec(), _floor_plane])
-		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0).normalized()
-		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0).normalized()
-		x *= direction.x
-		z *= direction.z
-		direction = (x + z).normalized()
-		_target_velocity.x = direction.x
-		_target_velocity.z = direction.y
-		if direction.length() > 0:
-			_xz = _xz.lerp(direction * _speed, _move_acceleration * delta)
-		else:
-			_xz = _xz.lerp(direction * _speed, _move_acceleration * 2.0 * delta)
-		
+		var x = _floor_plane.intersects_segment(Vector3.RIGHT + Vector3.UP * 2.0, Vector3.RIGHT + Vector3.DOWN * 2.0)
+		var z = _floor_plane.intersects_segment(Vector3.BACK + Vector3.UP * 2.0, Vector3.BACK + Vector3.DOWN * 2.0)
+		if not x == null and not z == null:
+			x = x.normalized()
+			z = z.normalized()
+			x *= direction.x
+			z *= direction.z
+			direction = (x + z).normalized()
+			_target_velocity.x = direction.x
+			_target_velocity.z = direction.y
+			if direction.length() > 0:
+				_xz = _xz.lerp(direction * _speed, _move_acceleration * delta)
+			else:
+				_xz = _xz.lerp(direction * _speed, _move_acceleration * 2.0 * delta)
+			
 		if _target_velocity.y < 0:
 			_target_velocity.y = _xz.y
 	

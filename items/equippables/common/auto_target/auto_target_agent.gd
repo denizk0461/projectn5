@@ -8,7 +8,11 @@ var _shortest_distance: int = 1000
 func _process(delta):
 	# rotates the hitbox for the auto target so it always faces forward
 	# (the direction the character is facing)
-	self.rotate(Vector3.LEFT, self.global_rotation.x)
+	#global_rotation_degrees.x = 0
+	print(global_rotation_degrees.x)
+	#global_rotation_degrees.x = 0
+	#self.global_rotation_degrees.x = 0
+	#self.global_rotate(Vector3.LEFT, 120)
 	
 	if _colliders.is_empty():
 		_targeted_enemy_index = -1
