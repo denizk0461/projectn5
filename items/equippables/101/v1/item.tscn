@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w3v1x08hjl4s"]
+[gd_scene load_steps=10 format=3 uid="uid://w3v1x08hjl4s"]
 
 [ext_resource type="Script" path="res://items/Weapons/Gun.gd" id="1_3a356"]
 [ext_resource type="Texture2D" uid="uid://bws8guisgie38" path="res://items/equippables/101/icon.webp" id="2_fcmvh"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://7hxnw26512fi" path="res://items/equippables/101/v1/shoot.wav" id="5_18h1c"]
 [ext_resource type="PackedScene" uid="uid://tekcm8je62nr" path="res://items/equippables/common/sfx/empty.tscn" id="5_gv3g8"]
 [ext_resource type="AudioStream" uid="uid://b0d77ntvirva3" path="res://items/equippables/101/v1/equip.wav" id="7_m44oj"]
+[ext_resource type="Texture2D" uid="uid://6gcxcjt45u84" path="res://items/equippables/101/crosshair.webp" id="8_uswl1"]
 
 [sub_resource type="Environment" id="Environment_wbbsn"]
 glow_enabled = true
@@ -49,3 +50,29 @@ stream = ExtResource("5_18h1c")
 
 [node name="Equip" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("7_m44oj")
+
+[node name="CrosshairContainer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="TextureRect" parent="CrosshairContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_uswl1")

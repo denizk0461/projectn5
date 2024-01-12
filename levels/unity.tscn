@@ -76,7 +76,7 @@ environment = SubResource("Environment_trqa7")
 transform = Transform3D(0.698896, 0, 0, 0, 1, 0, 0, 0, 0.698896, 0, -3, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.58594, -0.808764, -0.0507423, -0.623458, -0.489918, 0.609328, -0.517662, -0.325394, -0.791293, -12.3468, 17.5343, 0.951916)
+transform = Transform3D(0.58594, -0.808764, -0.0507424, -0.623458, -0.489918, 0.609328, -0.517662, -0.325394, -0.791293, -12.3468, 17.5343, 0.951916)
 shadow_enabled = true
 
 [node name="Enemies" type="Node3D" parent="."]

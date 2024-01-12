@@ -26,6 +26,10 @@ var _invincibility_timeout: float = 0.8
 var _may_take_damage: bool = true
 var _has_shot: bool = false
 
+var _fov_default: float = 80.0
+var _fov_strafe: float = 72.0
+var _fov_lerp_speed: float = 17.0
+
 var _rng = RandomNumberGenerator.new()
 
 @onready var _player_health: int = _max_player_health
@@ -155,10 +159,13 @@ func _physics_process(delta):
 	
 	var show_crosshair: bool = false
 	if Input.is_action_pressed("strafe"):
+		$SpringArm3D/GameplayCamera.fov = lerp($SpringArm3D/GameplayCamera.fov, _fov_strafe, _fov_lerp_speed * delta)
 		show_crosshair = true
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
+	else:
+		$SpringArm3D/GameplayCamera.fov = lerp($SpringArm3D/GameplayCamera.fov, _fov_default, _fov_lerp_speed * delta)
 	
 	#if show_crosshair:
 		#$HUD/CrosshairContainer.show()

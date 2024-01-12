@@ -98,6 +98,8 @@ _data = {
 
 [node name="AmmoPickup" instance=ExtResource("1_cgret")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Cube" type="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
