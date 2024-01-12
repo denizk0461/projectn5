@@ -24,7 +24,7 @@ max_ammo = 60
 projectile_speed = 36.0
 despawn_after_secs = 6.0
 shoot_timeout = 0.1
-shoot_type = "Automatic"
+shoot_type = "Semiauto"
 icon = ExtResource("2_fcmvh")
 
 [node name="ProjectileSpawn" type="Node3D" parent="."]

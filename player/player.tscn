@@ -97,6 +97,9 @@ one_shot = true
 [node name="SecondJumpTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="StrafeTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="SaveState" type="Node3D" parent="."]
 script = ExtResource("11_87gof")
 

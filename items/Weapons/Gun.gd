@@ -77,8 +77,6 @@ func stop_shooting():
 	$Timer.stop()
 	$Timer.emit_signal("timeout")
 
-#func shoot():
-
 func _pause_shooting():
 	_may_shoot = false
 	await get_tree().create_timer(shoot_timeout).timeout

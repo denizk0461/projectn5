@@ -30,6 +30,9 @@ var _fov_default: float = 80.0
 var _fov_strafe: float = 72.0
 var _fov_lerp_speed: float = 17.0
 
+var _strafe_timeout: float = 0.8
+var _is_force_strafing: bool = false
+
 var _rng = RandomNumberGenerator.new()
 
 @onready var _player_health: int = _max_player_health
@@ -62,6 +65,7 @@ func _input(event):
 			_open_quick_select()
 	
 	elif event.is_action_pressed("melee"):
+		_cancel_strafe_timer()
 		if not $Inventory.is_melee_equipped:
 			$Inventory.switch_to_melee()
 		# attack! 
@@ -84,10 +88,16 @@ func _input(event):
 				$Inventory.switch_to_gun()
 			else:
 				$Pivot/Character/BoneAttachment3D/EquippedItem/Item.start_shooting()
+				_is_force_strafing = true
+				_cancel_strafe_timer(true)
 	elif event.is_action_released("shoot"):
+		#if not _has_shot:
+			#_start_strafe_timer()
+		print("????")
 		_has_shot = false
 		if not $Inventory.is_melee_equipped:
 			$Pivot/Character/BoneAttachment3D/EquippedItem/Item.stop_shooting()
+			_start_strafe_timer()
 
 func _handle_jump():
 	if _jump_count < 2:
@@ -154,17 +164,22 @@ func _physics_process(delta):
 		# what did I want to do here again?
 	else:
 		direction = direction.rotated(Vector3.UP, $SpringArm3D.rotation.y).normalized()
-		if not Input.is_action_pressed("strafe"):
+		if not Input.is_action_pressed("strafe") and not _is_force_strafing:
 			$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(direction.x, direction.z), _rotation_speed * delta)
 	
 	var show_crosshair: bool = false
-	if Input.is_action_pressed("strafe"):
+	if Input.is_action_pressed("strafe") or _is_force_strafing:
+		if Input.is_action_pressed("strafe"):
+			_cancel_strafe_timer()
+		# TODO move this into a callback
 		$SpringArm3D/GameplayCamera.fov = lerp($SpringArm3D/GameplayCamera.fov, _fov_strafe, _fov_lerp_speed * delta)
+		
 		show_crosshair = true
 		var rotation_rads = $SpringArm3D.rotation.y
 		var look_direction = Vector3(sin(rotation_rads), 0.0, cos(rotation_rads))
 		$Pivot.rotation.y = lerp_angle($Pivot.rotation.y, atan2(look_direction.x, look_direction.z) + deg_to_rad(180.0), _rotation_speed * delta)
 	else:
+		# TODO move this into a callback
 		$SpringArm3D/GameplayCamera.fov = lerp($SpringArm3D/GameplayCamera.fov, _fov_default, _fov_lerp_speed * delta)
 	
 	#if show_crosshair:
@@ -317,3 +332,13 @@ func _on_inventory_gun_equipped():
 
 func _on_inventory_melee_equipped():
 	$Pivot/Character.lower_arm()
+
+func _start_strafe_timer():
+	$StrafeTimer.start(_strafe_timeout)
+	await $StrafeTimer.timeout
+	_is_force_strafing = false
+
+func _cancel_strafe_timer(keep_strafing: bool = false):
+	if !$StrafeTimer.is_stopped():
+		$StrafeTimer.stop()
+		_is_force_strafing = keep_strafing
