@@ -33,6 +33,12 @@ var _fov_lerp_speed: float = 17.0
 var _strafe_timeout: float = 0.8
 var _is_force_strafing: bool = false
 
+var _lock_camera_y: bool = false
+var _spring_arm_y: float = -1.0
+var _cached_global_camera_position_y: float = -1.0
+var _cached_global_camera_raycast_position_y: float = -1.0
+var _spring_arm_lerp_speed: float = 4
+
 var _rng = RandomNumberGenerator.new()
 
 @onready var _player_health: int = _max_player_health
@@ -47,6 +53,7 @@ func _ready():
 	$SaveState.save()
 	# prevent SpringArm3D (camera) from colliding with player character
 	$SpringArm3D.add_excluded_object(self)
+	_spring_arm_y = $SpringArm3D.position.y
 
 func _input(event):
 	if event.is_action_pressed("jump"):
@@ -122,13 +129,20 @@ func _handle_jump():
 func _jump_state_change():
 	match _jump_count:
 		1:
+			_lock_camera_y = true
+			_cached_global_camera_position_y = self.global_position.y
+			if $JumpRayCast3D.is_colliding():
+				_cached_global_camera_raycast_position_y = $JumpRayCast3D.get_collider().global_position.y
 			$Pivot/Character.first_jump()
 		2:
 			$Pivot/Character.second_jump()
-			$HUD/AutoTargetSprite.hide()
+			#$HUD/AutoTargetSprite.hide()
 			_is_second_jump = true
 		_: # 0
-			$HUD/AutoTargetSprite.show()
+			_lock_camera_y = false
+			_cached_global_camera_position_y = -1.0
+			pass
+			#$HUD/AutoTargetSprite.show()
 
 func disallow_second_jump_after(seconds: float):
 	var jump_count_before_timer = _total_jump_count
@@ -153,6 +167,13 @@ func _process(delta):
 	var item = $Pivot/Character/BoneAttachment3D/EquippedItem/Item
 	if not item == null:
 		item.player_rotation = $Pivot.rotation.y
+	
+	if _lock_camera_y:
+		$SpringArm3D.global_position.y = _cached_global_camera_position_y + _spring_arm_y
+		if not $JumpRayCast3D.is_colliding() or not $JumpRayCast3D.get_collider().global_position.y == _cached_global_camera_raycast_position_y:
+			_lock_camera_y = false
+	else:
+		$SpringArm3D.position.y = lerp($SpringArm3D.position.y, 0 + _spring_arm_y, _spring_arm_lerp_speed * delta)
 
 func _physics_process(delta):
 	#print(Engine.get_frames_per_second())
@@ -186,6 +207,7 @@ func _physics_process(delta):
 		#$HUD/CrosshairContainer.show()
 	#else:
 		#$HUD/CrosshairContainer.hide()
+		
 	
 	# slope direction correction
 	_ground_normal = $GroundAngleCast.get_collision_normal()

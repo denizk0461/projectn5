@@ -123,6 +123,9 @@ cull_mask = 1048573
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636379, 0)
 shape = SubResource("CylinderShape3D_0f8vl")
 
+[node name="JumpRayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -16, 0)
+
 [connection signal="on_pause_menu_closed" from="GUI/PauseMenu" to="." method="_on_pause_menu_closed"]
 [connection signal="on_pause_menu_closed_item_selected" from="GUI/PauseMenu" to="Inventory" method="_on_pause_menu_closed_item_selected"]
 [connection signal="on_quick_select_closed" from="GUI/QuickSelect" to="." method="_on_quick_select_closed"]
